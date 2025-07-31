@@ -588,9 +588,16 @@
                     // Create guild in admin database
                     database.ref(`admin/guilds/${guildUrl}`).set(newGuild)
                         .then(() => {
-                            showCreationMessage('Guild created successfully!', 'success');
-                            clearGuildForm();
-                            loadGuilds();
+                            // Create placeholder characters for the new guild
+                            createPlaceholderCharacters(guildUrl)
+                                .then(() => {
+                                    showCreationMessage('Guild created successfully with 3 placeholder characters!', 'success');
+                                    clearGuildForm();
+                                    loadGuilds();
+                                })
+                                .catch((error) => {
+                                    showCreationMessage('Guild created but error creating placeholder characters: ' + error.message, 'error');
+                                });
                         })
                         .catch((error) => {
                             showCreationMessage('Error creating guild: ' + error.message, 'error');
@@ -599,6 +606,85 @@
                 .catch((error) => {
                     showCreationMessage('Error checking guild existence: ' + error.message, 'error');
                 });
+        }
+
+        // Create placeholder characters for a new guild
+        function createPlaceholderCharacters(guildUrl) {
+            const characters = generatePlaceholderCharacters();
+            const promises = characters.map(character => {
+                return database.ref(`guilds/${guildUrl}/characters`).push(character);
+            });
+            return Promise.all(promises);
+        }
+
+        // Generate 3 random placeholder characters
+        function generatePlaceholderCharacters() {
+            const fantasyNames = [
+                'Aria Stormwind', 'Thorin Ironfist', 'Luna Shadowmoon', 'Gareth Brightblade', 'Zara Fireheart',
+                'Marcus Stormcaller', 'Elara Nightwhisper', 'Ragnar Frostbeard', 'Seraphina Lightweaver', 'Kael Darkforge',
+                'Isabella Moonstone', 'Drakon Bloodfist', 'Lyra Silverwing', 'Magnus Thunderfist', 'Nyx Voidwalker',
+                'Valeria Sunseeker', 'Grimtooth Skullcrusher', 'Aurora Frostwind', 'Talon Swiftblade', 'Mystra Spellweaver'
+            ];
+
+            const classes = ['Fighter', 'Wizard', 'Rogue', 'Cleric', 'Ranger', 'Paladin', 'Bard', 'Druid', 'Monk', 'Warlock'];
+            const races = ['Human', 'Elf', 'Dwarf', 'Halfling', 'Dragonborn', 'Tiefling', 'Half-Orc', 'Gnome', 'Half-Elf', 'Aarakocra'];
+
+            const characters = [];
+            
+            for (let i = 0; i < 3; i++) {
+                const name = fantasyNames[Math.floor(Math.random() * fantasyNames.length)];
+                const characterClass = classes[Math.floor(Math.random() * classes.length)];
+                const race = races[Math.floor(Math.random() * races.length)];
+                const level = Math.floor(Math.random() * 10) + 1; // Level 1-10
+                
+                // Generate random stats (8-18 range)
+                const strength = Math.floor(Math.random() * 11) + 8;
+                const dexterity = Math.floor(Math.random() * 11) + 8;
+                const constitution = Math.floor(Math.random() * 11) + 8;
+                const intelligence = Math.floor(Math.random() * 11) + 8;
+                const wisdom = Math.floor(Math.random() * 11) + 8;
+                const charisma = Math.floor(Math.random() * 11) + 8;
+                
+                // Calculate HP based on class and constitution
+                const baseHP = characterClass === 'Fighter' ? 10 : 8;
+                const hp = baseHP + Math.floor((constitution - 10) / 2);
+                
+                // Calculate AC based on dexterity
+                const ac = 10 + Math.floor((dexterity - 10) / 2);
+                
+                const character = {
+                    name: name,
+                    class: characterClass,
+                    level: level,
+                    race: race,
+                    hp: Math.max(1, hp),
+                    ac: Math.max(10, ac),
+                    strength: strength,
+                    dexterity: dexterity,
+                    constitution: constitution,
+                    intelligence: intelligence,
+                    wisdom: wisdom,
+                    charisma: charisma,
+                    isDead: false,
+                    lastUpdated: Date.now(),
+                    // Add some placeholder content for other fields
+                    background: `A ${race.toLowerCase()} ${characterClass.toLowerCase()} with a mysterious past.`,
+                    personality: 'Brave and determined, always ready for adventure.',
+                    goals: 'To become a legendary hero and protect the realm.',
+                    weapon: 'Standard weapon',
+                    armor: 'Basic armor',
+                    items: 'Adventuring gear, rations, waterskin',
+                    activeEffects: 'None currently',
+                    ability1: 'Class ability - varies by character',
+                    ability2: 'Racial trait - varies by character',
+                    ability3: 'Background feature - varies by character',
+                    ultimate: 'Signature move or spell - to be developed'
+                };
+                
+                characters.push(character);
+            }
+            
+            return characters;
         }
 
         // Load all guilds
