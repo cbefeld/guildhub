@@ -36,7 +36,7 @@
             box-shadow: 
                 inset 0 1px 0 rgba(255, 255, 255, 0.1),
                 0 4px 8px rgba(0, 0, 0, 0.5);
-            margin-bottom: 13.5px;
+            margin-bottom: 6px;
             position: relative;
         }
 
@@ -73,7 +73,7 @@
         .connection-status {
             background: linear-gradient(180deg, #14532d 0%, #15803d 100%);
             color: #ffd700;
-            padding: 8px 12px;
+            padding: 4px 8px;
             border-radius: 6px;
             font-size: 0.72rem;
             font-weight: bold;
@@ -181,13 +181,13 @@
 
         .card-header {
             border-bottom: 2px solid #8b7355;
-            padding-bottom: 15px;
-            margin-bottom: 13.5px;
+            padding-bottom: 6px;
+            margin-bottom: 6px;
             position: relative;
         }
 
         .card-title {
-            margin-bottom: 10px;
+            margin-bottom: 4px;
         }
 
         .card-name {
@@ -197,7 +197,7 @@
             background: transparent;
             border: none;
             width: 100%;
-            padding: 8px 12px;
+            padding: 4px 8px;
             font-family: 'Times New Roman', serif;
             text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
             border-radius: 4px;
@@ -215,7 +215,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 8px;
+            margin-bottom: 3px;
         }
 
         .card-class {
@@ -225,7 +225,7 @@
             background: transparent;
             border: none;
             width: 60%;
-            padding: 6px 10px;
+            padding: 3px 6px;
             font-family: 'Times New Roman', serif;
             border-radius: 4px;
             transition: all 0.2s ease;
@@ -241,7 +241,7 @@
         .card-level {
             background: linear-gradient(180deg, #8b7355 0%, #6b5b3a 100%);
             color: #ffd700;
-            padding: 6px 12px;
+            padding: 3px 8px;
             border-radius: 6px;
             font-weight: bold;
             font-size: 0.81rem;
@@ -280,7 +280,7 @@
             color: #b0b0b0;
             font-style: italic;
             width: 100%;
-            padding: 6px 10px;
+            padding: 3px 6px;
             font-family: 'Times New Roman', serif;
             font-size: 0.81rem;
             border-radius: 4px;
@@ -304,7 +304,7 @@
         .card-stats {
             display: flex;
             gap: 15px;
-            margin-bottom: 13.5px;
+            margin-bottom: 6px;
         }
 
         .stat-row {
@@ -356,7 +356,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 8px 12px;
+            padding: 4px 8px;
             background: linear-gradient(180deg, #4a4a4a 0%, #3a3a3a 100%);
             border: 1px solid #8b7355;
             border-radius: 4px;
@@ -391,6 +391,45 @@
             box-shadow: 
                 inset 0 2px 4px rgba(0, 0, 0, 0.3),
                 0 0 0 2px rgba(255, 215, 0, 0.3);
+        }
+
+        .custom-abilities {
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px solid #8b7355;
+        }
+
+        .custom-ability-item {
+            margin-bottom: 6px;
+        }
+
+        .custom-ability-label {
+            display: block;
+            font-size: 0.8rem;
+            font-weight: bold;
+            color: #ffd700;
+            margin-bottom: 2px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .custom-ability-input {
+            width: 100%;
+            background: linear-gradient(180deg, #4a4a4a 0%, #3a3a3a 100%);
+            border: 1px solid #8b7355;
+            border-radius: 4px;
+            padding: 4px 6px;
+            font-family: "Times New Roman", serif;
+            color: #e0e0e0;
+            font-size: 0.8rem;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .custom-ability-input:focus {
+            outline: none;
+            border-color: #a0522d;
+            background: linear-gradient(180deg, #5a5a5a 0%, #4a4a4a 100%);
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3), 0 0 0 2px rgba(160, 82, 45, 0.3);
         }
 
         .card-footer {
@@ -784,7 +823,7 @@
                     </div>
                 </div>
 
-                <div class="card-footer">
+                <div class="custom-abilities"><div class="custom-ability-item"><label class="custom-ability-label">Ability 1:</label><input type="text" value="${character.ability1}" onchange="updateCharacter('${character.id}', 'ability1', this.value)" class="editable-field custom-ability-input" placeholder="Enter ability description..."></div><div class="custom-ability-item"><label class="custom-ability-label">Ability 2:</label><input type="text" value="${character.ability2}" onchange="updateCharacter('${character.id}', 'ability2', this.value)" class="editable-field custom-ability-input" placeholder="Enter ability description..."></div><div class="custom-ability-item"><label class="custom-ability-label">Ability 3:</label><input type="text" value="${character.ability3}" onchange="updateCharacter('${character.id}', 'ability3', this.value)" class="editable-field custom-ability-input" placeholder="Enter ability description..."></div><div class="custom-ability-item"><label class="custom-ability-label">Ultimate Feature:</label><input type="text" value="${character.ultimate}" onchange="updateCharacter('${character.id}', 'ultimate', this.value)" class="editable-field custom-ability-input" placeholder="Enter ultimate feature description..."></div></div><div class="card-footer">
                     <button class="remove-card-btn" onclick="removeCharacter('${character.id}')">
                         ✕
                     </button>
