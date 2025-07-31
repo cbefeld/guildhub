@@ -658,8 +658,8 @@
             left: 50%;
             transform: translate(-50%, -50%);
             background: linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 100%);
-            border: 2px solid #8b7355;
-            border-radius: 12px;
+            border: 1px solid #8b7355;
+            border-radius: 8px;
             padding: 0;
             width: 400px;
             max-height: 500px;
@@ -670,37 +670,39 @@
 
         .dice-roller-popup-header {
             background: linear-gradient(180deg, #3a3a3a 0%, #2a2a2a 100%);
-            border-bottom: 2px solid #8b7355;
-            padding: 12px 16px;
+            border-bottom: 1px solid #8b7355;
+            padding: 10px 14px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-radius: 10px 10px 0 0;
+            border-radius: 7px 7px 0 0;
         }
 
         .dice-roller-popup-header h3 {
             color: #ffd700;
-            font-size: 1.2rem;
+            font-size: 1rem;
             font-weight: bold;
             text-transform: uppercase;
             letter-spacing: 1px;
             margin: 0;
+            font-family: 'Times New Roman', serif;
         }
 
         .close-dice-popup-btn {
             background: linear-gradient(180deg, #6b5b3a 0%, #4a4a4a 100%);
             color: #ffd700;
             border: 1px solid #8b7355;
-            border-radius: 4px;
-            width: 24px;
-            height: 24px;
-            font-size: 1rem;
+            border-radius: 3px;
+            width: 20px;
+            height: 20px;
+            font-size: 0.8rem;
             font-weight: bold;
             cursor: pointer;
             transition: all 0.2s ease;
             display: flex;
             align-items: center;
             justify-content: center;
+            font-family: 'Times New Roman', serif;
         }
 
         .close-dice-popup-btn:hover {
@@ -709,33 +711,34 @@
         }
 
         .dice-roller-popup-body {
-            padding: 16px;
+            padding: 12px;
         }
 
         .dice-selection-popup {
-            margin-bottom: 16px;
+            margin-bottom: 12px;
         }
 
         .dice-type-selector-popup {
             display: flex;
-            gap: 6px;
+            gap: 4px;
             flex-wrap: wrap;
             justify-content: center;
-            margin-bottom: 12px;
+            margin-bottom: 10px;
         }
 
         .dice-type-btn-popup {
             background: linear-gradient(180deg, #4a4a4a 0%, #3a3a3a 100%);
             color: #ffd700;
             border: 1px solid #8b7355;
-            border-radius: 4px;
-            padding: 6px 10px;
-            font-size: 0.8rem;
+            border-radius: 3px;
+            padding: 4px 8px;
+            font-size: 0.7rem;
             font-weight: bold;
             cursor: pointer;
             transition: all 0.2s ease;
             text-transform: uppercase;
             letter-spacing: 0.5px;
+            font-family: 'Times New Roman', serif;
         }
 
         .dice-type-btn-popup:hover {
@@ -751,7 +754,7 @@
 
         .dice-controls-popup {
             display: flex;
-            gap: 16px;
+            gap: 12px;
             justify-content: center;
             align-items: center;
         }
@@ -759,51 +762,54 @@
         .control-group {
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 6px;
         }
 
         .control-group label {
             color: #ffd700;
             font-weight: bold;
-            font-size: 0.8rem;
+            font-size: 0.7rem;
             text-transform: uppercase;
             letter-spacing: 0.5px;
+            font-family: 'Times New Roman', serif;
         }
 
         .quantity-controls-popup,
         .modifier-controls-popup {
             display: flex;
             align-items: center;
-            gap: 4px;
+            gap: 3px;
             background: linear-gradient(180deg, #3a3a3a 0%, #2a2a2a 100%);
             border: 1px solid #8b7355;
-            border-radius: 4px;
-            padding: 3px 6px;
+            border-radius: 3px;
+            padding: 2px 4px;
         }
 
         .quantity-controls-popup span,
         .modifier-controls-popup span {
             color: #ffd700;
             font-weight: bold;
-            font-size: 0.9rem;
-            min-width: 24px;
+            font-size: 0.8rem;
+            min-width: 20px;
             text-align: center;
+            font-family: 'Times New Roman', serif;
         }
 
         .control-btn-popup {
             background: linear-gradient(180deg, #6b5b3a 0%, #4a4a4a 100%);
             color: #ffd700;
             border: 1px solid #8b7355;
-            border-radius: 3px;
-            width: 22px;
-            height: 22px;
-            font-size: 0.8rem;
+            border-radius: 2px;
+            width: 18px;
+            height: 18px;
+            font-size: 0.7rem;
             font-weight: bold;
             cursor: pointer;
             transition: all 0.2s ease;
             display: flex;
             align-items: center;
             justify-content: center;
+            font-family: 'Times New Roman', serif;
         }
 
         .control-btn-popup:hover {
@@ -813,41 +819,42 @@
 
         .dice-tray-popup {
             background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%);
-            border: 2px solid #8b7355;
-            border-radius: 8px;
-            padding: 12px;
-            margin-bottom: 12px;
-            min-height: 80px;
+            border: 1px solid #8b7355;
+            border-radius: 6px;
+            padding: 10px;
+            margin-bottom: 10px;
+            min-height: 70px;
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 12px;
+            gap: 10px;
         }
 
         .dice-container-popup {
             display: flex;
-            gap: 8px;
+            gap: 6px;
             justify-content: center;
             align-items: center;
             flex-wrap: wrap;
-            min-height: 40px;
+            min-height: 35px;
         }
 
         .dice-popup {
-            width: 32px;
-            height: 32px;
+            width: 28px;
+            height: 28px;
             background: linear-gradient(135deg, #ffffff 0%, #e0e0e0 100%);
             border: 1px solid #333;
-            border-radius: 4px;
+            border-radius: 3px;
             display: flex;
             align-items: center;
             justify-content: center;
             font-weight: bold;
-            font-size: 0.9rem;
+            font-size: 0.8rem;
             color: #333;
+            font-family: 'Times New Roman', serif;
             box-shadow: 
                 inset 0 1px 0 rgba(255, 255, 255, 0.8),
-                0 2px 4px rgba(0, 0, 0, 0.3);
+                0 1px 3px rgba(0, 0, 0, 0.3);
             transition: all 0.3s ease;
             cursor: pointer;
         }
@@ -867,18 +874,19 @@
         .roll-dice-btn-popup {
             background: linear-gradient(180deg, #a0522d 0%, #8b7355 100%);
             color: #ffd700;
-            border: 2px solid #ffd700;
-            border-radius: 6px;
-            padding: 8px 20px;
-            font-size: 0.9rem;
+            border: 1px solid #ffd700;
+            border-radius: 4px;
+            padding: 6px 16px;
+            font-size: 0.8rem;
             font-weight: bold;
             cursor: pointer;
             transition: all 0.2s ease;
             text-transform: uppercase;
             letter-spacing: 1px;
+            font-family: 'Times New Roman', serif;
             box-shadow: 
                 inset 0 1px 0 rgba(255, 255, 255, 0.2),
-                0 2px 4px rgba(0, 0, 0, 0.4);
+                0 1px 3px rgba(0, 0, 0, 0.4);
         }
 
         .roll-dice-btn-popup:hover {
@@ -901,16 +909,17 @@
         .roll-result-popup {
             background: linear-gradient(180deg, #3a3a3a 0%, #2a2a2a 100%);
             border: 1px solid #8b7355;
-            border-radius: 6px;
-            padding: 8px 12px;
+            border-radius: 4px;
+            padding: 6px 10px;
             text-align: center;
-            font-size: 0.9rem;
+            font-size: 0.8rem;
             color: #ffd700;
             font-weight: bold;
-            min-height: 24px;
+            min-height: 20px;
             display: flex;
             align-items: center;
             justify-content: center;
+            font-family: 'Times New Roman', serif;
         }
 
         .roll-result-popup:empty {
@@ -921,36 +930,38 @@
         .roll-history-popup {
             background: linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 100%);
             border: 1px solid #8b7355;
-            border-radius: 6px;
-            padding: 10px;
-            margin-top: 8px;
+            border-radius: 4px;
+            padding: 8px;
+            margin-top: 6px;
         }
 
         .roll-history-popup h4 {
             color: #ffd700;
-            font-size: 0.9rem;
+            font-size: 0.8rem;
             font-weight: bold;
             text-transform: uppercase;
             letter-spacing: 1px;
-            margin: 0 0 8px 0;
+            margin: 0 0 6px 0;
             text-align: center;
+            font-family: 'Times New Roman', serif;
         }
 
         .history-list-popup {
-            max-height: 120px;
+            max-height: 100px;
             overflow-y: auto;
             display: flex;
             flex-direction: column;
-            gap: 6px;
+            gap: 4px;
         }
 
         .history-item-popup {
             background: linear-gradient(180deg, #3a3a3a 0%, #2a2a2a 100%);
             border: 1px solid #8b7355;
-            border-radius: 4px;
-            padding: 6px 8px;
-            font-size: 0.8rem;
+            border-radius: 3px;
+            padding: 4px 6px;
+            font-size: 0.7rem;
             color: #e0e0e0;
+            font-family: 'Times New Roman', serif;
         }
 
         .history-item-popup .roll-result {
