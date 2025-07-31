@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GuildHub - Multi-Tenant D&D Character Management</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Times New Roman', serif;
+            background: linear-gradient(135deg, #0A0502 0%, #1A0F0A 50%, #0A0502 100%);
+            min-height: 100vh;
+            color: #e0e0e0;
+            line-height: 1.6;
+        }
+
+        .landing-container {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+        }
+
+        .hero-section {
+            text-align: center;
+            padding: 60px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: bold;
+            color: #ffd700;
+            text-shadow: 
+                3px 3px 6px rgba(0, 0, 0, 0.8),
+                0 0 20px rgba(255, 215, 0, 0.4);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 20px;
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            color: #b0b0b0;
+            margin-bottom: 40px;
+            font-style: italic;
+        }
+
+        .hero-description {
+            font-size: 1.2rem;
+            color: #e0e0e0;
+            max-width: 800px;
+            margin: 0 auto 50px auto;
+            line-height: 1.8;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 30px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 60px;
+        }
+
+        .cta-btn {
+            padding: 20px 40px;
+            font-size: 1.3rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            box-shadow: 
+                inset 0 1px 0 rgba(255, 255, 255, 0.2),
+                0 6px 12px rgba(0, 0, 0, 0.6);
+        }
+
+        .demo-btn {
+            background: linear-gradient(180deg, #3b82f6 0%, #2563eb 100%);
+            color: #ffffff;
+            border: 3px solid #1d4ed8;
+        }
+
+        .demo-btn:hover {
+            background: linear-gradient(180deg, #2563eb 0%, #1d4ed8 100%);
+            transform: translateY(-3px);
+            box-shadow: 
+                inset 0 1px 0 rgba(255, 255, 255, 0.3),
+                0 8px 16px rgba(0, 0, 0, 0.8);
+        }
+
+        .purchase-btn {
+            background: linear-gradient(180deg, #22c55e 0%, #16a34a 100%);
+            color: #ffffff;
+            border: 3px solid #15803d;
+        }
+
+        .purchase-btn:hover {
+            background: linear-gradient(180deg, #16a34a 0%, #15803d 100%);
+            transform: translateY(-3px);
+            box-shadow: 
+                inset 0 1px 0 rgba(255, 255, 255, 0.3),
+                0 8px 16px rgba(0, 0, 0, 0.8);
+        }
+
+        .features-section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        .features-title {
+            font-size: 2.5rem;
+            color: #ffd700;
+            text-align: center;
+            margin-bottom: 50px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .feature-card {
+            background: linear-gradient(180deg, #3a3a3a 0%, #2a2a2a 100%);
+            border: 2px solid #8b7355;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 
+                inset 0 1px 0 rgba(255, 255, 255, 0.1),
+                0 6px 12px rgba(0, 0, 0, 0.6);
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            border-color: #a0522d;
+            box-shadow: 
+                inset 0 1px 0 rgba(255, 255, 255, 0.15),
+                0 8px 16px rgba(0, 0, 0, 0.8);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .feature-title {
+            font-size: 1.5rem;
+            color: #ffd700;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .feature-description {
+            color: #b0b0b0;
+            line-height: 1.6;
+        }
+
+        .pricing-section {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        .pricing-title {
+            font-size: 2.5rem;
+            color: #ffd700;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+        }
+
+        .pricing-card {
+            background: linear-gradient(180deg, #3a3a3a 0%, #2a2a2a 100%);
+            border: 3px solid #ffd700;
+            border-radius: 16px;
+            padding: 40px;
+            box-shadow: 
+                inset 0 1px 0 rgba(255, 255, 255, 0.1),
+                0 8px 16px rgba(0, 0, 0, 0.6);
+        }
+
+        .price {
+            font-size: 3rem;
+            color: #ffd700;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .price-description {
+            font-size: 1.2rem;
+            color: #b0b0b0;
+            margin-bottom: 30px;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 40px 20px;
+            color: #b0b0b0;
+            border-top: 1px solid #8b7355;
+            margin-top: 60px;
+        }
+
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .cta-btn {
+                width: 100%;
+                max-width: 300px;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="landing-container">
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <h1 class="hero-title">GuildHub</h1>
+            <p class="hero-subtitle">Multi-Tenant D&D Character Management</p>
+            <p class="hero-description">
+                GuildHub is a powerful, scalable platform that allows D&D groups to manage their characters in isolated, password-protected guilds. 
+                Each guild gets its own private space with real-time collaboration, beautiful character sheets, and secure access. 
+                Perfect for DMs who want to provide their players with a professional character management experience.
+            </p>
+            
+            <div class="cta-buttons">
+                <a href="https://cbefeld.github.io/guildhub/?guild=testguild" class="cta-btn demo-btn">
+                    🎮 Try Demo
+                </a>
+                <a href="https://buy.stripe.com/bJeaEX6VX3GF5BTcEb4c809" class="cta-btn purchase-btn">
+                    💰 Purchase Guild
+                </a>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section class="features-section">
+            <h2 class="features-title">Why Choose GuildHub?</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <span class="feature-icon">🏰</span>
+                    <h3 class="feature-title">Multi-Tenant Architecture</h3>
+                    <p class="feature-description">
+                        Each guild operates in complete isolation with its own password-protected space. 
+                        No cross-guild data access ensures privacy and security for every group.
+                    </p>
+                </div>
+                
+                <div class="feature-card">
+                    <span class="feature-icon">⚡</span>
+                    <h3 class="feature-title">Real-Time Collaboration</h3>
+                    <p class="feature-description">
+                        Character changes sync instantly across all guild members. 
+                        See updates in real-time as players modify their characters during sessions.
+                    </p>
+                </div>
+                
+                <div class="feature-card">
+                    <span class="feature-icon">🎨</span>
+                    <h3 class="feature-title">Beautiful Character Sheets</h3>
+                    <p class="feature-description">
+                        RuneScape-inspired design with comprehensive D&D character fields. 
+                        Stats, abilities, inventory, story, and active effects all in one place.
+                    </p>
+                </div>
+                
+                <div class="feature-card">
+                    <span class="feature-icon">🔒</span>
+                    <h3 class="feature-title">Secure Access</h3>
+                    <p class="feature-description">
+                        Each guild has a unique URL and password. 
+                        Only authorized members can access the guild's character data.
+                    </p>
+                </div>
+                
+                <div class="feature-card">
+                    <span class="feature-icon">🚀</span>
+                    <h3 class="feature-title">Instant Setup</h3>
+                    <p class="feature-description">
+                        New guilds come with 3 placeholder characters to get started immediately. 
+                        No complex setup required - just create and play.
+                    </p>
+                </div>
+                
+                <div class="feature-card">
+                    <span class="feature-icon">💎</span>
+                    <h3 class="feature-title">Professional Quality</h3>
+                    <p class="feature-description">
+                        Built for DMs who want to provide their players with a premium experience. 
+                        Scalable architecture supports hundreds of guilds with minimal infrastructure costs.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pricing Section -->
+        <section class="pricing-section">
+            <h2 class="pricing-title">Simple Pricing</h2>
+            <div class="pricing-card">
+                <div class="price">$19.99</div>
+                <p class="price-description">One-time purchase for your guild</p>
+                <a href="https://buy.stripe.com/bJeaEX6VX3GF5BTcEb4c809" class="cta-btn purchase-btn">
+                    💰 Purchase Now
+                </a>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>&copy; 2024 GuildHub. Professional D&D character management for serious players.</p>
+        </footer>
+    </div>
+</body>
+</html> 
