@@ -1793,31 +1793,37 @@
             left: 0;
             right: 0;
             background: linear-gradient(180deg, #2a2a2a 0%, #1a1a1a 100%);
-            border-top: 3px solid #8b7355;
-            padding: 10px 20px;
+            border-top: 1px solid #8b7355;
+            padding: 8px 20px;
             color: #ffd700;
             font-family: "Times New Roman", serif;
-            box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.6);
+            box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.4);
             z-index: 1000;
         }
         .footer-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            gap: 18px;
+            display: flex;
+            justify-content: space-between;
             align-items: center;
+            gap: 20px;
         }
         .footer-left {
-            text-align: left;
+            display: flex;
+            align-items: center;
         }
         .footer-middle {
-            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex: 1;
         }
         .footer-right {
-            text-align: right;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
         }
         .music-player {
             display: flex;
-            justify-content: flex-end;
+            justify-content: center;
         }
         .runescape-audio {
             background: linear-gradient(180deg, #8b7355 0%, #6b5b3a 100%);
@@ -1837,7 +1843,7 @@
             border-radius: 4px;
         }
         .app-main {
-            padding-bottom: 80px;
+            padding-bottom: 60px;
         }
 
         /* Abilities Button */
