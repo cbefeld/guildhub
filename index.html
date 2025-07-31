@@ -550,6 +550,281 @@
         .app-main {
             padding-bottom: 80px;
         }
+
+        /* Abilities Button */
+        .abilities-btn {
+            background: linear-gradient(180deg, #8b7355 0%, #6b5b3a 100%);
+            color: #ffd700;
+            border: 2px solid #a0522d;
+            border-radius: 6px;
+            padding: 8px 12px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            margin-right: 8px;
+            box-shadow: 
+                inset 0 1px 0 rgba(255, 255, 255, 0.2),
+                0 2px 4px rgba(0, 0, 0, 0.4);
+        }
+
+        .abilities-btn:hover {
+            background: linear-gradient(180deg, #a0522d 0%, #8b7355 100%);
+            transform: scale(1.05);
+            box-shadow: 
+                inset 0 1px 0 rgba(255, 255, 255, 0.3),
+                0 4px 8px rgba(0, 0, 0, 0.6);
+        }
+
+        /* Abilities Modal */
+        .abilities-modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(4px);
+        }
+
+        .abilities-modal-content {
+            background: linear-gradient(180deg, #3a3a3a 0%, #2a2a2a 100%);
+            border: 2px solid #8b7355;
+            border-radius: 12px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.8);
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 90%;
+            max-width: 500px;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        .abilities-modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            border-bottom: 2px solid #8b7355;
+            background: linear-gradient(180deg, #4a4a4a 0%, #3a3a3a 100%);
+            border-radius: 10px 10px 0 0;
+        }
+
+        .abilities-modal-header h3 {
+            color: #ffd700;
+            font-size: 1.4rem;
+            font-weight: bold;
+            margin: 0;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .close-modal-btn {
+            background: linear-gradient(180deg, #8b0000 0%, #6b0000 100%);
+            color: #ffd700;
+            border: 2px solid #a0522d;
+            border-radius: 6px;
+            width: 2rem;
+            height: 2rem;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 
+                inset 0 1px 0 rgba(255, 255, 255, 0.2),
+                0 2px 4px rgba(0, 0, 0, 0.4);
+        }
+
+        .close-modal-btn:hover {
+            background: linear-gradient(180deg, #a00000 0%, #8b0000 100%);
+            transform: scale(1.05);
+        }
+
+        .abilities-modal-body {
+            padding: 20px;
+        }
+
+        .abilities-modal-body .custom-ability-item {
+            margin-bottom: 15px;
+        }
+
+        .abilities-modal-body .custom-ability-label {
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+        }
+
+        .abilities-modal-body .custom-ability-input {
+            font-size: 0.9rem;
+            padding: 8px 10px;
+        }
+
+        /* Card Tabs */
+        .card-tabs {
+            display: flex;
+            border-bottom: 2px solid #8b7355;
+            margin-bottom: 10px;
+        }
+
+        .tab-btn {
+            background: linear-gradient(180deg, #4a4a4a 0%, #3a3a3a 100%);
+            color: #e0e0e0;
+            border: none;
+            border-bottom: 3px solid transparent;
+            padding: 6px 8px;
+            font-size: 0.6rem;
+            font-weight: bold;
+            font-family: 'Times New Roman', serif;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            flex: 1;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .tab-btn:hover {
+            background: linear-gradient(180deg, #5a5a5a 0%, #4a4a4a 100%);
+            color: #ffd700;
+        }
+
+        .tab-btn.active {
+            background: linear-gradient(180deg, #8b7355 0%, #6b5b3a 100%);
+            color: #ffd700;
+            border-bottom-color: #ffd700;
+            box-shadow: 
+                inset 0 1px 0 rgba(255, 255, 255, 0.2),
+                0 2px 4px rgba(0, 0, 0, 0.4);
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* Abilities tab content styling */
+        .tab-content .custom-abilities {
+            margin-top: 0;
+            padding-top: 0;
+            border-top: none;
+        }
+
+        .tab-content .custom-ability-item {
+            margin-bottom: 12px;
+        }
+
+        .tab-content .custom-ability-label {
+            font-size: 0.85rem;
+            margin-bottom: 4px;
+        }
+
+        .tab-content .custom-ability-input {
+            font-size: 0.85rem;
+            padding: 6px 8px;
+        }
+
+        /* Inventory Tab Content */
+        .inventory-section {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .inventory-item {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .inventory-label {
+            font-size: 0.75rem;
+            font-weight: bold;
+            color: #ffd700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .inventory-input {
+            background: linear-gradient(180deg, #4a4a4a 0%, #3a3a3a 100%);
+            border: 1px solid #8b7355;
+            border-radius: 4px;
+            padding: 4px 6px;
+            font-family: 'Times New Roman', serif;
+            color: #e0e0e0;
+            font-size: 0.75rem;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .inventory-textarea {
+            background: linear-gradient(180deg, #4a4a4a 0%, #3a3a3a 100%);
+            border: 1px solid #8b7355;
+            border-radius: 4px;
+            padding: 4px 6px;
+            font-family: 'Times New Roman', serif;
+            color: #e0e0e0;
+            font-size: 0.75rem;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
+            resize: vertical;
+            min-height: 40px;
+            max-height: 80px;
+        }
+
+        .inventory-input:focus,
+        .inventory-textarea:focus {
+            outline: none;
+            border-color: #a0522d;
+            background: linear-gradient(180deg, #5a5a5a 0%, #4a4a4a 100%);
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3), 0 0 0 2px rgba(160, 82, 45, 0.3);
+        }
+
+        /* Story Tab Content */
+        .story-section {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .story-item {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .story-label {
+            font-size: 0.75rem;
+            font-weight: bold;
+            color: #ffd700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .story-textarea {
+            background: linear-gradient(180deg, #4a4a4a 0%, #3a3a3a 100%);
+            border: 1px solid #8b7355;
+            border-radius: 4px;
+            padding: 4px 6px;
+            font-family: 'Times New Roman', serif;
+            color: #e0e0e0;
+            font-size: 0.75rem;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
+            resize: vertical;
+            min-height: 30px;
+            max-height: 60px;
+        }
+
+        .story-textarea:focus {
+            outline: none;
+            border-color: #a0522d;
+            background: linear-gradient(180deg, #5a5a5a 0%, #4a4a4a 100%);
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3), 0 0 0 2px rgba(160, 82, 45, 0.3);
+        }
     </style>
 </head>
 <body>
@@ -572,6 +847,8 @@
             </div>
         </main>
     </div>
+
+
 
     <!-- Firebase SDK -->
     <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-app-compat.js"></script>
@@ -675,6 +952,33 @@
             database.ref().update(updates);
         }
 
+        // Switch between tabs
+        function switchTab(characterId, tabName) {
+            // Get the card element
+            const card = document.querySelector(`[data-character-id="${characterId}"]`) || 
+                        document.querySelector(`#stats-content-${characterId}`)?.closest('.character-card');
+            
+            if (!card) return;
+
+            // Update tab buttons
+            const tabButtons = card.querySelectorAll('.tab-btn');
+            tabButtons.forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.getAttribute('data-tab') === tabName) {
+                    btn.classList.add('active');
+                }
+            });
+
+            // Update tab content
+            const tabContents = card.querySelectorAll('.tab-content');
+            tabContents.forEach(content => {
+                content.classList.remove('active');
+                if (content.id === `${tabName}-content-${characterId}`) {
+                    content.classList.add('active');
+                }
+            });
+        }
+
         // Render all characters
         function renderCharacters() {
             const deck = document.getElementById('characterDeck');
@@ -690,6 +994,7 @@
         function createCharacterCard(character, index) {
             const card = document.createElement('div');
             card.className = 'character-card';
+            card.setAttribute('data-character-id', character.id);
             
             card.innerHTML = `
                 <div class="card-header">
@@ -729,101 +1034,181 @@
                     </div>
                 </div>
 
+                <div class="card-tabs">
+                    <button class="tab-btn active" onclick="switchTab('${character.id}', 'stats')" data-tab="stats">
+                        Stats
+                    </button>
+                    <button class="tab-btn" onclick="switchTab('${character.id}', 'abilities')" data-tab="abilities">
+                        Abilities
+                    </button>
+                    <button class="tab-btn" onclick="switchTab('${character.id}', 'inventory')" data-tab="inventory">
+                        Inventory
+                    </button>
+                    <button class="tab-btn" onclick="switchTab('${character.id}', 'story')" data-tab="story">
+                        Story
+                    </button>
+                </div>
+
                 <div class="card-body">
-                    <div class="card-stats">
-                        <div class="stat-row">
-                            <span class="stat-label">HP:</span>
-                            <input
-                                type="number"
-                                value="${character.hp}"
-                                onchange="updateCharacter('${character.id}', 'hp', parseInt(this.value) || 0)"
-                                class="editable-field stat-input"
-                            >
+                    <!-- Stats Tab Content -->
+                    <div class="tab-content active" id="stats-content-${character.id}">
+                        <div class="card-stats">
+                            <div class="stat-row">
+                                <span class="stat-label">HP:</span>
+                                <input
+                                    type="number"
+                                    value="${character.hp}"
+                                    onchange="updateCharacter('${character.id}', 'hp', parseInt(this.value) || 0)"
+                                    class="editable-field stat-input"
+                                >
+                            </div>
+                            <div class="stat-row">
+                                <span class="stat-label">AC:</span>
+                                <input
+                                    type="number"
+                                    value="${character.ac}"
+                                    onchange="updateCharacter('${character.id}', 'ac', parseInt(this.value) || 0)"
+                                    class="editable-field stat-input"
+                                >
+                            </div>
                         </div>
-                        <div class="stat-row">
-                            <span class="stat-label">AC:</span>
-                            <input
-                                type="number"
-                                value="${character.ac}"
-                                onchange="updateCharacter('${character.id}', 'ac', parseInt(this.value) || 0)"
-                                class="editable-field stat-input"
-                            >
+
+                        <div class="card-abilities">
+                            <div class="ability-grid">
+                                <div class="ability-item">
+                                    <span class="ability-label">Str:</span>
+                                    <input
+                                        type="number"
+                                        value="${character.strength}"
+                                        onchange="updateCharacter('${character.id}', 'strength', parseInt(this.value) || 0)"
+                                        class="editable-field ability-input"
+                                        min="1"
+                                        max="20"
+                                    >
+                                </div>
+                                <div class="ability-item">
+                                    <span class="ability-label">Dex:</span>
+                                    <input
+                                        type="number"
+                                        value="${character.dexterity}"
+                                        onchange="updateCharacter('${character.id}', 'dexterity', parseInt(this.value) || 0)"
+                                        class="editable-field ability-input"
+                                        min="1"
+                                        max="20"
+                                    >
+                                </div>
+                                <div class="ability-item">
+                                    <span class="ability-label">Con:</span>
+                                    <input
+                                        type="number"
+                                        value="${character.constitution}"
+                                        onchange="updateCharacter('${character.id}', 'constitution', parseInt(this.value) || 0)"
+                                        class="editable-field ability-input"
+                                        min="1"
+                                        max="20"
+                                    >
+                                </div>
+                                <div class="ability-item">
+                                    <span class="ability-label">Int:</span>
+                                    <input
+                                        type="number"
+                                        value="${character.intelligence}"
+                                        onchange="updateCharacter('${character.id}', 'intelligence', parseInt(this.value) || 0)"
+                                        class="editable-field ability-input"
+                                        min="1"
+                                        max="20"
+                                    >
+                                </div>
+                                <div class="ability-item">
+                                    <span class="ability-label">Wis:</span>
+                                    <input
+                                        type="number"
+                                        value="${character.wisdom}"
+                                        onchange="updateCharacter('${character.id}', 'wisdom', parseInt(this.value) || 0)"
+                                        class="editable-field ability-input"
+                                        min="1"
+                                        max="20"
+                                    >
+                                </div>
+                                <div class="ability-item">
+                                    <span class="ability-label">Cha:</span>
+                                    <input
+                                        type="number"
+                                        value="${character.charisma}"
+                                        onchange="updateCharacter('${character.id}', 'charisma', parseInt(this.value) || 0)"
+                                        class="editable-field ability-input"
+                                        min="1"
+                                        max="20"
+                                    >
+                                </div>
+                            </div>
                         </div>
                     </div>
 
-                    <div class="card-abilities">
-                        <div class="ability-grid">
-                            <div class="ability-item">
-                                <span class="ability-label">Str:</span>
-                                <input
-                                    type="number"
-                                    value="${character.strength}"
-                                    onchange="updateCharacter('${character.id}', 'strength', parseInt(this.value) || 0)"
-                                    class="editable-field ability-input"
-                                    min="1"
-                                    max="20"
-                                >
+                    <!-- Abilities Tab Content -->
+                    <div class="tab-content" id="abilities-content-${character.id}">
+                        <div class="custom-abilities">
+                            <div class="custom-ability-item">
+                                <label class="custom-ability-label">Ability 1:</label>
+                                <input type="text" value="${character.ability1 || ''}" onchange="updateCharacter('${character.id}', 'ability1', this.value)" class="editable-field custom-ability-input" placeholder="Enter ability description...">
                             </div>
-                            <div class="ability-item">
-                                <span class="ability-label">Dex:</span>
-                                <input
-                                    type="number"
-                                    value="${character.dexterity}"
-                                    onchange="updateCharacter('${character.id}', 'dexterity', parseInt(this.value) || 0)"
-                                    class="editable-field ability-input"
-                                    min="1"
-                                    max="20"
-                                >
+                            <div class="custom-ability-item">
+                                <label class="custom-ability-label">Ability 2:</label>
+                                <input type="text" value="${character.ability2 || ''}" onchange="updateCharacter('${character.id}', 'ability2', this.value)" class="editable-field custom-ability-input" placeholder="Enter ability description...">
                             </div>
-                            <div class="ability-item">
-                                <span class="ability-label">Con:</span>
-                                <input
-                                    type="number"
-                                    value="${character.constitution}"
-                                    onchange="updateCharacter('${character.id}', 'constitution', parseInt(this.value) || 0)"
-                                    class="editable-field ability-input"
-                                    min="1"
-                                    max="20"
-                                >
+                            <div class="custom-ability-item">
+                                <label class="custom-ability-label">Ability 3:</label>
+                                <input type="text" value="${character.ability3 || ''}" onchange="updateCharacter('${character.id}', 'ability3', this.value)" class="editable-field custom-ability-input" placeholder="Enter ability description...">
                             </div>
-                            <div class="ability-item">
-                                <span class="ability-label">Int:</span>
-                                <input
-                                    type="number"
-                                    value="${character.intelligence}"
-                                    onchange="updateCharacter('${character.id}', 'intelligence', parseInt(this.value) || 0)"
-                                    class="editable-field ability-input"
-                                    min="1"
-                                    max="20"
-                                >
+                            <div class="custom-ability-item">
+                                <label class="custom-ability-label">Ultimate Feature:</label>
+                                <input type="text" value="${character.ultimate || ''}" onchange="updateCharacter('${character.id}', 'ultimate', this.value)" class="editable-field custom-ability-input" placeholder="Enter ultimate feature description...">
                             </div>
-                            <div class="ability-item">
-                                <span class="ability-label">Wis:</span>
-                                <input
-                                    type="number"
-                                    value="${character.wisdom}"
-                                    onchange="updateCharacter('${character.id}', 'wisdom', parseInt(this.value) || 0)"
-                                    class="editable-field ability-input"
-                                    min="1"
-                                    max="20"
-                                >
+                        </div>
+                    </div>
+
+                    <!-- Inventory Tab Content -->
+                    <div class="tab-content" id="inventory-content-${character.id}">
+                        <div class="inventory-section">
+                            <div class="inventory-item">
+                                <label class="inventory-label">Weapon:</label>
+                                <input type="text" value="${character.weapon || ''}" onchange="updateCharacter('${character.id}', 'weapon', this.value)" class="editable-field inventory-input" placeholder="Enter weapon...">
                             </div>
-                            <div class="ability-item">
-                                <span class="ability-label">Cha:</span>
-                                <input
-                                    type="number"
-                                    value="${character.charisma}"
-                                    onchange="updateCharacter('${character.id}', 'charisma', parseInt(this.value) || 0)"
-                                    class="editable-field ability-input"
-                                    min="1"
-                                    max="20"
-                                >
+                            <div class="inventory-item">
+                                <label class="inventory-label">Armor:</label>
+                                <input type="text" value="${character.armor || ''}" onchange="updateCharacter('${character.id}', 'armor', this.value)" class="editable-field inventory-input" placeholder="Enter armor...">
+                            </div>
+                            <div class="inventory-item">
+                                <label class="inventory-label">Shield:</label>
+                                <input type="text" value="${character.shield || ''}" onchange="updateCharacter('${character.id}', 'shield', this.value)" class="editable-field inventory-input" placeholder="Enter shield...">
+                            </div>
+                            <div class="inventory-item">
+                                <label class="inventory-label">Items:</label>
+                                <textarea value="${character.items || ''}" onchange="updateCharacter('${character.id}', 'items', this.value)" class="editable-field inventory-textarea" placeholder="Enter inventory items...">${character.items || ''}</textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Story Tab Content -->
+                    <div class="tab-content" id="story-content-${character.id}">
+                        <div class="story-section">
+                            <div class="story-item">
+                                <label class="story-label">Background:</label>
+                                <textarea value="${character.background || ''}" onchange="updateCharacter('${character.id}', 'background', this.value)" class="editable-field story-textarea" placeholder="Enter character background...">${character.background || ''}</textarea>
+                            </div>
+                            <div class="story-item">
+                                <label class="story-label">Personality:</label>
+                                <textarea value="${character.personality || ''}" onchange="updateCharacter('${character.id}', 'personality', this.value)" class="editable-field story-textarea" placeholder="Enter personality traits...">${character.personality || ''}</textarea>
+                            </div>
+                            <div class="story-item">
+                                <label class="story-label">Goals:</label>
+                                <textarea value="${character.goals || ''}" onchange="updateCharacter('${character.id}', 'goals', this.value)" class="editable-field story-textarea" placeholder="Enter character goals...">${character.goals || ''}</textarea>
                             </div>
                         </div>
                     </div>
                 </div>
-
-                <div class="custom-abilities"><div class="custom-ability-item"><label class="custom-ability-label">Ability 1:</label><input type="text" value="${character.ability1}" onchange="updateCharacter('${character.id}', 'ability1', this.value)" class="editable-field custom-ability-input" placeholder="Enter ability description..."></div><div class="custom-ability-item"><label class="custom-ability-label">Ability 2:</label><input type="text" value="${character.ability2}" onchange="updateCharacter('${character.id}', 'ability2', this.value)" class="editable-field custom-ability-input" placeholder="Enter ability description..."></div><div class="custom-ability-item"><label class="custom-ability-label">Ability 3:</label><input type="text" value="${character.ability3}" onchange="updateCharacter('${character.id}', 'ability3', this.value)" class="editable-field custom-ability-input" placeholder="Enter ability description..."></div><div class="custom-ability-item"><label class="custom-ability-label">Ultimate Feature:</label><input type="text" value="${character.ultimate}" onchange="updateCharacter('${character.id}', 'ultimate', this.value)" class="editable-field custom-ability-input" placeholder="Enter ultimate feature description..."></div></div><div class="card-footer">
+                
+                <div class="card-footer">
                     <button class="remove-card-btn" onclick="removeCharacter('${character.id}')">
                         ✕
                     </button>
