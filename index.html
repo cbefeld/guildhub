@@ -843,6 +843,15 @@
             background: linear-gradient(180deg, #5a5a5a 0%, #4a4a4a 100%);
             box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3), 0 0 0 2px rgba(160, 82, 45, 0.3);
         }
+
+        /* Stat highlighting */
+        .ability-input.highest-stat {
+            border-left: 3px solid #22c55e;
+        }
+
+        .ability-input.lowest-stat {
+            border-left: 3px solid #ef4444;
+        }
     </style>
 </head>
 <body>
@@ -968,6 +977,68 @@
             updates[`characters/${id}/${field}`] = value;
             updates[`characters/${id}/lastUpdated`] = Date.now();
             database.ref().update(updates);
+            
+            // Highlight stats if this was a stat update
+            if (['strength', 'dexterity', 'constitution', 'intelligence', 'wisdom', 'charisma'].includes(field)) {
+                setTimeout(() => highlightStats(id), 100);
+            }
+        }
+
+        // Highlight highest and lowest stats
+        function highlightStats(characterId) {
+            const character = characters.find(c => c.id === characterId);
+            if (!character) return;
+
+            const card = document.querySelector(`[data-character-id="${characterId}"]`);
+            if (!card) return;
+
+            // Get all ability inputs for this specific card
+            const abilityInputs = card.querySelectorAll('.ability-input');
+            
+            // Remove existing highlighting
+            abilityInputs.forEach(input => {
+                input.classList.remove('highest-stat', 'lowest-stat');
+            });
+
+            // Get stat values for this specific character only
+            const stats = [
+                { field: 'strength', value: character.strength || 0 },
+                { field: 'dexterity', value: character.dexterity || 0 },
+                { field: 'constitution', value: character.constitution || 0 },
+                { field: 'intelligence', value: character.intelligence || 0 },
+                { field: 'wisdom', value: character.wisdom || 0 },
+                { field: 'charisma', value: character.charisma || 0 }
+            ];
+
+            // Find highest and lowest stats for this character only
+            const maxStat = Math.max(...stats.map(s => s.value));
+            const minStat = Math.min(...stats.map(s => s.value));
+
+            // Apply highlighting only to this character's stats
+            // Only highlight if there's actually a difference between stats
+            if (maxStat !== minStat && maxStat > 0) {
+                // Find and highlight the highest stat (only the first one if there are ties)
+                const maxStats = stats.filter(stat => stat.value === maxStat);
+                if (maxStats.length > 0) {
+                    const inputs = card.querySelectorAll('.ability-input');
+                    const input = Array.from(inputs).find(input => 
+                        input.getAttribute('onchange') && 
+                        input.getAttribute('onchange').includes(`'${maxStats[0].field}'`)
+                    );
+                    if (input) input.classList.add('highest-stat');
+                }
+
+                // Find and highlight the lowest stat (only the first one if there are ties)
+                const minStats = stats.filter(stat => stat.value === minStat);
+                if (minStats.length > 0) {
+                    const inputs = card.querySelectorAll('.ability-input');
+                    const input = Array.from(inputs).find(input => 
+                        input.getAttribute('onchange') && 
+                        input.getAttribute('onchange').includes(`'${minStats[0].field}'`)
+                    );
+                    if (input) input.classList.add('lowest-stat');
+                }
+            }
         }
 
         // Switch between tabs
@@ -1005,6 +1076,9 @@
             characters.forEach((character, index) => {
                 const card = createCharacterCard(character, index);
                 deck.appendChild(card);
+                
+                // Highlight stats for this character
+                setTimeout(() => highlightStats(character.id), 50);
             });
         }
 
