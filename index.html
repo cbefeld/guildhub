@@ -515,6 +515,104 @@
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
         }
 
+        /* Campaign Banner */
+        .campaign-banner-section {
+            margin-bottom: 30px;
+        }
+
+        .campaign-banner {
+            position: relative;
+            height: 200px;
+            border-radius: 12px;
+            overflow: hidden;
+            background: linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 100%);
+            border: 2px solid #8b7355;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
+        }
+
+        .campaign-banner.has-image {
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .campaign-banner-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(
+                135deg,
+                rgba(0, 0, 0, 0.7) 0%,
+                rgba(0, 0, 0, 0.4) 50%,
+                rgba(0, 0, 0, 0.7) 100%
+            );
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2;
+        }
+
+        .campaign-banner-title {
+            color: #ffd700;
+            font-size: 2.5rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            text-shadow: 
+                3px 3px 6px rgba(0, 0, 0, 0.8),
+                0 0 20px rgba(255, 215, 0, 0.4);
+            margin: 0;
+            text-align: center;
+        }
+
+        .campaign-banner-actions {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            z-index: 3;
+            display: flex;
+            gap: 10px;
+        }
+
+        .generate-banner-btn,
+        .regenerate-banner-btn {
+            background: linear-gradient(180deg, #8b7355 0%, #6b5b3a 100%);
+            color: #ffd700;
+            border: 2px solid #a0522d;
+            border-radius: 6px;
+            padding: 8px 16px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 
+                inset 0 1px 0 rgba(255, 255, 255, 0.2),
+                0 2px 4px rgba(0, 0, 0, 0.4);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .generate-banner-btn:hover,
+        .regenerate-banner-btn:hover {
+            background: linear-gradient(180deg, #a0522d 0%, #8b7355 100%);
+            transform: translateY(-1px);
+            box-shadow: 
+                inset 0 1px 0 rgba(255, 255, 255, 0.3),
+                0 4px 8px rgba(0, 0, 0, 0.6);
+        }
+
+        .generate-banner-btn.loading {
+            background: linear-gradient(180deg, #6b7280 0%, #4b5563 100%);
+            color: #ffffff;
+            cursor: not-allowed;
+        }
+
+        .generate-banner-btn.loading:hover {
+            transform: none;
+        }
+
         .status-message {
             padding: 10px;
             border-radius: 6px;
@@ -1490,6 +1588,23 @@
         </header>
         
         <main class="app-main">
+            <!-- Campaign Banner Section -->
+            <div class="campaign-banner-section" id="campaignBannerSection">
+                <div class="campaign-banner" id="campaignBanner">
+                    <div class="campaign-banner-overlay">
+                        <h1 class="campaign-banner-title" id="campaignBannerTitle">Campaign</h1>
+                    </div>
+                    <div class="campaign-banner-actions">
+                        <button class="generate-banner-btn" onclick="generateCampaignBanner()" id="generateBannerBtn">
+                            🎨 Generate Banner
+                        </button>
+                        <button class="regenerate-banner-btn" onclick="regenerateCampaignBanner()" id="regenerateBannerBtn" style="display: none;">
+                            🔄 Regenerate
+                        </button>
+                    </div>
+                </div>
+            </div>
+
             <!-- Campaign Info Section -->
             <div class="campaign-info-section" id="campaignInfoSection">
                 <div class="campaign-info-header">
@@ -1785,8 +1900,9 @@
                     if (!currentCampaignId) {
                         switchCampaign(campaigns[0].id);
                     } else {
-                        // Load campaign info for current campaign
+                        // Load campaign info and banner for current campaign
                         loadCampaignInfo();
+                        loadCampaignBanner();
                     }
                 }
             });
@@ -1838,6 +1954,7 @@
             // Reload characters and campaign info for new campaign
             setupRealtimeListener();
             loadCampaignInfo();
+            loadCampaignBanner();
         }
 
         function showNewCampaignModal() {
@@ -1987,6 +2104,136 @@
                 .catch((error) => {
                     alert('Error saving campaign info: ' + error.message);
                 });
+        }
+
+        // Campaign Banner Functions
+        function loadCampaignBanner() {
+            const campaignPath = getCampaignPath();
+            database.ref(`${campaignPath}/banner`).once('value')
+                .then((snapshot) => {
+                    const bannerData = snapshot.val();
+                    if (bannerData && bannerData.imageUrl) {
+                        renderCampaignBanner(bannerData.imageUrl, bannerData.campaignName);
+                    } else {
+                        renderCampaignBanner(null, getCurrentCampaignName());
+                    }
+                })
+                .catch((error) => {
+                    console.error('Error loading campaign banner:', error);
+                    renderCampaignBanner(null, getCurrentCampaignName());
+                });
+        }
+
+        function getCurrentCampaignName() {
+            const currentCampaign = campaigns.find(c => c.id === currentCampaignId);
+            return currentCampaign ? currentCampaign.name : 'Campaign';
+        }
+
+        function renderCampaignBanner(imageUrl, campaignName) {
+            const banner = document.getElementById('campaignBanner');
+            const title = document.getElementById('campaignBannerTitle');
+            const generateBtn = document.getElementById('generateBannerBtn');
+            const regenerateBtn = document.getElementById('regenerateBannerBtn');
+
+            title.textContent = campaignName;
+
+            if (imageUrl) {
+                banner.style.backgroundImage = `url(${imageUrl})`;
+                banner.classList.add('has-image');
+                generateBtn.style.display = 'none';
+                regenerateBtn.style.display = 'block';
+            } else {
+                banner.style.backgroundImage = 'none';
+                banner.classList.remove('has-image');
+                generateBtn.style.display = 'block';
+                regenerateBtn.style.display = 'none';
+            }
+        }
+
+        function generateCampaignBanner() {
+            const campaignPath = getCampaignPath();
+            
+            // Get world description for AI prompt
+            database.ref(`${campaignPath}/info`).once('value')
+                .then((snapshot) => {
+                    const info = snapshot.val() || {};
+                    const worldDescription = info.world || '';
+                    const campaignName = getCurrentCampaignName();
+                    
+                    if (!worldDescription.trim()) {
+                        alert('Please add some world description first to generate a banner!');
+                        return;
+                    }
+                    
+                    generateBannerWithAI(worldDescription, campaignName, campaignPath);
+                })
+                .catch((error) => {
+                    console.error('Error getting campaign info:', error);
+                    alert('Error getting campaign information');
+                });
+        }
+
+        function regenerateCampaignBanner() {
+            generateCampaignBanner();
+        }
+
+        function generateBannerWithAI(worldDescription, campaignName, campaignPath) {
+            const generateBtn = document.getElementById('generateBannerBtn');
+            const regenerateBtn = document.getElementById('regenerateBannerBtn');
+            
+            // Show loading state
+            generateBtn.classList.add('loading');
+            generateBtn.textContent = '🎨 Generating...';
+            regenerateBtn.classList.add('loading');
+            regenerateBtn.textContent = '🔄 Generating...';
+
+            // Create AI prompt
+            const prompt = `Create a fantasy landscape banner image for a D&D campaign called "${campaignName}". ${worldDescription}. Style: epic fantasy landscape, dramatic lighting, suitable for a banner, 16:9 aspect ratio, high quality, digital art.`;
+
+            // Use a free AI image generation service (example with Unsplash API for placeholder)
+            // In a real implementation, you'd use OpenAI DALL-E, Stable Diffusion, or similar
+            generatePlaceholderBanner(prompt, campaignName, campaignPath);
+        }
+
+        function generatePlaceholderBanner(prompt, campaignName, campaignPath) {
+            // For now, we'll use a placeholder service
+            // In production, you'd integrate with a real AI image generation API
+            
+            // Simulate API call delay
+            setTimeout(() => {
+                // Use a placeholder image service that generates based on text
+                const encodedPrompt = encodeURIComponent(prompt);
+                const imageUrl = `https://source.unsplash.com/1600x900/?fantasy,landscape,${encodedPrompt}`;
+                
+                // Save banner data to database
+                const bannerData = {
+                    imageUrl: imageUrl,
+                    campaignName: campaignName,
+                    prompt: prompt,
+                    generatedAt: Date.now()
+                };
+                
+                database.ref(`${campaignPath}/banner`).set(bannerData)
+                    .then(() => {
+                        renderCampaignBanner(imageUrl, campaignName);
+                        resetBannerButtons();
+                    })
+                    .catch((error) => {
+                        console.error('Error saving banner:', error);
+                        alert('Error saving banner data');
+                        resetBannerButtons();
+                    });
+            }, 2000); // Simulate 2-second generation time
+        }
+
+        function resetBannerButtons() {
+            const generateBtn = document.getElementById('generateBannerBtn');
+            const regenerateBtn = document.getElementById('regenerateBannerBtn');
+            
+            generateBtn.classList.remove('loading');
+            generateBtn.textContent = '🎨 Generate Banner';
+            regenerateBtn.classList.remove('loading');
+            regenerateBtn.textContent = '🔄 Regenerate';
         }
 
         // Setup real-time listener
