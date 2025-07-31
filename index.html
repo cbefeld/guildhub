@@ -70,6 +70,36 @@
             align-items: center;
         }
 
+        .guild-selector {
+            background: linear-gradient(180deg, #4a4a4a 0%, #3a3a3a 100%);
+            color: #ffd700;
+            border: 2px solid #8b7355;
+            border-radius: 6px;
+            padding: 6px 12px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            font-family: 'Times New Roman', serif;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 
+                inset 0 1px 0 rgba(255, 255, 255, 0.1),
+                0 2px 4px rgba(0, 0, 0, 0.4);
+        }
+
+        .guild-selector:hover {
+            background: linear-gradient(180deg, #5a5a5a 0%, #4a4a4a 100%);
+            border-color: #a0522d;
+        }
+
+        .guild-selector:focus {
+            outline: none;
+            border-color: #ffd700;
+            box-shadow: 
+                inset 0 1px 0 rgba(255, 255, 255, 0.2),
+                0 2px 4px rgba(0, 0, 0, 0.4),
+                0 0 0 2px rgba(255, 215, 0, 0.3);
+        }
+
         .connection-status {
             background: linear-gradient(180deg, #14532d 0%, #15803d 100%);
             color: #ffd700;
@@ -976,6 +1006,12 @@
         <header class="app-header">
             <h1>Guild Hub 1.0</h1>
             <div class="header-controls">
+                <select id="guildSelector" class="guild-selector" onchange="switchGuild(this.value)">
+                    <option value="demo">Demo Guild</option>
+                    <option value="test">Test Guild</option>
+                    <option value="alpha">Alpha Guild</option>
+                    <option value="beta">Beta Guild</option>
+                </select>
                 <div id="connectionStatus" class="connection-status">
                     🔴 Disconnected
                 </div>
@@ -999,7 +1035,7 @@
     <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-database-compat.js"></script>
 
     <script>
-        // Firebase configuration
+        // Firebase configuration (single project for all guilds)
         const firebaseConfig = {
             apiKey: "AIzaSyBhYLrZ9g901o1ZA35OpQ4YBz_YFpaOPQk",
             authDomain: "dndcards.firebaseapp.com",
@@ -1015,21 +1051,104 @@
         firebase.initializeApp(firebaseConfig);
         const database = firebase.database();
 
-        // Character data storage
+        // Multi-tenant guild system
+        let currentGuildId = null;
         let characters = [];
         let isConnected = false;
 
+        // Get guild ID from URL
+        function getGuildId() {
+            // Try URL parameters first (works with file:// URLs)
+            const urlParams = new URLSearchParams(window.location.search);
+            const guildParam = urlParams.get('guild');
+            if (guildParam) {
+                return guildParam;
+            }
+            
+            // Fallback to path-based routing (works with web servers)
+            const path = window.location.pathname;
+            const guildId = path.split('/')[1];
+            if (guildId) {
+                return guildId;
+            }
+            
+            // Default to demo guild
+            return 'demo';
+        }
+
+        // Get guild-specific database path
+        function getGuildPath() {
+            const guildId = getGuildId();
+            return `guilds/${guildId}`;
+        }
+
+        // Update page title and header with guild info
+        function updateGuildDisplay() {
+            const guildId = getGuildId();
+            const guildName = guildId.charAt(0).toUpperCase() + guildId.slice(1) + ' Guild';
+            
+            document.title = `${guildName} - Guild Hub 1.0`;
+            
+            const header = document.querySelector('.app-header h1');
+            if (header) {
+                header.textContent = `${guildName} - Guild Hub 1.0`;
+            }
+            
+            // Set guild selector to current guild
+            const guildSelector = document.getElementById('guildSelector');
+            if (guildSelector) {
+                guildSelector.value = guildId;
+            }
+        }
+
+        // Switch to a different guild
+        function switchGuild(guildId) {
+            if (guildId === currentGuildId) return;
+            
+            console.log(`Switching from guild ${currentGuildId} to guild ${guildId}`);
+            
+            // Clear current data
+            characters = [];
+            renderCharacters();
+            
+            // Update URL - use parameters for file:// URLs, path for web servers
+            let newUrl;
+            if (window.location.protocol === 'file:') {
+                // For file:// URLs, use query parameters
+                const url = new URL(window.location.href);
+                url.searchParams.set('guild', guildId);
+                newUrl = url.toString();
+            } else {
+                // For web servers, use path-based routing
+                newUrl = `/${guildId}`;
+            }
+            
+            window.history.pushState({}, '', newUrl);
+            
+            // Update current guild and reinitialize
+            currentGuildId = guildId;
+            updateGuildDisplay();
+            setupRealtimeListener();
+        }
+
         // Initialize the app
         document.addEventListener('DOMContentLoaded', function() {
+            currentGuildId = getGuildId();
+            updateGuildDisplay();
             setupRealtimeListener();
         });
 
         // Setup real-time listener
         function setupRealtimeListener() {
-            const charactersRef = database.ref('characters');
+            const guildPath = getGuildPath();
+            const charactersRef = database.ref(`${guildPath}/characters`);
+            
+            console.log(`Setting up listener for guild: ${getGuildId()} at path: ${guildPath}/characters`);
             
             charactersRef.on('value', (snapshot) => {
                 const data = snapshot.val();
+                console.log(`Data received for guild ${getGuildId()}:`, data);
+                
                 if (data) {
                     characters = Object.keys(data).map(key => ({
                         id: key,
@@ -1039,28 +1158,10 @@
                     characters = [];
                 }
                 
-                // Store active tabs before re-rendering
-                const activeTabs = {};
-                characters.forEach(character => {
-                    const card = document.querySelector(`[data-character-id="${character.id}"]`);
-                    if (card) {
-                        const activeTab = card.querySelector('.tab-btn.active');
-                        if (activeTab) {
-                            activeTabs[character.id] = activeTab.getAttribute('data-tab');
-                        }
-                    }
-                });
-                
                 renderCharacters();
-                
-                // Restore active tabs after re-rendering
-                Object.keys(activeTabs).forEach(characterId => {
-                    const tabName = activeTabs[characterId];
-                    if (tabName && tabName !== 'stats') {
-                        setTimeout(() => switchTab(characterId, tabName), 50);
-                    }
-                });
-                
+                updateConnectionStatus();
+            }, (error) => {
+                console.error('Firebase data error:', error);
                 updateConnectionStatus();
             });
 
@@ -1068,6 +1169,11 @@
             const connectedRef = database.ref('.info/connected');
             connectedRef.on('value', (snap) => {
                 isConnected = snap.val();
+                console.log('Firebase connection status:', isConnected);
+                updateConnectionStatus();
+            }, (error) => {
+                console.error('Firebase connection error:', error);
+                isConnected = false;
                 updateConnectionStatus();
             });
         }
@@ -1086,6 +1192,7 @@
 
         // Add a new character
         function addCharacter() {
+            const guildPath = getGuildPath();
             const newCharacter = {
                 name: "New Character",
                 class: "Fighter",
@@ -1103,19 +1210,23 @@
                 lastUpdated: Date.now()
             };
             
-            database.ref('characters').push(newCharacter);
+            console.log(`Adding character to guild: ${getGuildId()} at path: ${guildPath}/characters`);
+            database.ref(`${guildPath}/characters`).push(newCharacter);
         }
 
         // Remove a character
         function removeCharacter(id) {
-            database.ref(`characters/${id}`).remove();
+            const guildPath = getGuildPath();
+            console.log(`Removing character ${id} from guild: ${getGuildId()}`);
+            database.ref(`${guildPath}/characters/${id}`).remove();
         }
 
         // Update a character field
         function updateCharacter(id, field, value) {
+            const guildPath = getGuildPath();
             const updates = {};
-            updates[`characters/${id}/${field}`] = value;
-            updates[`characters/${id}/lastUpdated`] = Date.now();
+            updates[`${guildPath}/characters/${id}/${field}`] = value;
+            updates[`${guildPath}/characters/${id}/lastUpdated`] = Date.now();
             database.ref().update(updates);
             
             // Highlight stats if this was a stat update
