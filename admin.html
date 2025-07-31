@@ -524,13 +524,35 @@
             document.getElementById('guildPassword').value = password;
         }
 
-        // Generate random password
+        // Generate fantasy-themed password
         function generateRandomPassword() {
-            const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-            let password = '';
-            for (let i = 0; i < 8; i++) {
-                password += chars.charAt(Math.floor(Math.random() * chars.length));
+            const fantasyWords = [
+                'dragon', 'magic', 'sword', 'shield', 'crystal', 'forest', 'mountain', 'river', 'castle', 'knight',
+                'wizard', 'elf', 'dwarf', 'orc', 'goblin', 'troll', 'phoenix', 'unicorn', 'griffin', 'dragon',
+                'fire', 'ice', 'storm', 'thunder', 'lightning', 'shadow', 'light', 'dark', 'gold', 'silver',
+                'crystal', 'gem', 'stone', 'wood', 'steel', 'iron', 'golden', 'silver', 'bronze', 'emerald',
+                'ruby', 'sapphire', 'diamond', 'pearl', 'opal', 'jade', 'onyx', 'quartz', 'amethyst', 'topaz'
+            ];
+            
+            const separators = ['-', '_', ''];
+            const numbers = ['123', '456', '789', '321', '654', '987', '111', '222', '333', '444'];
+            
+            // Pick random fantasy words
+            const word1 = fantasyWords[Math.floor(Math.random() * fantasyWords.length)];
+            const word2 = fantasyWords[Math.floor(Math.random() * fantasyWords.length)];
+            
+            // Pick random separator and number
+            const separator = separators[Math.floor(Math.random() * separators.length)];
+            const number = numbers[Math.floor(Math.random() * numbers.length)];
+            
+            // Combine them
+            let password = word1 + separator + word2 + number;
+            
+            // Ensure password is at least 8 characters
+            if (password.length < 8) {
+                password += '123';
             }
+            
             return password;
         }
 
