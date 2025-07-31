@@ -221,6 +221,23 @@
             border: 1px solid #b91c1c;
         }
 
+        .guild-name-display {
+            background: linear-gradient(180deg, #4a4a4a 0%, #3a3a3a 100%);
+            color: #ffd700;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            text-align: center;
+            font-size: 1.2rem;
+            font-weight: bold;
+            border: 2px solid #8b7355;
+            box-shadow: 
+                inset 0 1px 0 rgba(255, 255, 255, 0.1),
+                0 2px 4px rgba(0, 0, 0, 0.4);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
         .connection-status {
             background: linear-gradient(180deg, #14532d 0%, #15803d 100%);
             color: #ffd700;
@@ -1127,6 +1144,7 @@
     <div id="guildLoginScreen" class="guild-login-screen">
         <div class="guild-login-form">
             <h2>Guild Access</h2>
+            <div id="guildNameDisplay" class="guild-name-display"></div>
             <div class="form-group">
                 <label for="guildPassword">Guild Password</label>
                 <input type="password" id="guildPassword" placeholder="Enter guild password">
@@ -1289,7 +1307,11 @@
                         return;
                     }
                     
-                    // Guild exists, show login screen
+                    // Guild exists, show login screen with guild name
+                    const guildData = snapshot.val();
+                    const guildNameDisplay = document.getElementById('guildNameDisplay');
+                    guildNameDisplay.textContent = guildData.name;
+                    
                     document.getElementById('guildLoginScreen').style.display = 'flex';
                     document.getElementById('mainApp').style.display = 'none';
                 })
