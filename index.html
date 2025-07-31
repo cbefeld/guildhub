@@ -894,6 +894,81 @@
         .ability-input.lowest-stat {
             border-left: 3px solid #ef4444;
         }
+
+        /* Death styling */
+        .character-card.dead {
+            opacity: 0.6;
+            filter: grayscale(80%);
+            position: relative;
+        }
+
+        .character-card.dead::before {
+            content: "💀";
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 2rem;
+            z-index: 10;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+        }
+
+        .death-toggle-btn {
+            background: linear-gradient(180deg, #dc2626 0%, #b91c1c 100%);
+            color: #ffffff;
+            border: 1px solid #991b1b;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.6rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 
+                inset 0 1px 0 rgba(255, 255, 255, 0.2),
+                0 2px 4px rgba(0, 0, 0, 0.4);
+            font-family: 'Times New Roman', serif;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-left: 0;
+        }
+
+        .death-toggle-btn:hover {
+            background: linear-gradient(180deg, #ef4444 0%, #dc2626 100%);
+            transform: translateY(-1px);
+            box-shadow: 
+                inset 0 1px 0 rgba(255, 255, 255, 0.3),
+                0 4px 8px rgba(0, 0, 0, 0.6);
+        }
+
+        .death-toggle-btn.alive {
+            background: linear-gradient(180deg, #4a4a4a 0%, #3a3a3a 100%);
+            color: #e0e0e0;
+            border-color: #8b7355;
+            font-size: 0.5rem;
+            padding: 3px 6px;
+        }
+
+        .death-toggle-btn.alive:hover {
+            background: linear-gradient(180deg, #5a5a5a 0%, #4a4a4a 100%);
+            color: #ffffff;
+        }
+
+        .card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 12px;
+            border-top: 1px solid #8b7355;
+        }
+
+        .footer-left {
+            display: flex;
+            align-items: center;
+        }
+
+        .footer-right {
+            display: flex;
+            align-items: center;
+        }
     </style>
 </head>
 <body>
@@ -1024,6 +1099,7 @@
                 intelligence: 10,
                 wisdom: 10,
                 charisma: 10,
+                isDead: false,
                 lastUpdated: Date.now()
             };
             
@@ -1105,6 +1181,15 @@
             }
         }
 
+        // Toggle death status
+        function toggleDeath(characterId) {
+            const character = characters.find(c => c.id === characterId);
+            if (!character) return;
+            
+            const newDeathStatus = !character.isDead;
+            updateCharacter(characterId, 'isDead', newDeathStatus);
+        }
+
         // Switch between tabs
         function switchTab(characterId, tabName) {
             // Get the card element
@@ -1150,6 +1235,9 @@
         function createCharacterCard(character, index) {
             const card = document.createElement('div');
             card.className = 'character-card';
+            if (character.isDead) {
+                card.classList.add('dead');
+            }
             card.setAttribute('data-character-id', character.id);
             
             card.innerHTML = `
@@ -1372,9 +1460,16 @@
                 </div>
                 
                 <div class="card-footer">
-                    <button class="remove-card-btn" onclick="removeCharacter('${character.id}')">
-                        ✕
+                    <div class="footer-left">
+                                            <button class="death-toggle-btn ${character.isDead ? '' : 'alive'}" onclick="toggleDeath('${character.id}')">
+                        ${character.isDead ? '💀 Dead' : '⚡ Alive'}
                     </button>
+                    </div>
+                    <div class="footer-right">
+                        <button class="remove-card-btn" onclick="removeCharacter('${character.id}')">
+                            ✕
+                        </button>
+                    </div>
                 </div>
             `;
             
