@@ -613,99 +613,190 @@
             transform: none;
         }
 
-        /* Compact Dice Roller Styles */
-        .dice-roller-docked {
+        /* Dice Roller Button */
+        .dice-roller-btn {
+            background: linear-gradient(180deg, #8b7355 0%, #6b5b3a 100%);
+            color: #ffd700;
+            border: 2px solid #a0522d;
+            border-radius: 6px;
+            padding: 8px 16px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 
+                inset 0 1px 0 rgba(255, 255, 255, 0.2),
+                0 2px 4px rgba(0, 0, 0, 0.4);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .dice-roller-btn:hover {
+            background: linear-gradient(180deg, #a0522d 0%, #8b7355 100%);
+            transform: translateY(-1px);
+            box-shadow: 
+                inset 0 1px 0 rgba(255, 255, 255, 0.3),
+                0 4px 8px rgba(0, 0, 0, 0.6);
+        }
+
+        /* Small Dice Roller Popup */
+        .dice-roller-popup {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.3);
+            z-index: 1000;
+            backdrop-filter: blur(2px);
+        }
+
+        .dice-roller-popup-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
             background: linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 100%);
             border: 2px solid #8b7355;
-            border-radius: 8px;
-            padding: 8px 12px;
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-            min-width: 400px;
+            border-radius: 12px;
+            padding: 0;
+            width: 400px;
+            max-height: 500px;
             box-shadow: 
-                inset 0 1px 0 rgba(255, 255, 255, 0.1),
-                0 2px 8px rgba(0, 0, 0, 0.4);
+                0 8px 32px rgba(0, 0, 0, 0.8),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
         }
 
-        .dice-roller-header-compact {
+        .dice-roller-popup-header {
+            background: linear-gradient(180deg, #3a3a3a 0%, #2a2a2a 100%);
+            border-bottom: 2px solid #8b7355;
+            padding: 12px 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-radius: 10px 10px 0 0;
+        }
+
+        .dice-roller-popup-header h3 {
+            color: #ffd700;
+            font-size: 1.2rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin: 0;
+        }
+
+        .close-dice-popup-btn {
+            background: linear-gradient(180deg, #6b5b3a 0%, #4a4a4a 100%);
+            color: #ffd700;
+            border: 1px solid #8b7355;
+            border-radius: 4px;
+            width: 24px;
+            height: 24px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.2s ease;
             display: flex;
             align-items: center;
-            gap: 12px;
-            flex-wrap: wrap;
+            justify-content: center;
         }
 
-        .dice-title {
-            font-size: 1.2rem;
-            color: #ffd700;
-            font-weight: bold;
+        .close-dice-popup-btn:hover {
+            background: linear-gradient(180deg, #a0522d 0%, #6b5b3a 100%);
+            transform: scale(1.1);
         }
 
-        .dice-type-selector-compact {
+        .dice-roller-popup-body {
+            padding: 16px;
+        }
+
+        .dice-selection-popup {
+            margin-bottom: 16px;
+        }
+
+        .dice-type-selector-popup {
             display: flex;
-            gap: 4px;
+            gap: 6px;
             flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 12px;
         }
 
-        .dice-type-btn-compact {
+        .dice-type-btn-popup {
             background: linear-gradient(180deg, #4a4a4a 0%, #3a3a3a 100%);
             color: #ffd700;
             border: 1px solid #8b7355;
             border-radius: 4px;
-            padding: 4px 8px;
-            font-size: 0.7rem;
+            padding: 6px 10px;
+            font-size: 0.8rem;
             font-weight: bold;
             cursor: pointer;
             transition: all 0.2s ease;
             text-transform: uppercase;
             letter-spacing: 0.5px;
-            min-width: 32px;
         }
 
-        .dice-type-btn-compact:hover {
+        .dice-type-btn-popup:hover {
             background: linear-gradient(180deg, #5a5a5a 0%, #4a4a4a 100%);
             border-color: #a0522d;
         }
 
-        .dice-type-btn-compact.active {
+        .dice-type-btn-popup.active {
             background: linear-gradient(180deg, #a0522d 0%, #8b7355 100%);
             border-color: #ffd700;
             box-shadow: 0 0 6px rgba(255, 215, 0, 0.3);
         }
 
-        .dice-controls-compact {
+        .dice-controls-popup {
             display: flex;
-            gap: 8px;
+            gap: 16px;
+            justify-content: center;
             align-items: center;
         }
 
-        .quantity-controls-compact,
-        .modifier-controls-compact {
+        .control-group {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .control-group label {
+            color: #ffd700;
+            font-weight: bold;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .quantity-controls-popup,
+        .modifier-controls-popup {
             display: flex;
             align-items: center;
             gap: 4px;
             background: linear-gradient(180deg, #3a3a3a 0%, #2a2a2a 100%);
             border: 1px solid #8b7355;
             border-radius: 4px;
-            padding: 2px 6px;
+            padding: 3px 6px;
         }
 
-        .quantity-controls-compact span,
-        .modifier-controls-compact span {
+        .quantity-controls-popup span,
+        .modifier-controls-popup span {
             color: #ffd700;
             font-weight: bold;
-            font-size: 0.8rem;
-            min-width: 20px;
+            font-size: 0.9rem;
+            min-width: 24px;
             text-align: center;
         }
 
-        .control-btn-compact {
+        .control-btn-popup {
             background: linear-gradient(180deg, #6b5b3a 0%, #4a4a4a 100%);
             color: #ffd700;
             border: 1px solid #8b7355;
             border-radius: 3px;
-            width: 20px;
-            height: 20px;
+            width: 22px;
+            height: 22px;
             font-size: 0.8rem;
             font-weight: bold;
             cursor: pointer;
@@ -715,18 +806,71 @@
             justify-content: center;
         }
 
-        .control-btn-compact:hover {
+        .control-btn-popup:hover {
             background: linear-gradient(180deg, #a0522d 0%, #6b5b3a 100%);
             transform: scale(1.1);
         }
 
-        .roll-dice-btn-compact {
+        .dice-tray-popup {
+            background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%);
+            border: 2px solid #8b7355;
+            border-radius: 8px;
+            padding: 12px;
+            margin-bottom: 12px;
+            min-height: 80px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .dice-container-popup {
+            display: flex;
+            gap: 8px;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            min-height: 40px;
+        }
+
+        .dice-popup {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, #ffffff 0%, #e0e0e0 100%);
+            border: 1px solid #333;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 0.9rem;
+            color: #333;
+            box-shadow: 
+                inset 0 1px 0 rgba(255, 255, 255, 0.8),
+                0 2px 4px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .dice-popup.rolling {
+            animation: diceRollPopup 0.6s ease-in-out;
+        }
+
+        @keyframes diceRollPopup {
+            0% { transform: rotate(0deg) scale(1); }
+            25% { transform: rotate(90deg) scale(1.1); }
+            50% { transform: rotate(180deg) scale(0.9); }
+            75% { transform: rotate(270deg) scale(1.1); }
+            100% { transform: rotate(360deg) scale(1); }
+        }
+
+        .roll-dice-btn-popup {
             background: linear-gradient(180deg, #a0522d 0%, #8b7355 100%);
             color: #ffd700;
             border: 2px solid #ffd700;
             border-radius: 6px;
-            padding: 6px 16px;
-            font-size: 0.8rem;
+            padding: 8px 20px;
+            font-size: 0.9rem;
             font-weight: bold;
             cursor: pointer;
             transition: all 0.2s ease;
@@ -737,7 +881,7 @@
                 0 2px 4px rgba(0, 0, 0, 0.4);
         }
 
-        .roll-dice-btn-compact:hover {
+        .roll-dice-btn-popup:hover {
             background: linear-gradient(180deg, #ffd700 0%, #a0522d 100%);
             color: #333;
             transform: translateY(-1px);
@@ -746,7 +890,7 @@
                 0 4px 8px rgba(0, 0, 0, 0.6);
         }
 
-        .roll-dice-btn-compact:disabled {
+        .roll-dice-btn-popup:disabled {
             background: linear-gradient(180deg, #6b7280 0%, #4b5563 100%);
             color: #9ca3af;
             border-color: #6b7280;
@@ -754,72 +898,22 @@
             transform: none;
         }
 
-        .dice-tray-compact {
-            background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%);
-            border: 2px solid #8b7355;
-            border-radius: 6px;
-            padding: 8px;
-            min-height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .dice-container-compact {
-            display: flex;
-            gap: 6px;
-            justify-content: center;
-            align-items: center;
-            flex-wrap: wrap;
-        }
-
-        .dice-compact {
-            width: 28px;
-            height: 28px;
-            background: linear-gradient(135deg, #ffffff 0%, #e0e0e0 100%);
-            border: 1px solid #333;
-            border-radius: 4px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            font-size: 0.8rem;
-            color: #333;
-            box-shadow: 
-                inset 0 1px 0 rgba(255, 255, 255, 0.8),
-                0 1px 3px rgba(0, 0, 0, 0.3);
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-
-        .dice-compact.rolling {
-            animation: diceRollCompact 0.6s ease-in-out;
-        }
-
-        @keyframes diceRollCompact {
-            0% { transform: rotate(0deg) scale(1); }
-            25% { transform: rotate(90deg) scale(1.1); }
-            50% { transform: rotate(180deg) scale(0.9); }
-            75% { transform: rotate(270deg) scale(1.1); }
-            100% { transform: rotate(360deg) scale(1); }
-        }
-
-        .roll-result-compact {
+        .roll-result-popup {
             background: linear-gradient(180deg, #3a3a3a 0%, #2a2a2a 100%);
             border: 1px solid #8b7355;
-            border-radius: 4px;
-            padding: 4px 8px;
+            border-radius: 6px;
+            padding: 8px 12px;
             text-align: center;
-            font-size: 0.8rem;
+            font-size: 0.9rem;
             color: #ffd700;
             font-weight: bold;
-            min-height: 20px;
+            min-height: 24px;
             display: flex;
             align-items: center;
             justify-content: center;
         }
 
-        .roll-result-compact:empty {
+        .roll-result-popup:empty {
             color: #666;
             font-style: italic;
         }
@@ -2468,26 +2562,36 @@
             regenerateBtn.textContent = '🔄 Regenerate';
         }
 
-        // Compact Dice Roller Functions
+        // Dice Roller Popup Functions
         let currentDiceType = 'd4';
         let currentQuantity = 1;
         let currentModifier = 0;
         let lastRollResult = '';
 
-        function updateDiceDisplayCompact() {
-            const container = document.getElementById('diceContainerCompact');
+        function toggleDiceRoller() {
+            const popup = document.getElementById('diceRollerPopup');
+            if (popup.style.display === 'block') {
+                popup.style.display = 'none';
+            } else {
+                popup.style.display = 'block';
+                updateDiceDisplayPopup();
+            }
+        }
+
+        function updateDiceDisplayPopup() {
+            const container = document.getElementById('diceContainerPopup');
             container.innerHTML = '';
             
             for (let i = 0; i < currentQuantity; i++) {
                 const dice = document.createElement('div');
-                dice.className = 'dice-compact';
+                dice.className = 'dice-popup';
                 dice.textContent = '?';
-                dice.onclick = () => rollSingleDiceCompact(dice);
+                dice.onclick = () => rollSingleDicePopup(dice);
                 container.appendChild(dice);
             }
         }
 
-        function rollSingleDiceCompact(diceElement) {
+        function rollSingleDicePopup(diceElement) {
             const result = rollDiceType(currentDiceType);
             diceElement.classList.add('rolling');
             diceElement.textContent = '?';
@@ -2495,16 +2599,16 @@
             setTimeout(() => {
                 diceElement.classList.remove('rolling');
                 diceElement.textContent = result;
-                updateRollResultCompact(`${result} (1${currentDiceType})`);
+                updateRollResultPopup(`${result} (1${currentDiceType})`);
             }, 600);
         }
 
-        function rollDiceCompact() {
-            const diceElements = document.querySelectorAll('.dice-compact');
-            const rollBtn = document.getElementById('rollDiceBtnCompact');
+        function rollDicePopup() {
+            const diceElements = document.querySelectorAll('.dice-popup');
+            const rollBtn = document.getElementById('rollDiceBtnPopup');
             
             rollBtn.disabled = true;
-            rollBtn.textContent = 'Rolling...';
+            rollBtn.textContent = '🎲 Rolling...';
             
             const results = [];
             let total = 0;
@@ -2529,12 +2633,12 @@
                             const modifierText = currentModifier !== 0 ? ` + ${currentModifier}` : '';
                             const resultsText = results.length > 1 ? `[${results.join(', ')}]` : results[0];
                             
-                            updateRollResultCompact(`${finalTotal} (${currentQuantity}${currentDiceType}${modifierText} = ${resultsText}${modifierText})`);
+                            updateRollResultPopup(`${finalTotal} (${currentQuantity}${currentDiceType}${modifierText} = ${resultsText}${modifierText})`);
                             rollBtn.disabled = false;
-                            rollBtn.textContent = 'ROLL';
+                            rollBtn.textContent = '🎲 ROLL';
                         }
                     }, 600);
-                }, index * 150); // Faster staggered rolls for compact version
+                }, index * 200); // Staggered rolls
             });
         }
 
@@ -2543,45 +2647,58 @@
             return Math.floor(Math.random() * maxValue) + 1;
         }
 
-        function updateRollResultCompact(result) {
-            const resultElement = document.getElementById('rollResultCompact');
+        function updateRollResultPopup(result) {
+            const resultElement = document.getElementById('rollResultPopup');
             resultElement.textContent = result;
             lastRollResult = result;
         }
 
-        // Dice type selection for compact version
+        // Dice type selection for popup version
         document.addEventListener('DOMContentLoaded', function() {
-            const diceTypeButtons = document.querySelectorAll('.dice-type-btn-compact');
+            const diceTypeButtons = document.querySelectorAll('.dice-type-btn-popup');
             diceTypeButtons.forEach(btn => {
                 btn.addEventListener('click', function() {
                     diceTypeButtons.forEach(b => b.classList.remove('active'));
                     this.classList.add('active');
                     currentDiceType = this.getAttribute('data-dice');
-                    updateDiceDisplayCompact();
+                    updateDiceDisplayPopup();
                 });
             });
-            
-            // Initialize dice display
-            updateDiceDisplayCompact();
         });
 
         function changeQuantity(delta) {
             currentQuantity = Math.max(1, Math.min(10, currentQuantity + delta));
-            document.getElementById('diceQuantityCompact').textContent = currentQuantity;
-            updateDiceDisplayCompact();
+            document.getElementById('diceQuantityPopup').textContent = currentQuantity;
+            updateDiceDisplayPopup();
         }
 
         function changeModifier(delta) {
             currentModifier = Math.max(-10, Math.min(10, currentModifier + delta));
-            document.getElementById('diceModifierCompact').textContent = currentModifier;
+            document.getElementById('diceModifierPopup').textContent = currentModifier;
         }
 
-        // Keyboard shortcuts for compact version
+        // Close popup when clicking outside
+        document.addEventListener('click', function(event) {
+            const popup = document.getElementById('diceRollerPopup');
+            const popupContent = document.querySelector('.dice-roller-popup-content');
+            
+            if (event.target === popup) {
+                toggleDiceRoller();
+            }
+        });
+
+        // Keyboard shortcuts for popup version
         document.addEventListener('keydown', function(event) {
-            if (event.key === 'Enter' && document.activeElement.tagName !== 'INPUT') {
-                const rollBtn = document.getElementById('rollDiceBtnCompact');
-                if (!rollBtn.disabled) {
-                    rollDiceCompact();
+            const popup = document.getElementById('diceRollerPopup');
+            
+            if (popup.style.display === 'block') {
+                if (event.key === 'Escape') {
+                    toggleDiceRoller();
+                } else if (event.key === 'Enter') {
+                    const rollBtn = document.getElementById('rollDiceBtnPopup');
+                    if (!rollBtn.disabled) {
+                        rollDicePopup();
+                    }
                 }
             }
         });
@@ -3041,43 +3158,9 @@
                 <p>More features will go here</p>
             </div>
             <div class="footer-middle">
-                <div class="dice-roller-docked" id="diceRollerDocked">
-                    <div class="dice-roller-header-compact">
-                        <span class="dice-title">🎲</span>
-                        <div class="dice-type-selector-compact">
-                            <button class="dice-type-btn-compact active" data-dice="d4">d4</button>
-                            <button class="dice-type-btn-compact" data-dice="d6">d6</button>
-                            <button class="dice-type-btn-compact" data-dice="d8">d8</button>
-                            <button class="dice-type-btn-compact" data-dice="d10">d10</button>
-                            <button class="dice-type-btn-compact" data-dice="d12">d12</button>
-                            <button class="dice-type-btn-compact" data-dice="d20">d20</button>
-                            <button class="dice-type-btn-compact" data-dice="d100">d100</button>
-                        </div>
-                        <div class="dice-controls-compact">
-                            <div class="quantity-controls-compact">
-                                <button class="control-btn-compact" onclick="changeQuantity(-1)">-</button>
-                                <span id="diceQuantityCompact">1</span>
-                                <button class="control-btn-compact" onclick="changeQuantity(1)">+</button>
-                            </div>
-                            <div class="modifier-controls-compact">
-                                <button class="control-btn-compact" onclick="changeModifier(-1)">-</button>
-                                <span id="diceModifierCompact">0</span>
-                                <button class="control-btn-compact" onclick="changeModifier(1)">+</button>
-                            </div>
-                        </div>
-                        <button class="roll-dice-btn-compact" onclick="rollDiceCompact()" id="rollDiceBtnCompact">
-                            ROLL
-                        </button>
-                    </div>
-                    <div class="dice-tray-compact" id="diceTrayCompact">
-                        <div class="dice-container-compact" id="diceContainerCompact">
-                            <!-- Dice will be added here -->
-                        </div>
-                    </div>
-                    <div class="roll-result-compact" id="rollResultCompact">
-                        <!-- Latest roll result will be shown here -->
-                    </div>
-                </div>
+                <button class="dice-roller-btn" onclick="toggleDiceRoller()">
+                    🎲 Roll Dice
+                </button>
             </div>
             <div class="footer-right">
                 <div class="music-player">
@@ -3090,6 +3173,62 @@
         </div>
     </footer>
 
+    <!-- Small Dice Roller Popup -->
+    <div class="dice-roller-popup" id="diceRollerPopup">
+        <div class="dice-roller-popup-content">
+            <div class="dice-roller-popup-header">
+                <h3>🎲 Dice Roller</h3>
+                <button class="close-dice-popup-btn" onclick="toggleDiceRoller()">✕</button>
+            </div>
+            
+            <div class="dice-roller-popup-body">
+                <div class="dice-selection-popup">
+                    <div class="dice-type-selector-popup">
+                        <button class="dice-type-btn-popup active" data-dice="d4">d4</button>
+                        <button class="dice-type-btn-popup" data-dice="d6">d6</button>
+                        <button class="dice-type-btn-popup" data-dice="d8">d8</button>
+                        <button class="dice-type-btn-popup" data-dice="d10">d10</button>
+                        <button class="dice-type-btn-popup" data-dice="d12">d12</button>
+                        <button class="dice-type-btn-popup" data-dice="d20">d20</button>
+                        <button class="dice-type-btn-popup" data-dice="d100">d100</button>
+                    </div>
+                    
+                    <div class="dice-controls-popup">
+                        <div class="control-group">
+                            <label>Qty:</label>
+                            <div class="quantity-controls-popup">
+                                <button class="control-btn-popup" onclick="changeQuantity(-1)">-</button>
+                                <span id="diceQuantityPopup">1</span>
+                                <button class="control-btn-popup" onclick="changeQuantity(1)">+</button>
+                            </div>
+                        </div>
+                        
+                        <div class="control-group">
+                            <label>Mod:</label>
+                            <div class="modifier-controls-popup">
+                                <button class="control-btn-popup" onclick="changeModifier(-1)">-</button>
+                                <span id="diceModifierPopup">0</span>
+                                <button class="control-btn-popup" onclick="changeModifier(1)">+</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="dice-tray-popup" id="diceTrayPopup">
+                    <div class="dice-container-popup" id="diceContainerPopup">
+                        <!-- Dice will be added here -->
+                    </div>
+                    <button class="roll-dice-btn-popup" onclick="rollDicePopup()" id="rollDiceBtnPopup">
+                        🎲 ROLL
+                    </button>
+                </div>
+                
+                <div class="roll-result-popup" id="rollResultPopup">
+                    <!-- Latest roll result will be shown here -->
+                </div>
+            </div>
+        </div>
+    </div>
 
 </body>
 </html> 
