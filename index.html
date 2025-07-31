@@ -918,6 +918,46 @@
             font-style: italic;
         }
 
+        .roll-history-popup {
+            background: linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 100%);
+            border: 1px solid #8b7355;
+            border-radius: 6px;
+            padding: 10px;
+            margin-top: 8px;
+        }
+
+        .roll-history-popup h4 {
+            color: #ffd700;
+            font-size: 0.9rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin: 0 0 8px 0;
+            text-align: center;
+        }
+
+        .history-list-popup {
+            max-height: 120px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .history-item-popup {
+            background: linear-gradient(180deg, #3a3a3a 0%, #2a2a2a 100%);
+            border: 1px solid #8b7355;
+            border-radius: 4px;
+            padding: 6px 8px;
+            font-size: 0.8rem;
+            color: #e0e0e0;
+        }
+
+        .history-item-popup .roll-result {
+            color: #ffd700;
+            font-weight: bold;
+        }
+
         .status-message {
             padding: 10px;
             border-radius: 6px;
@@ -2567,6 +2607,7 @@
         let currentQuantity = 1;
         let currentModifier = 0;
         let lastRollResult = '';
+        let rollHistory = [];
 
         function toggleDiceRoller() {
             const popup = document.getElementById('diceRollerPopup');
@@ -2600,6 +2641,7 @@
                 diceElement.classList.remove('rolling');
                 diceElement.textContent = result;
                 updateRollResultPopup(`${result} (1${currentDiceType})`);
+                addToHistoryPopup([result], result, result);
             }, 600);
         }
 
@@ -2634,6 +2676,7 @@
                             const resultsText = results.length > 1 ? `[${results.join(', ')}]` : results[0];
                             
                             updateRollResultPopup(`${finalTotal} (${currentQuantity}${currentDiceType}${modifierText} = ${resultsText}${modifierText})`);
+                            addToHistoryPopup(results, total, finalTotal);
                             rollBtn.disabled = false;
                             rollBtn.textContent = '🎲 ROLL';
                         }
@@ -2651,6 +2694,47 @@
             const resultElement = document.getElementById('rollResultPopup');
             resultElement.textContent = result;
             lastRollResult = result;
+        }
+
+        function addToHistoryPopup(results, subtotal, total) {
+            const timestamp = new Date().toLocaleTimeString();
+            const historyItem = {
+                timestamp,
+                diceType: currentDiceType,
+                quantity: currentQuantity,
+                modifier: currentModifier,
+                results,
+                subtotal,
+                total
+            };
+            
+            rollHistory.unshift(historyItem);
+            if (rollHistory.length > 8) {
+                rollHistory.pop(); // Keep only last 8 rolls for compact popup
+            }
+            
+            updateHistoryDisplayPopup();
+        }
+
+        function updateHistoryDisplayPopup() {
+            const historyList = document.getElementById('historyListPopup');
+            historyList.innerHTML = '';
+            
+            rollHistory.forEach(item => {
+                const historyItem = document.createElement('div');
+                historyItem.className = 'history-item-popup';
+                
+                const modifierText = item.modifier !== 0 ? ` + ${item.modifier}` : '';
+                const resultsText = item.results.length > 1 ? `[${item.results.join(', ')}]` : item.results[0];
+                
+                historyItem.innerHTML = `
+                    <span class="roll-result">${item.total}</span> 
+                    (${item.quantity}${item.diceType}${modifierText} = ${resultsText}${modifierText})
+                    <br><small>${item.timestamp}</small>
+                `;
+                
+                historyList.appendChild(historyItem);
+            });
         }
 
         // Dice type selection for popup version
@@ -3225,6 +3309,13 @@
                 
                 <div class="roll-result-popup" id="rollResultPopup">
                     <!-- Latest roll result will be shown here -->
+                </div>
+                
+                <div class="roll-history-popup" id="rollHistoryPopup">
+                    <h4>Roll History</h4>
+                    <div class="history-list-popup" id="historyListPopup">
+                        <!-- Roll history will be displayed here -->
+                    </div>
                 </div>
             </div>
         </div>
