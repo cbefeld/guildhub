@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guild Hub Admin</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Times New Roman', serif;
+            background: linear-gradient(135deg, #0A0502 0%, #1A0F0A 50%, #0A0502 100%);
+            min-height: 100vh;
+            color: #e0e0e0;
+        }
+
+        .admin-container {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+        }
+
+        .admin-header {
+            background: linear-gradient(180deg, #3a3a3a 0%, #2a2a2a 100%);
+            border: 1px solid #8b7355;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            text-align: center;
+            box-shadow: 
+                inset 0 1px 0 rgba(255, 255, 255, 0.1),
+                0 4px 8px rgba(0, 0, 0, 0.5);
+        }
+
+        .admin-header h1 {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #ffd700;
+            text-shadow: 
+                2px 2px 4px rgba(0, 0, 0, 0.8),
+                0 0 10px rgba(255, 215, 0, 0.3);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+
+        .admin-header p {
+            color: #b0b0b0;
+            font-size: 1rem;
+        }
+
+        /* Login Screen */
+        .login-screen {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 60vh;
+        }
+
+        .login-form {
+            background: linear-gradient(180deg, #3a3a3a 0%, #2a2a2a 100%);
+            border: 2px solid #8b7355;
+            border-radius: 12px;
+            padding: 40px;
+            width: 100%;
+            max-width: 400px;
+            box-shadow: 
+                inset 0 1px 0 rgba(255, 255, 255, 0.1),
+                0 8px 16px rgba(0, 0, 0, 0.6);
+        }
+
+        .login-form h2 {
+            color: #ffd700;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            color: #ffd700;
+            margin-bottom: 8px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .form-group input {
+            width: 100%;
+            background: linear-gradient(180deg, #4a4a4a 0%, #3a3a3a 100%);
+            border: 2px solid #8b7355;
+            border-radius: 6px;
+            padding: 12px;
+            color: #e0e0e0;
+            font-family: 'Times New Roman', serif;
+            font-size: 1rem;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #ffd700;
+            box-shadow: 
+                inset 0 2px 4px rgba(0, 0, 0, 0.3),
+                0 0 0 2px rgba(255, 215, 0, 0.3);
+        }
+
+        .login-btn {
+            width: 100%;
+            background: linear-gradient(180deg, #8b7355 0%, #6b5b3a 100%);
+            color: #ffd700;
+            border: 2px solid #a0522d;
+            padding: 15px;
+            border-radius: 6px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 
+                inset 0 1px 0 rgba(255, 255, 255, 0.2),
+                0 2px 4px rgba(0, 0, 0, 0.4);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .login-btn:hover {
+            background: linear-gradient(180deg, #a0522d 0%, #8b7355 100%);
+            transform: translateY(-1px);
+            box-shadow: 
+                inset 0 1px 0 rgba(255, 255, 255, 0.3),
+                0 4px 8px rgba(0, 0, 0, 0.6);
+        }
+
+        /* Admin Dashboard */
+        .admin-dashboard {
+            display: none;
+        }
+
+        .dashboard-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .logout-btn {
+            background: linear-gradient(180deg, #8b0000 0%, #6b0000 100%);
+            color: #ffd700;
+            border: 2px solid #a0522d;
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 
+                inset 0 1px 0 rgba(255, 255, 255, 0.2),
+                0 2px 4px rgba(0, 0, 0, 0.4);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .logout-btn:hover {
+            background: linear-gradient(180deg, #a00000 0%, #8b0000 100%);
+            transform: translateY(-1px);
+        }
+
+        /* Guild Creation Form */
+        .guild-creation {
+            background: linear-gradient(180deg, #3a3a3a 0%, #2a2a2a 100%);
+            border: 2px solid #8b7355;
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 
+                inset 0 1px 0 rgba(255, 255, 255, 0.1),
+                0 4px 8px rgba(0, 0, 0, 0.5);
+        }
+
+        .guild-creation h2 {
+            color: #ffd700;
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .generate-btn {
+            background: linear-gradient(180deg, #22c55e 0%, #16a34a 100%);
+            color: #ffffff;
+            border: 2px solid #15803d;
+            padding: 12px 24px;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 
+                inset 0 1px 0 rgba(255, 255, 255, 0.2),
+                0 2px 4px rgba(0, 0, 0, 0.4);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .generate-btn:hover {
+            background: linear-gradient(180deg, #16a34a 0%, #15803d 100%);
+            transform: translateY(-1px);
+        }
+
+        .create-btn {
+            background: linear-gradient(180deg, #8b7355 0%, #6b5b3a 100%);
+            color: #ffd700;
+            border: 2px solid #a0522d;
+            padding: 12px 24px;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 
+                inset 0 1px 0 rgba(255, 255, 255, 0.2),
+                0 2px 4px rgba(0, 0, 0, 0.4);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .create-btn:hover {
+            background: linear-gradient(180deg, #a0522d 0%, #8b7355 100%);
+            transform: translateY(-1px);
+        }
+
+        /* Guilds Table */
+        .guilds-table-container {
+            background: linear-gradient(180deg, #3a3a3a 0%, #2a2a2a 100%);
+            border: 2px solid #8b7355;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 
+                inset 0 1px 0 rgba(255, 255, 255, 0.1),
+                0 4px 8px rgba(0, 0, 0, 0.5);
+        }
+
+        .guilds-table-container h2 {
+            color: #ffd700;
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .guilds-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .guilds-table th,
+        .guilds-table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #8b7355;
+        }
+
+        .guilds-table th {
+            background: linear-gradient(180deg, #4a4a4a 0%, #3a3a3a 100%);
+            color: #ffd700;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-size: 0.9rem;
+        }
+
+        .guilds-table tr:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .guild-url {
+            color: #22c55e;
+            font-family: monospace;
+            font-weight: bold;
+        }
+
+        .guild-password {
+            color: #ef4444;
+            font-family: monospace;
+            font-weight: bold;
+        }
+
+        .copy-btn {
+            background: linear-gradient(180deg, #3b82f6 0%, #2563eb 100%);
+            color: #ffffff;
+            border: 1px solid #1d4ed8;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            margin-left: 8px;
+        }
+
+        .copy-btn:hover {
+            background: linear-gradient(180deg, #2563eb 0%, #1d4ed8 100%);
+        }
+
+        .delete-btn {
+            background: linear-gradient(180deg, #ef4444 0%, #dc2626 100%);
+            color: #ffffff;
+            border: 1px solid #b91c1c;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .delete-btn:hover {
+            background: linear-gradient(180deg, #dc2626 0%, #b91c1c 100%);
+        }
+
+        .status-message {
+            padding: 10px;
+            border-radius: 6px;
+            margin: 10px 0;
+            font-weight: bold;
+        }
+
+        .status-success {
+            background: linear-gradient(180deg, #22c55e 0%, #16a34a 100%);
+            color: #ffffff;
+            border: 1px solid #15803d;
+        }
+
+        .status-error {
+            background: linear-gradient(180deg, #ef4444 0%, #dc2626 100%);
+            color: #ffffff;
+            border: 1px solid #b91c1c;
+        }
+
+        @media (max-width: 768px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+            
+            .guilds-table {
+                font-size: 0.8rem;
+            }
+            
+            .guilds-table th,
+            .guilds-table td {
+                padding: 8px 6px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="admin-container">
+        <div class="admin-header">
+            <h1>Guild Hub Admin Panel</h1>
+            <p>Manage guilds, generate URLs, and monitor system activity</p>
+        </div>
+
+        <!-- Login Screen -->
+        <div id="loginScreen" class="login-screen">
+            <div class="login-form">
+                <h2>Admin Login</h2>
+                <div class="form-group">
+                    <label for="adminPassword">Admin Password</label>
+                    <input type="password" id="adminPassword" placeholder="Enter admin password">
+                </div>
+                <button class="login-btn" onclick="login()">Login</button>
+                <div id="loginMessage"></div>
+            </div>
+        </div>
+
+        <!-- Admin Dashboard -->
+        <div id="adminDashboard" class="admin-dashboard">
+            <div class="dashboard-header">
+                <h2>Guild Management</h2>
+                <button class="logout-btn" onclick="logout()">Logout</button>
+            </div>
+
+            <!-- Guild Creation Form -->
+            <div class="guild-creation">
+                <h2>Create New Guild</h2>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="guildName">Guild Name</label>
+                        <input type="text" id="guildName" placeholder="Enter guild name">
+                    </div>
+                    <div class="form-group">
+                        <label for="guildUrl">Guild URL (auto-generated)</label>
+                        <input type="text" id="guildUrl" placeholder="Will be generated automatically" readonly>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="guildPassword">Guild Password (auto-generated)</label>
+                        <input type="text" id="guildPassword" placeholder="Will be generated automatically" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="adminEmail">Admin Email</label>
+                        <input type="email" id="adminEmail" placeholder="Enter admin email for this guild">
+                    </div>
+                </div>
+                <div style="display: flex; gap: 10px;">
+                    <button class="generate-btn" onclick="generateGuildCredentials()">Generate Credentials</button>
+                    <button class="create-btn" onclick="createGuild()">Create Guild</button>
+                </div>
+                <div id="creationMessage"></div>
+            </div>
+
+            <!-- Guilds Table -->
+            <div class="guilds-table-container">
+                <h2>All Guilds</h2>
+                <table class="guilds-table" id="guildsTable">
+                    <thead>
+                        <tr>
+                            <th>Guild Name</th>
+                            <th>Guild URL</th>
+                            <th>Password</th>
+                            <th>Admin Email</th>
+                            <th>Created Date</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="guildsTableBody">
+                        <!-- Guilds will be populated here -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-database-compat.js"></script>
+
+    <script>
+        // Firebase configuration (same as main app)
+        const firebaseConfig = {
+            apiKey: "AIzaSyBhYLrZ9g901o1ZA35OpQ4YBz_YFpaOPQk",
+            authDomain: "dndcards.firebaseapp.com",
+            databaseURL: "https://dndcards-default-rtdb.firebaseio.com",
+            projectId: "dndcards",
+            storageBucket: "dndcards.firebasestorage.app",
+            messagingSenderId: "821071296173",
+            appId: "1:821071296173:web:a0e5db9c9d5323de607824",
+            measurementId: "G-HY29MSXDCP"
+        };
+
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        const database = firebase.database();
+
+        // Admin configuration
+        const ADMIN_PASSWORD = "admin123"; // Change this to a secure password
+        let isLoggedIn = false;
+
+        // Initialize admin panel
+        document.addEventListener('DOMContentLoaded', function() {
+            loadGuilds();
+        });
+
+        // Login function
+        function login() {
+            const password = document.getElementById('adminPassword').value;
+            const messageDiv = document.getElementById('loginMessage');
+            
+            if (password === ADMIN_PASSWORD) {
+                isLoggedIn = true;
+                document.getElementById('loginScreen').style.display = 'none';
+                document.getElementById('adminDashboard').style.display = 'block';
+                messageDiv.innerHTML = '';
+                loadGuilds();
+            } else {
+                messageDiv.innerHTML = '<div class="status-message status-error">Invalid password!</div>';
+            }
+        }
+
+        // Logout function
+        function logout() {
+            isLoggedIn = false;
+            document.getElementById('loginScreen').style.display = 'flex';
+            document.getElementById('adminDashboard').style.display = 'none';
+            document.getElementById('adminPassword').value = '';
+            document.getElementById('loginMessage').innerHTML = '';
+        }
+
+        // Generate random guild credentials
+        function generateGuildCredentials() {
+            const guildName = document.getElementById('guildName').value;
+            if (!guildName.trim()) {
+                showCreationMessage('Please enter a guild name first!', 'error');
+                return;
+            }
+
+            // Generate URL-friendly guild ID
+            const guildId = guildName.toLowerCase()
+                .replace(/[^a-z0-9]/g, '')
+                .substring(0, 20);
+            
+            // Generate random password
+            const password = generateRandomPassword();
+            
+            document.getElementById('guildUrl').value = guildId;
+            document.getElementById('guildPassword').value = password;
+        }
+
+        // Generate random password
+        function generateRandomPassword() {
+            const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+            let password = '';
+            for (let i = 0; i < 8; i++) {
+                password += chars.charAt(Math.floor(Math.random() * chars.length));
+            }
+            return password;
+        }
+
+        // Create new guild
+        function createGuild() {
+            const guildName = document.getElementById('guildName').value;
+            const guildUrl = document.getElementById('guildUrl').value;
+            const guildPassword = document.getElementById('guildPassword').value;
+            const adminEmail = document.getElementById('adminEmail').value;
+
+            if (!guildName || !guildUrl || !guildPassword) {
+                showCreationMessage('Please generate credentials first!', 'error');
+                return;
+            }
+
+            const newGuild = {
+                name: guildName,
+                url: guildUrl,
+                password: guildPassword,
+                adminEmail: adminEmail,
+                createdDate: new Date().toISOString(),
+                lastUpdated: Date.now()
+            };
+
+            // Check if guild URL already exists
+            database.ref(`admin/guilds/${guildUrl}`).once('value')
+                .then((snapshot) => {
+                    if (snapshot.exists()) {
+                        showCreationMessage('Guild URL already exists! Please generate a different one.', 'error');
+                        return;
+                    }
+
+                    // Create guild in admin database
+                    database.ref(`admin/guilds/${guildUrl}`).set(newGuild)
+                        .then(() => {
+                            showCreationMessage('Guild created successfully!', 'success');
+                            clearGuildForm();
+                            loadGuilds();
+                        })
+                        .catch((error) => {
+                            showCreationMessage('Error creating guild: ' + error.message, 'error');
+                        });
+                })
+                .catch((error) => {
+                    showCreationMessage('Error checking guild existence: ' + error.message, 'error');
+                });
+        }
+
+        // Load all guilds
+        function loadGuilds() {
+            database.ref('admin/guilds').on('value', (snapshot) => {
+                const guilds = [];
+                if (snapshot.exists()) {
+                    snapshot.forEach((childSnapshot) => {
+                        guilds.push({
+                            id: childSnapshot.key,
+                            ...childSnapshot.val()
+                        });
+                    });
+                }
+                renderGuildsTable(guilds);
+            });
+        }
+
+        // Render guilds table
+        function renderGuildsTable(guilds) {
+            const tbody = document.getElementById('guildsTableBody');
+            tbody.innerHTML = '';
+
+            guilds.forEach(guild => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${guild.name}</td>
+                    <td>
+                        <span class="guild-url">${guild.url}</span>
+                        <button class="copy-btn" onclick="copyToClipboard('${guild.url}')">Copy</button>
+                    </td>
+                    <td>
+                        <span class="guild-password">${guild.password}</span>
+                        <button class="copy-btn" onclick="copyToClipboard('${guild.password}')">Copy</button>
+                    </td>
+                    <td>${guild.adminEmail || 'N/A'}</td>
+                    <td>${new Date(guild.createdDate).toLocaleDateString()}</td>
+                    <td>
+                        <button class="delete-btn" onclick="deleteGuild('${guild.id}')">Delete</button>
+                    </td>
+                `;
+                tbody.appendChild(row);
+            });
+        }
+
+        // Copy to clipboard
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(() => {
+                // Show temporary success message
+                const button = event.target;
+                const originalText = button.textContent;
+                button.textContent = 'Copied!';
+                button.style.background = 'linear-gradient(180deg, #22c55e 0%, #16a34a 100%)';
+                setTimeout(() => {
+                    button.textContent = originalText;
+                    button.style.background = 'linear-gradient(180deg, #3b82f6 0%, #2563eb 100%)';
+                }, 1000);
+            });
+        }
+
+        // Delete guild
+        function deleteGuild(guildId) {
+            if (confirm('Are you sure you want to delete this guild? This will also delete all guild data!')) {
+                database.ref(`admin/guilds/${guildId}`).remove()
+                    .then(() => {
+                        showCreationMessage('Guild deleted successfully!', 'success');
+                    })
+                    .catch((error) => {
+                        showCreationMessage('Error deleting guild: ' + error.message, 'error');
+                    });
+            }
+        }
+
+        // Show creation message
+        function showCreationMessage(message, type) {
+            const messageDiv = document.getElementById('creationMessage');
+            messageDiv.innerHTML = `<div class="status-message status-${type}">${message}</div>`;
+            setTimeout(() => {
+                messageDiv.innerHTML = '';
+            }, 5000);
+        }
+
+        // Clear guild form
+        function clearGuildForm() {
+            document.getElementById('guildName').value = '';
+            document.getElementById('guildUrl').value = '';
+            document.getElementById('guildPassword').value = '';
+            document.getElementById('adminEmail').value = '';
+        }
+
+        // Handle Enter key in password field
+        document.getElementById('adminPassword').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                login();
+            }
+        });
+    </script>
+</body>
+</html> 

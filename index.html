@@ -100,6 +100,127 @@
                 0 0 0 2px rgba(255, 215, 0, 0.3);
         }
 
+        /* Guild Login Screen */
+        .guild-login-screen {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #0A0502 0%, #1A0F0A 50%, #0A0502 100%);
+        }
+
+        .guild-login-form {
+            background: linear-gradient(180deg, #3a3a3a 0%, #2a2a2a 100%);
+            border: 2px solid #8b7355;
+            border-radius: 12px;
+            padding: 40px;
+            width: 100%;
+            max-width: 400px;
+            box-shadow: 
+                inset 0 1px 0 rgba(255, 255, 255, 0.1),
+                0 8px 16px rgba(0, 0, 0, 0.6);
+        }
+
+        .guild-login-form h2 {
+            color: #ffd700;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            color: #ffd700;
+            margin-bottom: 8px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .form-group input {
+            width: 100%;
+            background: linear-gradient(180deg, #4a4a4a 0%, #3a3a3a 100%);
+            border: 2px solid #8b7355;
+            border-radius: 6px;
+            padding: 12px;
+            color: #e0e0e0;
+            font-family: 'Times New Roman', serif;
+            font-size: 1rem;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #ffd700;
+            box-shadow: 
+                inset 0 2px 4px rgba(0, 0, 0, 0.3),
+                0 0 0 2px rgba(255, 215, 0, 0.3);
+        }
+
+        .login-btn {
+            width: 100%;
+            background: linear-gradient(180deg, #8b7355 0%, #6b5b3a 100%);
+            color: #ffd700;
+            border: 2px solid #a0522d;
+            padding: 15px;
+            border-radius: 6px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 
+                inset 0 1px 0 rgba(255, 255, 255, 0.2),
+                0 2px 4px rgba(0, 0, 0, 0.4);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .login-btn:hover {
+            background: linear-gradient(180deg, #a0522d 0%, #8b7355 100%);
+            transform: translateY(-1px);
+            box-shadow: 
+                inset 0 1px 0 rgba(255, 255, 255, 0.3),
+                0 4px 8px rgba(0, 0, 0, 0.6);
+        }
+
+        .current-guild-info {
+            background: linear-gradient(180deg, #4a4a4a 0%, #3a3a3a 100%);
+            color: #ffd700;
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            border: 1px solid #8b7355;
+            box-shadow: 
+                inset 0 1px 0 rgba(255, 255, 255, 0.1),
+                0 2px 4px rgba(0, 0, 0, 0.4);
+        }
+
+        .status-message {
+            padding: 10px;
+            border-radius: 6px;
+            margin: 10px 0;
+            font-weight: bold;
+        }
+
+        .status-success {
+            background: linear-gradient(180deg, #22c55e 0%, #16a34a 100%);
+            color: #ffffff;
+            border: 1px solid #15803d;
+        }
+
+        .status-error {
+            background: linear-gradient(180deg, #ef4444 0%, #dc2626 100%);
+            color: #ffffff;
+            border: 1px solid #b91c1c;
+        }
+
         .connection-status {
             background: linear-gradient(180deg, #14532d 0%, #15803d 100%);
             color: #ffd700;
@@ -1002,16 +1123,24 @@
     </style>
 </head>
 <body>
-    <div class="app">
+    <!-- Guild Login Screen -->
+    <div id="guildLoginScreen" class="guild-login-screen">
+        <div class="guild-login-form">
+            <h2>Guild Access</h2>
+            <div class="form-group">
+                <label for="guildPassword">Guild Password</label>
+                <input type="password" id="guildPassword" placeholder="Enter guild password">
+            </div>
+            <button class="login-btn" onclick="loginToGuild()">Access Guild</button>
+            <div id="guildLoginMessage"></div>
+        </div>
+    </div>
+
+    <div class="app" id="mainApp" style="display: none;">
         <header class="app-header">
             <h1>Guild Hub 1.0</h1>
             <div class="header-controls">
-                <select id="guildSelector" class="guild-selector" onchange="switchGuild(this.value)">
-                    <option value="demo">Demo Guild</option>
-                    <option value="test">Test Guild</option>
-                    <option value="alpha">Alpha Guild</option>
-                    <option value="beta">Beta Guild</option>
-                </select>
+                <div id="currentGuildInfo" class="current-guild-info"></div>
                 <div id="connectionStatus" class="connection-status">
                     🔴 Disconnected
                 </div>
@@ -1053,8 +1182,10 @@
 
         // Multi-tenant guild system
         let currentGuildId = null;
+        let currentGuildData = null;
         let characters = [];
         let isConnected = false;
+        let isAuthenticated = false;
 
         // Get guild ID from URL
         function getGuildId() {
@@ -1084,9 +1215,9 @@
 
         // Update page title and header with guild info
         function updateGuildDisplay() {
-            const guildId = getGuildId();
-            const guildName = guildId.charAt(0).toUpperCase() + guildId.slice(1) + ' Guild';
+            if (!currentGuildData) return;
             
+            const guildName = currentGuildData.name;
             document.title = `${guildName} - Guild Hub 1.0`;
             
             const header = document.querySelector('.app-header h1');
@@ -1094,48 +1225,90 @@
                 header.textContent = `${guildName} - Guild Hub 1.0`;
             }
             
-            // Set guild selector to current guild
-            const guildSelector = document.getElementById('guildSelector');
-            if (guildSelector) {
-                guildSelector.value = guildId;
+            // Update current guild info display
+            const guildInfo = document.getElementById('currentGuildInfo');
+            if (guildInfo) {
+                guildInfo.textContent = guildName;
             }
         }
 
-        // Switch to a different guild
-        function switchGuild(guildId) {
-            if (guildId === currentGuildId) return;
+        // Login to guild
+        function loginToGuild() {
+            const password = document.getElementById('guildPassword').value;
+            const guildId = getGuildId();
+            const messageDiv = document.getElementById('guildLoginMessage');
             
-            console.log(`Switching from guild ${currentGuildId} to guild ${guildId}`);
-            
-            // Clear current data
-            characters = [];
-            renderCharacters();
-            
-            // Update URL - use parameters for file:// URLs, path for web servers
-            let newUrl;
-            if (window.location.protocol === 'file:') {
-                // For file:// URLs, use query parameters
-                const url = new URL(window.location.href);
-                url.searchParams.set('guild', guildId);
-                newUrl = url.toString();
-            } else {
-                // For web servers, use path-based routing
-                newUrl = `/${guildId}`;
+            if (!password.trim()) {
+                messageDiv.innerHTML = '<div class="status-message status-error">Please enter the guild password!</div>';
+                return;
             }
             
-            window.history.pushState({}, '', newUrl);
+            // Check guild credentials in admin database
+            database.ref(`admin/guilds/${guildId}`).once('value')
+                .then((snapshot) => {
+                    if (!snapshot.exists()) {
+                        messageDiv.innerHTML = '<div class="status-message status-error">Guild not found!</div>';
+                        return;
+                    }
+                    
+                    const guildData = snapshot.val();
+                    if (guildData.password === password) {
+                        // Authentication successful
+                        isAuthenticated = true;
+                        currentGuildId = guildId;
+                        currentGuildData = guildData;
+                        
+                        // Hide login screen and show main app
+                        document.getElementById('guildLoginScreen').style.display = 'none';
+                        document.getElementById('mainApp').style.display = 'block';
+                        
+                        // Initialize the app
+                        updateGuildDisplay();
+                        setupRealtimeListener();
+                        
+                        messageDiv.innerHTML = '';
+                    } else {
+                        messageDiv.innerHTML = '<div class="status-message status-error">Invalid password!</div>';
+                    }
+                })
+                .catch((error) => {
+                    messageDiv.innerHTML = '<div class="status-message status-error">Error: ' + error.message + '</div>';
+                });
+        }
+
+        // Check if user is already authenticated for this guild
+        function checkGuildAccess() {
+            const guildId = getGuildId();
             
-            // Update current guild and reinitialize
-            currentGuildId = guildId;
-            updateGuildDisplay();
-            setupRealtimeListener();
+            // Check if guild exists
+            database.ref(`admin/guilds/${guildId}`).once('value')
+                .then((snapshot) => {
+                    if (!snapshot.exists()) {
+                        document.getElementById('guildLoginMessage').innerHTML = 
+                            '<div class="status-message status-error">Guild not found! Please check the URL.</div>';
+                        return;
+                    }
+                    
+                    // Guild exists, show login screen
+                    document.getElementById('guildLoginScreen').style.display = 'flex';
+                    document.getElementById('mainApp').style.display = 'none';
+                })
+                .catch((error) => {
+                    document.getElementById('guildLoginMessage').innerHTML = 
+                        '<div class="status-message status-error">Error: ' + error.message + '</div>';
+                });
         }
 
         // Initialize the app
         document.addEventListener('DOMContentLoaded', function() {
-            currentGuildId = getGuildId();
-            updateGuildDisplay();
-            setupRealtimeListener();
+            checkGuildAccess();
+        });
+
+        // Handle Enter key in password field
+        document.getElementById('guildPassword').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                loginToGuild();
+            }
         });
 
         // Setup real-time listener
