@@ -921,7 +921,29 @@
                 } else {
                     characters = [];
                 }
+                
+                // Store active tabs before re-rendering
+                const activeTabs = {};
+                characters.forEach(character => {
+                    const card = document.querySelector(`[data-character-id="${character.id}"]`);
+                    if (card) {
+                        const activeTab = card.querySelector('.tab-btn.active');
+                        if (activeTab) {
+                            activeTabs[character.id] = activeTab.getAttribute('data-tab');
+                        }
+                    }
+                });
+                
                 renderCharacters();
+                
+                // Restore active tabs after re-rendering
+                Object.keys(activeTabs).forEach(characterId => {
+                    const tabName = activeTabs[characterId];
+                    if (tabName && tabName !== 'stats') {
+                        setTimeout(() => switchTab(characterId, tabName), 50);
+                    }
+                });
+                
                 updateConnectionStatus();
             });
 
