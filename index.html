@@ -401,6 +401,120 @@
             transform: translateY(-1px);
         }
 
+        /* Campaign Info Section */
+        .campaign-info-section {
+            background: linear-gradient(180deg, #3a3a3a 0%, #2a2a2a 100%);
+            border: 2px solid #8b7355;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            box-shadow: 
+                inset 0 1px 0 rgba(255, 255, 255, 0.1),
+                0 4px 8px rgba(0, 0, 0, 0.5);
+        }
+
+        .campaign-info-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            border-bottom: 2px solid #8b7355;
+            background: linear-gradient(180deg, #4a4a4a 0%, #3a3a3a 100%);
+            border-radius: 10px 10px 0 0;
+        }
+
+        .campaign-info-header h2 {
+            color: #ffd700;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin: 0;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .edit-campaign-info-btn {
+            background: linear-gradient(180deg, #8b7355 0%, #6b5b3a 100%);
+            color: #ffd700;
+            border: 2px solid #a0522d;
+            border-radius: 6px;
+            padding: 8px 16px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 
+                inset 0 1px 0 rgba(255, 255, 255, 0.2),
+                0 2px 4px rgba(0, 0, 0, 0.4);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .edit-campaign-info-btn:hover {
+            background: linear-gradient(180deg, #a0522d 0%, #8b7355 100%);
+            transform: translateY(-1px);
+            box-shadow: 
+                inset 0 1px 0 rgba(255, 255, 255, 0.3),
+                0 4px 8px rgba(0, 0, 0, 0.6);
+        }
+
+        .campaign-info-content {
+            padding: 20px;
+        }
+
+        .campaign-info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .campaign-info-card {
+            background: linear-gradient(180deg, #4a4a4a 0%, #3a3a3a 100%);
+            border: 1px solid #8b7355;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .campaign-info-card h3 {
+            color: #ffd700;
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-bottom: 1px solid #8b7355;
+            padding-bottom: 8px;
+        }
+
+        .campaign-info-text {
+            color: #e0e0e0;
+            line-height: 1.6;
+            font-size: 0.95rem;
+            min-height: 100px;
+        }
+
+        .campaign-info-text.empty {
+            color: #b0b0b0;
+            font-style: italic;
+        }
+
+        /* Character Section */
+        .character-section {
+            margin-top: 30px;
+        }
+
+        .character-section-header {
+            margin-bottom: 20px;
+        }
+
+        .character-section-header h2 {
+            color: #ffd700;
+            font-size: 1.8rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+        }
+
         .status-message {
             padding: 10px;
             border-radius: 6px;
@@ -1376,10 +1490,69 @@
         </header>
         
         <main class="app-main">
-            <div class="character-deck" id="characterDeck">
-                <!-- Character cards will be added here -->
+            <!-- Campaign Info Section -->
+            <div class="campaign-info-section" id="campaignInfoSection">
+                <div class="campaign-info-header">
+                    <h2>Campaign Information</h2>
+                    <button class="edit-campaign-info-btn" onclick="toggleCampaignInfoEdit()">
+                        ✏️ Edit
+                    </button>
+                </div>
+                <div class="campaign-info-content" id="campaignInfoContent">
+                    <!-- Campaign info will be loaded here -->
+                </div>
+            </div>
+
+            <!-- Character Section -->
+            <div class="character-section">
+                <div class="character-section-header">
+                    <h2>Characters</h2>
+                </div>
+                <div class="character-deck" id="characterDeck">
+                    <!-- Character cards will be added here -->
+                </div>
             </div>
         </main>
+    </div>
+
+    <!-- Campaign Info Edit Modal -->
+    <div id="campaignInfoModal" class="campaign-modal">
+        <div class="campaign-modal-content">
+            <div class="campaign-modal-header">
+                <h3>Edit Campaign Information</h3>
+                <button class="close-modal-btn" onclick="closeCampaignInfoModal()">✕</button>
+            </div>
+            <div class="campaign-modal-body">
+                <div class="form-group">
+                    <label for="campaignBackstory">Backstory</label>
+                    <textarea id="campaignBackstory" placeholder="Enter the campaign's backstory and lore..."></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="campaignWorld">World & Environment</label>
+                    <textarea id="campaignWorld" placeholder="Describe the world, geography, and environment..."></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="campaignPolitics">Political Considerations</label>
+                    <textarea id="campaignPolitics" placeholder="Describe political factions, governments, and power structures..."></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="campaignReligion">Religion & Culture</label>
+                    <textarea id="campaignReligion" placeholder="Describe religious beliefs, cultural practices, and traditions..."></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="campaignMagic">Magic & Technology</label>
+                    <textarea id="campaignMagic" placeholder="Describe magic systems, technology level, and special rules..."></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="campaignNotes">Additional Notes</label>
+                    <textarea id="campaignNotes" placeholder="Any other important campaign information..."></textarea>
+                </div>
+                <div class="campaign-modal-actions">
+                    <button class="cancel-btn" onclick="closeCampaignInfoModal()">Cancel</button>
+                    <button class="create-campaign-btn" onclick="saveCampaignInfo()">Save Changes</button>
+                </div>
+            </div>
+        </div>
     </div>
 
     <!-- Campaign Modal -->
@@ -1523,6 +1696,7 @@
                         // Initialize the app
                         updateGuildDisplay();
                         loadCampaigns();
+                        // Campaign info will be loaded when campaigns are loaded
                         
                         messageDiv.innerHTML = '';
                     } else {
@@ -1580,10 +1754,11 @@
             }
         });
 
-        // Handle Escape key to close modal
+        // Handle Escape key to close modals
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape') {
                 closeCampaignModal();
+                closeCampaignInfoModal();
             }
         });
 
@@ -1609,6 +1784,9 @@
                     // Set current campaign to first one if none selected
                     if (!currentCampaignId) {
                         switchCampaign(campaigns[0].id);
+                    } else {
+                        // Load campaign info for current campaign
+                        loadCampaignInfo();
                     }
                 }
             });
@@ -1657,8 +1835,9 @@
             // Update current campaign
             currentCampaignId = campaignId;
             
-            // Reload characters for new campaign
+            // Reload characters and campaign info for new campaign
             setupRealtimeListener();
+            loadCampaignInfo();
         }
 
         function showNewCampaignModal() {
@@ -1699,6 +1878,114 @@
                 })
                 .catch((error) => {
                     alert('Error creating campaign: ' + error.message);
+                });
+        }
+
+        // Campaign Info Management Functions
+        function loadCampaignInfo() {
+            const campaignPath = getCampaignPath();
+            database.ref(`${campaignPath}/info`).once('value')
+                .then((snapshot) => {
+                    const info = snapshot.val() || {};
+                    renderCampaignInfo(info);
+                })
+                .catch((error) => {
+                    console.error('Error loading campaign info:', error);
+                    renderCampaignInfo({});
+                });
+        }
+
+        function renderCampaignInfo(info) {
+            const content = document.getElementById('campaignInfoContent');
+            
+            content.innerHTML = `
+                <div class="campaign-info-grid">
+                    <div class="campaign-info-card">
+                        <h3>Backstory</h3>
+                        <div class="campaign-info-text ${!info.backstory ? 'empty' : ''}">
+                            ${info.backstory || 'No backstory added yet. Click Edit to add campaign lore and history.'}
+                        </div>
+                    </div>
+                    <div class="campaign-info-card">
+                        <h3>World & Environment</h3>
+                        <div class="campaign-info-text ${!info.world ? 'empty' : ''}">
+                            ${info.world || 'No world information added yet. Click Edit to describe the setting and geography.'}
+                        </div>
+                    </div>
+                    <div class="campaign-info-card">
+                        <h3>Political Considerations</h3>
+                        <div class="campaign-info-text ${!info.politics ? 'empty' : ''}">
+                            ${info.politics || 'No political information added yet. Click Edit to describe factions and power structures.'}
+                        </div>
+                    </div>
+                    <div class="campaign-info-card">
+                        <h3>Religion & Culture</h3>
+                        <div class="campaign-info-text ${!info.religion ? 'empty' : ''}">
+                            ${info.religion || 'No religious information added yet. Click Edit to describe beliefs and cultural practices.'}
+                        </div>
+                    </div>
+                    <div class="campaign-info-card">
+                        <h3>Magic & Technology</h3>
+                        <div class="campaign-info-text ${!info.magic ? 'empty' : ''}">
+                            ${info.magic || 'No magic information added yet. Click Edit to describe magic systems and technology.'}
+                        </div>
+                    </div>
+                    <div class="campaign-info-card">
+                        <h3>Additional Notes</h3>
+                        <div class="campaign-info-text ${!info.notes ? 'empty' : ''}">
+                            ${info.notes || 'No additional notes added yet. Click Edit to add any other important campaign information.'}
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function toggleCampaignInfoEdit() {
+            const campaignPath = getCampaignPath();
+            database.ref(`${campaignPath}/info`).once('value')
+                .then((snapshot) => {
+                    const info = snapshot.val() || {};
+                    
+                    // Populate the form
+                    document.getElementById('campaignBackstory').value = info.backstory || '';
+                    document.getElementById('campaignWorld').value = info.world || '';
+                    document.getElementById('campaignPolitics').value = info.politics || '';
+                    document.getElementById('campaignReligion').value = info.religion || '';
+                    document.getElementById('campaignMagic').value = info.magic || '';
+                    document.getElementById('campaignNotes').value = info.notes || '';
+                    
+                    // Show the modal
+                    document.getElementById('campaignInfoModal').style.display = 'block';
+                })
+                .catch((error) => {
+                    console.error('Error loading campaign info for editing:', error);
+                    document.getElementById('campaignInfoModal').style.display = 'block';
+                });
+        }
+
+        function closeCampaignInfoModal() {
+            document.getElementById('campaignInfoModal').style.display = 'none';
+        }
+
+        function saveCampaignInfo() {
+            const campaignPath = getCampaignPath();
+            const info = {
+                backstory: document.getElementById('campaignBackstory').value.trim(),
+                world: document.getElementById('campaignWorld').value.trim(),
+                politics: document.getElementById('campaignPolitics').value.trim(),
+                religion: document.getElementById('campaignReligion').value.trim(),
+                magic: document.getElementById('campaignMagic').value.trim(),
+                notes: document.getElementById('campaignNotes').value.trim(),
+                lastUpdated: Date.now()
+            };
+            
+            database.ref(`${campaignPath}/info`).set(info)
+                .then(() => {
+                    closeCampaignInfoModal();
+                    loadCampaignInfo();
+                })
+                .catch((error) => {
+                    alert('Error saving campaign info: ' + error.message);
                 });
         }
 
