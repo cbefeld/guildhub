@@ -202,6 +202,205 @@
                 0 2px 4px rgba(0, 0, 0, 0.4);
         }
 
+        .campaign-selector-container {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .campaign-selector {
+            background: linear-gradient(180deg, #4a4a4a 0%, #3a3a3a 100%);
+            color: #ffd700;
+            border: 2px solid #8b7355;
+            border-radius: 6px;
+            padding: 8px 12px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            font-family: 'Times New Roman', serif;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 
+                inset 0 1px 0 rgba(255, 255, 255, 0.1),
+                0 2px 4px rgba(0, 0, 0, 0.4);
+            min-width: 150px;
+        }
+
+        .campaign-selector:hover {
+            background: linear-gradient(180deg, #5a5a5a 0%, #4a4a4a 100%);
+            border-color: #a0522d;
+        }
+
+        .campaign-selector:focus {
+            outline: none;
+            border-color: #ffd700;
+            box-shadow: 
+                inset 0 1px 0 rgba(255, 255, 255, 0.2),
+                0 2px 4px rgba(0, 0, 0, 0.4),
+                0 0 0 2px rgba(255, 215, 0, 0.3);
+        }
+
+        .new-campaign-btn {
+            background: linear-gradient(180deg, #8b7355 0%, #6b5b3a 100%);
+            color: #ffd700;
+            border: 2px solid #a0522d;
+            border-radius: 6px;
+            padding: 8px 12px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 
+                inset 0 1px 0 rgba(255, 255, 255, 0.2),
+                0 2px 4px rgba(0, 0, 0, 0.4);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            white-space: nowrap;
+        }
+
+        .new-campaign-btn:hover {
+            background: linear-gradient(180deg, #a0522d 0%, #8b7355 100%);
+            transform: translateY(-1px);
+            box-shadow: 
+                inset 0 1px 0 rgba(255, 255, 255, 0.3),
+                0 4px 8px rgba(0, 0, 0, 0.6);
+        }
+
+        /* Campaign Modal */
+        .campaign-modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(4px);
+        }
+
+        .campaign-modal-content {
+            background: linear-gradient(180deg, #3a3a3a 0%, #2a2a2a 100%);
+            border: 2px solid #8b7355;
+            border-radius: 12px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.8);
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 90%;
+            max-width: 500px;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        .campaign-modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            border-bottom: 2px solid #8b7355;
+            background: linear-gradient(180deg, #4a4a4a 0%, #3a3a3a 100%);
+            border-radius: 10px 10px 0 0;
+        }
+
+        .campaign-modal-header h3 {
+            color: #ffd700;
+            font-size: 1.4rem;
+            font-weight: bold;
+            margin: 0;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .campaign-modal-body {
+            padding: 20px;
+        }
+
+        .campaign-modal-body .form-group {
+            margin-bottom: 20px;
+        }
+
+        .campaign-modal-body .form-group label {
+            display: block;
+            color: #ffd700;
+            margin-bottom: 8px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .campaign-modal-body .form-group input,
+        .campaign-modal-body .form-group textarea {
+            width: 100%;
+            background: linear-gradient(180deg, #4a4a4a 0%, #3a3a3a 100%);
+            border: 2px solid #8b7355;
+            border-radius: 6px;
+            padding: 12px;
+            color: #e0e0e0;
+            font-family: 'Times New Roman', serif;
+            font-size: 1rem;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .campaign-modal-body .form-group textarea {
+            min-height: 80px;
+            resize: vertical;
+        }
+
+        .campaign-modal-body .form-group input:focus,
+        .campaign-modal-body .form-group textarea:focus {
+            outline: none;
+            border-color: #ffd700;
+            box-shadow: 
+                inset 0 2px 4px rgba(0, 0, 0, 0.3),
+                0 0 0 2px rgba(255, 215, 0, 0.3);
+        }
+
+        .campaign-modal-actions {
+            display: flex;
+            gap: 15px;
+            justify-content: flex-end;
+            margin-top: 30px;
+        }
+
+        .cancel-btn {
+            background: linear-gradient(180deg, #6b7280 0%, #4b5563 100%);
+            color: #ffffff;
+            border: 2px solid #374151;
+            padding: 12px 24px;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .cancel-btn:hover {
+            background: linear-gradient(180deg, #4b5563 0%, #374151 100%);
+            transform: translateY(-1px);
+        }
+
+        .create-campaign-btn {
+            background: linear-gradient(180deg, #22c55e 0%, #16a34a 100%);
+            color: #ffffff;
+            border: 2px solid #15803d;
+            padding: 12px 24px;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .create-campaign-btn:hover {
+            background: linear-gradient(180deg, #16a34a 0%, #15803d 100%);
+            transform: translateY(-1px);
+        }
+
         .status-message {
             padding: 10px;
             border-radius: 6px;
@@ -1159,6 +1358,14 @@
             <h1>Guild Hub 1.0</h1>
             <div class="header-controls">
                 <div id="currentGuildInfo" class="current-guild-info"></div>
+                <div class="campaign-selector-container">
+                    <select id="campaignSelector" class="campaign-selector" onchange="switchCampaign(this.value)">
+                        <option value="">Loading campaigns...</option>
+                    </select>
+                    <button class="new-campaign-btn" onclick="showNewCampaignModal()">
+                        + New Campaign
+                    </button>
+                </div>
                 <div id="connectionStatus" class="connection-status">
                     🔴 Disconnected
                 </div>
@@ -1173,6 +1380,30 @@
                 <!-- Character cards will be added here -->
             </div>
         </main>
+    </div>
+
+    <!-- Campaign Modal -->
+    <div id="campaignModal" class="campaign-modal">
+        <div class="campaign-modal-content">
+            <div class="campaign-modal-header">
+                <h3>Create New Campaign</h3>
+                <button class="close-modal-btn" onclick="closeCampaignModal()">✕</button>
+            </div>
+            <div class="campaign-modal-body">
+                <div class="form-group">
+                    <label for="campaignName">Campaign Name</label>
+                    <input type="text" id="campaignName" placeholder="Enter campaign name">
+                </div>
+                <div class="form-group">
+                    <label for="campaignDescription">Description (Optional)</label>
+                    <textarea id="campaignDescription" placeholder="Enter campaign description"></textarea>
+                </div>
+                <div class="campaign-modal-actions">
+                    <button class="cancel-btn" onclick="closeCampaignModal()">Cancel</button>
+                    <button class="create-campaign-btn" onclick="createCampaign()">Create Campaign</button>
+                </div>
+            </div>
+        </div>
     </div>
 
 
@@ -1198,9 +1429,11 @@
         firebase.initializeApp(firebaseConfig);
         const database = firebase.database();
 
-        // Multi-tenant guild system
+        // Multi-tenant guild system with campaigns
         let currentGuildId = null;
         let currentGuildData = null;
+        let currentCampaignId = null;
+        let campaigns = [];
         let characters = [];
         let isConnected = false;
         let isAuthenticated = false;
@@ -1229,6 +1462,13 @@
         function getGuildPath() {
             const guildId = getGuildId();
             return `guilds/${guildId}`;
+        }
+
+        // Get campaign-specific database path
+        function getCampaignPath() {
+            const guildId = getGuildId();
+            const campaignId = currentCampaignId || 'default';
+            return `guilds/${guildId}/campaigns/${campaignId}`;
         }
 
         // Update page title and header with guild info
@@ -1282,7 +1522,7 @@
                         
                         // Initialize the app
                         updateGuildDisplay();
-                        setupRealtimeListener();
+                        loadCampaigns();
                         
                         messageDiv.innerHTML = '';
                     } else {
@@ -1333,16 +1573,145 @@
             }
         });
 
+        // Handle Enter key in campaign name field
+        document.getElementById('campaignName').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                createCampaign();
+            }
+        });
+
+        // Handle Escape key to close modal
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeCampaignModal();
+            }
+        });
+
+        // Campaign Management Functions
+        function loadCampaigns() {
+            const guildPath = getGuildPath();
+            database.ref(`${guildPath}/campaigns`).on('value', (snapshot) => {
+                campaigns = [];
+                if (snapshot.exists()) {
+                    snapshot.forEach((childSnapshot) => {
+                        campaigns.push({
+                            id: childSnapshot.key,
+                            ...childSnapshot.val()
+                        });
+                    });
+                }
+                
+                // If no campaigns exist, create a default one
+                if (campaigns.length === 0) {
+                    createDefaultCampaign();
+                } else {
+                    renderCampaignSelector();
+                    // Set current campaign to first one if none selected
+                    if (!currentCampaignId) {
+                        switchCampaign(campaigns[0].id);
+                    }
+                }
+            });
+        }
+
+        function createDefaultCampaign() {
+            const defaultCampaign = {
+                name: 'Main Campaign',
+                description: 'Your primary campaign',
+                createdDate: new Date().toISOString(),
+                lastUpdated: Date.now()
+            };
+            
+            const guildPath = getGuildPath();
+            database.ref(`${guildPath}/campaigns/default`).set(defaultCampaign)
+                .then(() => {
+                    currentCampaignId = 'default';
+                    loadCampaigns();
+                });
+        }
+
+        function renderCampaignSelector() {
+            const selector = document.getElementById('campaignSelector');
+            selector.innerHTML = '';
+            
+            campaigns.forEach(campaign => {
+                const option = document.createElement('option');
+                option.value = campaign.id;
+                option.textContent = campaign.name;
+                if (campaign.id === currentCampaignId) {
+                    option.selected = true;
+                }
+                selector.appendChild(option);
+            });
+        }
+
+        function switchCampaign(campaignId) {
+            if (campaignId === currentCampaignId) return;
+            
+            console.log(`Switching from campaign ${currentCampaignId} to campaign ${campaignId}`);
+            
+            // Clear current data
+            characters = [];
+            renderCharacters();
+            
+            // Update current campaign
+            currentCampaignId = campaignId;
+            
+            // Reload characters for new campaign
+            setupRealtimeListener();
+        }
+
+        function showNewCampaignModal() {
+            document.getElementById('campaignModal').style.display = 'block';
+            document.getElementById('campaignName').focus();
+        }
+
+        function closeCampaignModal() {
+            document.getElementById('campaignModal').style.display = 'none';
+            document.getElementById('campaignName').value = '';
+            document.getElementById('campaignDescription').value = '';
+        }
+
+        function createCampaign() {
+            const name = document.getElementById('campaignName').value.trim();
+            const description = document.getElementById('campaignDescription').value.trim();
+            
+            if (!name) {
+                alert('Please enter a campaign name');
+                return;
+            }
+            
+            const newCampaign = {
+                name: name,
+                description: description,
+                createdDate: new Date().toISOString(),
+                lastUpdated: Date.now()
+            };
+            
+            const guildPath = getGuildPath();
+            const campaignId = name.toLowerCase().replace(/[^a-z0-9]/g, '') + '_' + Date.now();
+            
+            database.ref(`${guildPath}/campaigns/${campaignId}`).set(newCampaign)
+                .then(() => {
+                    closeCampaignModal();
+                    // Switch to the new campaign
+                    switchCampaign(campaignId);
+                })
+                .catch((error) => {
+                    alert('Error creating campaign: ' + error.message);
+                });
+        }
+
         // Setup real-time listener
         function setupRealtimeListener() {
-            const guildPath = getGuildPath();
-            const charactersRef = database.ref(`${guildPath}/characters`);
+            const campaignPath = getCampaignPath();
+            const charactersRef = database.ref(`${campaignPath}/characters`);
             
-            console.log(`Setting up listener for guild: ${getGuildId()} at path: ${guildPath}/characters`);
+            console.log(`Setting up listener for guild: ${getGuildId()}, campaign: ${currentCampaignId} at path: ${campaignPath}/characters`);
             
             charactersRef.on('value', (snapshot) => {
                 const data = snapshot.val();
-                console.log(`Data received for guild ${getGuildId()}:`, data);
+                console.log(`Data received for guild ${getGuildId()}, campaign ${currentCampaignId}:`, data);
                 
                 if (data) {
                     characters = Object.keys(data).map(key => ({
@@ -1387,7 +1756,7 @@
 
         // Add a new character
         function addCharacter() {
-            const guildPath = getGuildPath();
+            const campaignPath = getCampaignPath();
             const newCharacter = {
                 name: "New Character",
                 class: "Fighter",
@@ -1405,23 +1774,23 @@
                 lastUpdated: Date.now()
             };
             
-            console.log(`Adding character to guild: ${getGuildId()} at path: ${guildPath}/characters`);
-            database.ref(`${guildPath}/characters`).push(newCharacter);
+            console.log(`Adding character to guild: ${getGuildId()}, campaign: ${currentCampaignId} at path: ${campaignPath}/characters`);
+            database.ref(`${campaignPath}/characters`).push(newCharacter);
         }
 
         // Remove a character
         function removeCharacter(id) {
-            const guildPath = getGuildPath();
-            console.log(`Removing character ${id} from guild: ${getGuildId()}`);
-            database.ref(`${guildPath}/characters/${id}`).remove();
+            const campaignPath = getCampaignPath();
+            console.log(`Removing character ${id} from guild: ${getGuildId()}, campaign: ${currentCampaignId}`);
+            database.ref(`${campaignPath}/characters/${id}`).remove();
         }
 
         // Update a character field
         function updateCharacter(id, field, value) {
-            const guildPath = getGuildPath();
+            const campaignPath = getCampaignPath();
             const updates = {};
-            updates[`${guildPath}/characters/${id}/${field}`] = value;
-            updates[`${guildPath}/characters/${id}/lastUpdated`] = Date.now();
+            updates[`${campaignPath}/characters/${id}/${field}`] = value;
+            updates[`${campaignPath}/characters/${id}/lastUpdated`] = Date.now();
             database.ref().update(updates);
             
             // Highlight stats if this was a stat update
