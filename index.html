@@ -844,6 +844,48 @@
             box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3), 0 0 0 2px rgba(160, 82, 45, 0.3);
         }
 
+        /* Active Effects Section */
+        .active-effects-section {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-top: 15px;
+        }
+
+        .active-effects-item {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .active-effects-label {
+            font-size: 0.75rem;
+            font-weight: bold;
+            color: #ffd700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .active-effects-textarea {
+            background: linear-gradient(180deg, #4a4a4a 0%, #3a3a3a 100%);
+            border: 1px solid #8b7355;
+            border-radius: 4px;
+            padding: 4px 6px;
+            font-family: 'Times New Roman', serif;
+            color: #e0e0e0;
+            font-size: 0.75rem;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
+            resize: vertical;
+            min-height: 30px;
+        }
+
+        .active-effects-textarea:focus {
+            outline: none;
+            border-color: #a0522d;
+            background: linear-gradient(180deg, #5a5a5a 0%, #4a4a4a 100%);
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3), 0 0 0 2px rgba(160, 82, 45, 0.3);
+        }
+
         /* Stat highlighting */
         .ability-input.highest-stat {
             border-left: 3px solid #22c55e;
@@ -1255,6 +1297,13 @@
                                         max="20"
                                     >
                                 </div>
+                            </div>
+                        </div>
+
+                        <div class="active-effects-section">
+                            <div class="active-effects-item">
+                                <label class="active-effects-label">Active Effects:</label>
+                                <textarea value="${character.activeEffects || ''}" onchange="updateCharacter('${character.id}', 'activeEffects', this.value)" class="editable-field active-effects-textarea" placeholder="Enter active effects, buffs, debuffs, conditions...">${character.activeEffects || ''}</textarea>
                             </div>
                         </div>
                     </div>
