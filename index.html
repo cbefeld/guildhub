@@ -414,8 +414,8 @@
             transform: translateY(-1px);
         }
 
-        /* Campaign Info Section */
-        .campaign-info-section {
+        /* Our Story Section */
+        .our-story-section {
             background: linear-gradient(180deg, #3a3a3a 0%, #2a2a2a 100%);
             border: 2px solid #8b7355;
             border-radius: 12px;
@@ -425,17 +425,14 @@
                 0 4px 8px rgba(0, 0, 0, 0.5);
         }
 
-        .campaign-info-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+        .our-story-header {
             padding: 20px;
             border-bottom: 2px solid #8b7355;
             background: linear-gradient(180deg, #4a4a4a 0%, #3a3a3a 100%);
             border-radius: 10px 10px 0 0;
         }
 
-        .campaign-info-header h2 {
+        .our-story-header h2 {
             color: #ffd700;
             font-size: 1.5rem;
             font-weight: bold;
@@ -444,70 +441,66 @@
             letter-spacing: 1px;
         }
 
-        .edit-campaign-info-btn {
-            background: linear-gradient(180deg, #8b7355 0%, #6b5b3a 100%);
-            color: #ffd700;
-            border: 2px solid #a0522d;
-            border-radius: 6px;
-            padding: 8px 16px;
-            font-size: 0.9rem;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            box-shadow: 
-                inset 0 1px 0 rgba(255, 255, 255, 0.2),
-                0 2px 4px rgba(0, 0, 0, 0.4);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .edit-campaign-info-btn:hover {
-            background: linear-gradient(180deg, #a0522d 0%, #8b7355 100%);
-            transform: translateY(-1px);
-            box-shadow: 
-                inset 0 1px 0 rgba(255, 255, 255, 0.3),
-                0 4px 8px rgba(0, 0, 0, 0.6);
-        }
-
-        .campaign-info-content {
+        .our-story-content {
+            display: flex;
+            gap: 20px;
             padding: 20px;
         }
 
-        .campaign-info-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
+        .story-text-area {
+            flex: 2;
         }
 
-        .campaign-info-card {
+        .story-text-area textarea {
+            width: 100%;
+            min-height: 300px;
             background: linear-gradient(180deg, #4a4a4a 0%, #3a3a3a 100%);
             border: 1px solid #8b7355;
             border-radius: 8px;
-            padding: 20px;
+            padding: 15px;
+            color: #e0e0e0;
+            font-family: 'Times New Roman', serif;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            resize: vertical;
             box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
         }
 
-        .campaign-info-card h3 {
-            color: #ffd700;
-            font-size: 1.2rem;
-            font-weight: bold;
-            margin-bottom: 15px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            border-bottom: 1px solid #8b7355;
-            padding-bottom: 8px;
+        .story-text-area textarea:focus {
+            outline: none;
+            border-color: #ffd700;
+            box-shadow: 
+                inset 0 2px 4px rgba(0, 0, 0, 0.3),
+                0 0 0 2px rgba(255, 215, 0, 0.3);
         }
 
-        .campaign-info-text {
-            color: #e0e0e0;
-            line-height: 1.6;
-            font-size: 0.95rem;
-            min-height: 100px;
+        .story-image-placeholder {
+            flex: 1;
+            min-width: 200px;
         }
 
-        .campaign-info-text.empty {
+        .image-placeholder {
+            background: linear-gradient(180deg, #4a4a4a 0%, #3a3a3a 100%);
+            border: 2px dashed #8b7355;
+            border-radius: 8px;
+            height: 300px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
             color: #b0b0b0;
-            font-style: italic;
+            font-family: 'Times New Roman', serif;
+        }
+
+        .image-placeholder span {
+            font-size: 3rem;
+            margin-bottom: 10px;
+        }
+
+        .image-placeholder p {
+            font-size: 1rem;
+            margin: 0;
+            text-align: center;
         }
 
         /* Character Section */
@@ -2339,16 +2332,21 @@
                 </div>
             </div>
 
-            <!-- Campaign Info Section -->
-            <div class="campaign-info-section" id="campaignInfoSection">
-                <div class="campaign-info-header">
-                    <h2>Campaign Information</h2>
-                    <button class="edit-campaign-info-btn" onclick="toggleCampaignInfoEdit()">
-                        ✏️ Edit
-                    </button>
+            <!-- Our Story Section -->
+            <div class="our-story-section" id="ourStorySection">
+                <div class="our-story-header">
+                    <h2>Our Story</h2>
                 </div>
-                <div class="campaign-info-content" id="campaignInfoContent">
-                    <!-- Campaign info will be loaded here -->
+                <div class="our-story-content">
+                    <div class="story-text-area">
+                        <textarea id="ourStoryText" placeholder="Tell the story of your campaign... the world, the characters, the adventures that await..."></textarea>
+                    </div>
+                    <div class="story-image-placeholder">
+                        <div class="image-placeholder">
+                            <span>📷</span>
+                            <p>Campaign Image</p>
+                        </div>
+                    </div>
                 </div>
             </div>
 
