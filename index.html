@@ -2316,20 +2316,13 @@
         </header>
         
         <main class="app-main">
-            <!-- Campaign Banner Section -->
-            <div class="campaign-banner-section" id="campaignBannerSection">
-                <div class="campaign-banner" id="campaignBanner">
-                    <div class="campaign-banner-overlay">
-                        <h1 class="campaign-banner-title" id="campaignBannerTitle">Campaign</h1>
-                    </div>
-                    <div class="campaign-banner-actions">
-                        <button class="generate-banner-btn" onclick="generateCampaignBanner()" id="generateBannerBtn">
-                            🎨 Generate Banner
-                        </button>
-                        <button class="regenerate-banner-btn" onclick="regenerateCampaignBanner()" id="regenerateBannerBtn" style="display: none;">
-                            🔄 Regenerate
-                        </button>
-                    </div>
+            <!-- Character Section -->
+            <div class="character-section">
+                <div class="character-section-header">
+                    <h2>Characters</h2>
+                </div>
+                <div class="character-deck" id="characterDeck">
+                    <!-- Character cards will be added here -->
                 </div>
             </div>
 
@@ -2348,16 +2341,6 @@
                             <p>Campaign Image</p>
                         </div>
                     </div>
-                </div>
-            </div>
-
-            <!-- Character Section -->
-            <div class="character-section">
-                <div class="character-section-header">
-                    <h2>Characters</h2>
-                </div>
-                <div class="character-deck" id="characterDeck">
-                    <!-- Character cards will be added here -->
                 </div>
             </div>
         </main>
