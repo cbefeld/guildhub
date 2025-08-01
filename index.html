@@ -41,6 +41,12 @@
             position: relative;
         }
 
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
         .app-header::before {
             content: '';
             position: absolute;
@@ -216,8 +222,8 @@
             border: 2px solid #8b7355;
             border-radius: 6px;
             padding: 8px 12px;
-            font-size: 0.9rem;
-            font-weight: bold;
+            font-size: 0.8rem;
+            font-weight: normal;
             font-family: 'Times New Roman', serif;
             cursor: pointer;
             transition: all 0.2s ease;
@@ -248,14 +254,15 @@
             border-radius: 6px;
             padding: 8px 12px;
             font-size: 0.8rem;
-            font-weight: bold;
+            font-weight: normal;
+            font-family: 'Times New Roman', serif;
             cursor: pointer;
             transition: all 0.2s ease;
             box-shadow: 
                 inset 0 1px 0 rgba(255, 255, 255, 0.2),
                 0 2px 4px rgba(0, 0, 0, 0.4);
-            text-transform: uppercase;
-            letter-spacing: 1px;
+            text-transform: none;
+            letter-spacing: 0.5px;
             white-space: nowrap;
         }
 
@@ -1383,18 +1390,18 @@
             background: linear-gradient(180deg, #8b7355 0%, #6b5b3a 100%);
             color: #ffd700;
             border: 2px solid #a0522d;
-            padding: 10.8px 18px;
+            padding: 8px 12px;
             border-radius: 6px;
-            font-size: 0.81rem;
-            font-weight: bold;
+            font-size: 0.8rem;
+            font-weight: normal;
             cursor: pointer;
             transition: all 0.2s ease;
             box-shadow: 
                 inset 0 1px 0 rgba(255, 255, 255, 0.2),
                 0 2px 4px rgba(0, 0, 0, 0.4);
             font-family: 'Times New Roman', serif;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+            text-transform: none;
+            letter-spacing: 0.5px;
         }
 
         .add-character-btn:hover {
@@ -2287,7 +2294,12 @@
 
     <div class="app" id="mainApp" style="display: none;">
         <header class="app-header">
-            <h1>Guild Hub 1.0</h1>
+            <div class="header-left">
+                <h1>Guild Hub 1.0</h1>
+                <div id="connectionStatus" class="connection-status">
+                    🔴 Disconnected
+                </div>
+            </div>
             <div class="header-controls">
                 <div id="currentGuildInfo" class="current-guild-info"></div>
                 <div class="campaign-selector-container">
@@ -2297,9 +2309,6 @@
                     <button class="new-campaign-btn" onclick="showNewCampaignModal()">
                         + New Campaign
                     </button>
-                </div>
-                <div id="connectionStatus" class="connection-status">
-                    🔴 Disconnected
                 </div>
                 <button class="add-character-btn" onclick="addCharacter()">
                     + Add Character
