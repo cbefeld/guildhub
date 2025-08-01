@@ -2451,6 +2451,161 @@
             transform: translateY(-1px);
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
         }
+
+        /* Spell Modal Styles */
+        .spell-modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(4px);
+        }
+
+        .spell-modal-content {
+            background: linear-gradient(180deg, #3a3a3a 0%, #2a2a2a 100%);
+            border: 2px solid #8b7355;
+            border-radius: 12px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.8);
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 90%;
+            max-width: 500px;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        .spell-modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            border-bottom: 2px solid #8b7355;
+            background: linear-gradient(180deg, #4a4a4a 0%, #3a3a3a 100%);
+            border-radius: 10px 10px 0 0;
+        }
+
+        .spell-modal-header h3 {
+            color: #ffd700;
+            font-size: 1.4rem;
+            font-weight: bold;
+            margin: 0;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .close-spell-modal-btn {
+            background: linear-gradient(180deg, #8b0000 0%, #6b0000 100%);
+            color: #ffd700;
+            border: 2px solid #a0522d;
+            border-radius: 6px;
+            width: 2rem;
+            height: 2rem;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 
+                inset 0 1px 0 rgba(255, 255, 255, 0.2),
+                0 2px 4px rgba(0, 0, 0, 0.4);
+        }
+
+        .close-spell-modal-btn:hover {
+            background: linear-gradient(180deg, #a00000 0%, #8b0000 100%);
+            transform: scale(1.05);
+        }
+
+        .spell-modal-body {
+            padding: 20px;
+        }
+
+        .spell-modal-body .form-group {
+            margin-bottom: 20px;
+        }
+
+        .spell-modal-body .form-group label {
+            display: block;
+            color: #ffd700;
+            margin-bottom: 8px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .spell-modal-body .form-group input,
+        .spell-modal-body .form-group select {
+            width: 100%;
+            background: linear-gradient(180deg, #4a4a4a 0%, #3a3a3a 100%);
+            border: 2px solid #8b7355;
+            border-radius: 6px;
+            padding: 12px;
+            color: #e0e0e0;
+            font-family: 'Times New Roman', serif;
+            font-size: 0.9rem;
+            transition: all 0.2s ease;
+        }
+
+        .spell-modal-body .form-group input:focus,
+        .spell-modal-body .form-group select:focus {
+            outline: none;
+            border-color: #a0522d;
+            background: linear-gradient(180deg, #5a5a5a 0%, #4a4a4a 100%);
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3), 0 0 0 2px rgba(160, 82, 45, 0.3);
+        }
+
+        .spell-modal-actions {
+            display: flex;
+            gap: 12px;
+            justify-content: flex-end;
+            margin-top: 24px;
+        }
+
+        .cancel-spell-btn {
+            background: linear-gradient(180deg, #6b5b3a 0%, #4a4a4a 100%);
+            color: #ffd700;
+            border: 2px solid #8b7355;
+            border-radius: 6px;
+            padding: 10px 20px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .cancel-spell-btn:hover {
+            background: linear-gradient(180deg, #8b7355 0%, #6b5b3a 100%);
+            transform: translateY(-1px);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .save-spell-btn {
+            background: linear-gradient(180deg, #27ae60 0%, #229954 100%);
+            color: #ffffff;
+            border: 2px solid #1e8449;
+            border-radius: 6px;
+            padding: 10px 20px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .save-spell-btn:hover {
+            background: linear-gradient(180deg, #2ecc71 0%, #27ae60 100%);
+            transform: translateY(-1px);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
     </style>
 </head>
 <body>
@@ -2768,6 +2923,14 @@
             if (e.key === 'Escape') {
                 closeCampaignModal();
                 closeCampaignInfoModal();
+                closeSpellModal();
+            }
+        });
+
+        // Handle Enter key in spell modal
+        document.getElementById('spellName').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                saveSpell();
             }
         });
 
@@ -4218,31 +4381,55 @@
             }
         }
 
+        let currentSpellCharacterId = null;
+
         function addSpell(characterId) {
-            const spellName = prompt('Enter spell name:');
-            if (!spellName) return;
+            currentSpellCharacterId = characterId;
+            document.getElementById('spellModal').style.display = 'block';
+            document.getElementById('spellName').focus();
+        }
+
+        function closeSpellModal() {
+            document.getElementById('spellModal').style.display = 'none';
+            document.getElementById('spellName').value = '';
+            document.getElementById('spellLevel').value = '1';
+            document.getElementById('spellSchool').value = 'Evocation';
+            document.getElementById('spellCastingTime').value = '1 action';
+            currentSpellCharacterId = null;
+        }
+
+        function saveSpell() {
+            const spellName = document.getElementById('spellName').value.trim();
+            const spellLevel = parseInt(document.getElementById('spellLevel').value);
+            const spellSchool = document.getElementById('spellSchool').value;
+            const castingTime = document.getElementById('spellCastingTime').value;
             
-            const spellLevel = prompt('Enter spell level (0-9):');
-            if (spellLevel === null) return;
+            if (!spellName) {
+                alert('Please enter a spell name');
+                return;
+            }
             
-            const spellSchool = prompt('Enter spell school (e.g., Evocation, Abjuration):');
-            if (spellSchool === null) return;
+            if (!currentSpellCharacterId) {
+                alert('Error: No character selected');
+                return;
+            }
             
-            const castingTime = prompt('Enter casting time (e.g., 1 action, 1 bonus action):');
-            if (castingTime === null) return;
-            
-            const character = characters.find(c => c.id === characterId);
-            if (!character) return;
+            const character = characters.find(c => c.id === currentSpellCharacterId);
+            if (!character) {
+                alert('Error: Character not found');
+                return;
+            }
             
             const spells = character.spells || [];
             spells.push({
                 name: spellName,
-                level: parseInt(spellLevel) || 0,
+                level: spellLevel,
                 school: spellSchool,
                 castingTime: castingTime
             });
             
-            updateCharacter(characterId, 'spells', spells);
+            updateCharacter(currentSpellCharacterId, 'spells', spells);
+            closeSpellModal();
         }
 
         function castSpell(characterId, spellIndex) {
@@ -4371,6 +4558,68 @@
                     <div class="history-list-popup" id="historyListPopup">
                         <!-- Roll history will be displayed here -->
                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Spell Modal -->
+    <div class="spell-modal" id="spellModal">
+        <div class="spell-modal-content">
+            <div class="spell-modal-header">
+                <h3>📚 Add New Spell</h3>
+                <button class="close-spell-modal-btn" onclick="closeSpellModal()">✕</button>
+            </div>
+            <div class="spell-modal-body">
+                <div class="form-group">
+                    <label for="spellName">Spell Name</label>
+                    <input type="text" id="spellName" placeholder="Enter spell name...">
+                </div>
+                <div class="form-group">
+                    <label for="spellLevel">Spell Level</label>
+                    <select id="spellLevel">
+                        <option value="0">Cantrip (0)</option>
+                        <option value="1">1st Level</option>
+                        <option value="2">2nd Level</option>
+                        <option value="3">3rd Level</option>
+                        <option value="4">4th Level</option>
+                        <option value="5">5th Level</option>
+                        <option value="6">6th Level</option>
+                        <option value="7">7th Level</option>
+                        <option value="8">8th Level</option>
+                        <option value="9">9th Level</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="spellSchool">Spell School</label>
+                    <select id="spellSchool">
+                        <option value="Abjuration">Abjuration</option>
+                        <option value="Conjuration">Conjuration</option>
+                        <option value="Divination">Divination</option>
+                        <option value="Enchantment">Enchantment</option>
+                        <option value="Evocation">Evocation</option>
+                        <option value="Illusion">Illusion</option>
+                        <option value="Necromancy">Necromancy</option>
+                        <option value="Transmutation">Transmutation</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="spellCastingTime">Casting Time</label>
+                    <select id="spellCastingTime">
+                        <option value="1 action">1 action</option>
+                        <option value="1 bonus action">1 bonus action</option>
+                        <option value="1 reaction">1 reaction</option>
+                        <option value="1 minute">1 minute</option>
+                        <option value="10 minutes">10 minutes</option>
+                        <option value="1 hour">1 hour</option>
+                        <option value="8 hours">8 hours</option>
+                        <option value="12 hours">12 hours</option>
+                        <option value="24 hours">24 hours</option>
+                    </select>
+                </div>
+                <div class="spell-modal-actions">
+                    <button class="cancel-spell-btn" onclick="closeSpellModal()">Cancel</button>
+                    <button class="save-spell-btn" onclick="saveSpell()">Add Spell</button>
                 </div>
             </div>
         </div>
