@@ -2636,6 +2636,10 @@
             const guildPath = getGuildPath();
             database.ref(`${guildPath}/campaigns/default`).set(defaultCampaign)
                 .then(() => {
+                    // Create placeholder characters for the default campaign
+                    return createPlaceholderCharactersForCampaign(guildPath, 'default');
+                })
+                .then(() => {
                     currentCampaignId = 'default';
                     loadCampaigns();
                 });
