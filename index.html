@@ -2275,6 +2275,182 @@
             display: flex;
             align-items: center;
         }
+
+        /* Spells Section Styles */
+        .spells-section {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .spellcasting-info {
+            display: flex;
+            justify-content: space-between;
+            background: linear-gradient(180deg, #4a4a4a 0%, #3a3a3a 100%);
+            border: 1px solid #8b7355;
+            border-radius: 4px;
+            padding: 8px 12px;
+            margin-bottom: 8px;
+        }
+
+        .spell-stat {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2px;
+        }
+
+        .spell-stat-label {
+            font-size: 0.6rem;
+            color: #ffd700;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .spell-stat-value {
+            font-size: 0.9rem;
+            color: #ffffff;
+            font-weight: bold;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+        .spells-subheader {
+            font-size: 0.7rem;
+            color: #ffd700;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 6px;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+        .spell-slots-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 4px;
+            margin-bottom: 8px;
+        }
+
+        .spell-slot {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: linear-gradient(180deg, #4a4a4a 0%, #3a3a3a 100%);
+            border: 1px solid #8b7355;
+            border-radius: 4px;
+            padding: 4px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .spell-slot:hover {
+            background: linear-gradient(180deg, #5a5a5a 0%, #4a4a4a 100%);
+            border-color: #a0522d;
+        }
+
+        .spell-slot.used {
+            background: linear-gradient(180deg, #6b5b3a 0%, #4a4a4a 100%);
+            border-color: #8b0000;
+            opacity: 0.6;
+        }
+
+        .spell-slot-level {
+            font-size: 0.5rem;
+            color: #ffd700;
+            font-weight: bold;
+        }
+
+        .spell-slot-count {
+            font-size: 0.8rem;
+            color: #ffffff;
+            font-weight: bold;
+        }
+
+        .spells-list {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            margin-bottom: 8px;
+            max-height: 120px;
+            overflow-y: auto;
+        }
+
+        .spell-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: linear-gradient(180deg, #4a4a4a 0%, #3a3a3a 100%);
+            border: 1px solid #8b7355;
+            border-radius: 4px;
+            padding: 6px 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .spell-item:hover {
+            background: linear-gradient(180deg, #5a5a5a 0%, #4a4a4a 100%);
+            border-color: #a0522d;
+        }
+
+        .spell-info {
+            display: flex;
+            flex-direction: column;
+            gap: 1px;
+        }
+
+        .spell-name {
+            font-size: 0.7rem;
+            color: #ffffff;
+            font-weight: bold;
+        }
+
+        .spell-details {
+            font-size: 0.5rem;
+            color: #ffd700;
+        }
+
+        .spell-actions {
+            display: flex;
+            gap: 2px;
+        }
+
+        .spell-action-btn {
+            background: linear-gradient(180deg, #6b5b3a 0%, #4a4a4a 100%);
+            color: #ffd700;
+            border: 1px solid #8b7355;
+            border-radius: 2px;
+            padding: 2px 4px;
+            font-size: 0.5rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .spell-action-btn:hover {
+            background: linear-gradient(180deg, #8b7355 0%, #6b5b3a 100%);
+            transform: scale(1.1);
+        }
+
+        .add-spell-btn {
+            background: linear-gradient(180deg, #27ae60 0%, #229954 100%);
+            color: #ffffff;
+            border: 1px solid #1e8449;
+            border-radius: 4px;
+            padding: 6px 12px;
+            font-size: 0.6rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            width: 100%;
+        }
+
+        .add-spell-btn:hover {
+            background: linear-gradient(180deg, #2ecc71 0%, #27ae60 100%);
+            transform: translateY(-1px);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
     </style>
 </head>
 <body>
@@ -2795,13 +2971,59 @@
                     ability1: 'Class ability - varies by character',
                     ability2: 'Racial trait - varies by character',
                     ability3: 'Background feature - varies by character',
-                    ultimate: 'Signature move or spell - to be developed'
+                    ultimate: 'Signature move or spell - to be developed',
+                    // Add sample spells for spellcasters
+                    spells: generateSampleSpells(characterClass, level)
                 };
                 
                 characters.push(character);
             }
             
             return characters;
+        }
+
+        // Generate sample spells for spellcaster classes
+        function generateSampleSpells(characterClass, level) {
+            const spellcasters = ['Wizard', 'Sorcerer', 'Warlock', 'Bard', 'Cleric', 'Druid'];
+            
+            if (!spellcasters.includes(characterClass)) {
+                return [];
+            }
+            
+            const sampleSpells = {
+                'Wizard': [
+                    { name: 'Magic Missile', level: 1, school: 'Evocation', castingTime: '1 action' },
+                    { name: 'Shield', level: 1, school: 'Abjuration', castingTime: '1 reaction' },
+                    { name: 'Mage Armor', level: 1, school: 'Abjuration', castingTime: '1 action' }
+                ],
+                'Sorcerer': [
+                    { name: 'Fire Bolt', level: 0, school: 'Evocation', castingTime: '1 action' },
+                    { name: 'Burning Hands', level: 1, school: 'Evocation', castingTime: '1 action' },
+                    { name: 'Charm Person', level: 1, school: 'Enchantment', castingTime: '1 action' }
+                ],
+                'Warlock': [
+                    { name: 'Eldritch Blast', level: 0, school: 'Evocation', castingTime: '1 action' },
+                    { name: 'Hex', level: 1, school: 'Enchantment', castingTime: '1 bonus action' },
+                    { name: 'Armor of Agathys', level: 1, school: 'Abjuration', castingTime: '1 action' }
+                ],
+                'Bard': [
+                    { name: 'Vicious Mockery', level: 0, school: 'Enchantment', castingTime: '1 action' },
+                    { name: 'Cure Wounds', level: 1, school: 'Evocation', castingTime: '1 action' },
+                    { name: 'Thunderwave', level: 1, school: 'Evocation', castingTime: '1 action' }
+                ],
+                'Cleric': [
+                    { name: 'Sacred Flame', level: 0, school: 'Evocation', castingTime: '1 action' },
+                    { name: 'Cure Wounds', level: 1, school: 'Evocation', castingTime: '1 action' },
+                    { name: 'Bless', level: 1, school: 'Enchantment', castingTime: '1 action' }
+                ],
+                'Druid': [
+                    { name: 'Produce Flame', level: 0, school: 'Conjuration', castingTime: '1 action' },
+                    { name: 'Entangle', level: 1, school: 'Conjuration', castingTime: '1 action' },
+                    { name: 'Goodberry', level: 1, school: 'Transmutation', castingTime: '1 action' }
+                ]
+            };
+            
+            return sampleSpells[characterClass] || [];
         }
 
         // Campaign Info Management Functions
@@ -3659,6 +3881,9 @@
                     <button class="tab-btn ${getActiveTabClass(character.id, 'story')}" onclick="switchTab('${character.id}', 'story')" data-tab="story">
                         Story
                     </button>
+                    <button class="tab-btn ${getActiveTabClass(character.id, 'spells')}" onclick="switchTab('${character.id}', 'spells')" data-tab="spells">
+                        Spells
+                    </button>
                 </div>
 
                 <div class="card-body">
@@ -3825,6 +4050,42 @@
                             </div>
                         </div>
                     </div>
+                    
+                    <!-- Spells Tab Content -->
+                    <div class="tab-content ${getActiveTabClass(character.id, 'spells')}" id="spells-content-${character.id}">
+                        <div class="spells-section">
+                            <!-- Spellcasting Info -->
+                            <div class="spellcasting-info">
+                                <div class="spell-stat">
+                                    <span class="spell-stat-label">Spell Attack:</span>
+                                    <span class="spell-stat-value">+${calculateSpellAttack(character)}</span>
+                                </div>
+                                <div class="spell-stat">
+                                    <span class="spell-stat-label">Spell DC:</span>
+                                    <span class="spell-stat-value">${calculateSpellDC(character)}</span>
+                                </div>
+                            </div>
+                            
+                            <!-- Spell Slots -->
+                            <div class="spell-slots-section">
+                                <h4 class="spells-subheader">Spell Slots</h4>
+                                <div class="spell-slots-grid">
+                                    ${generateSpellSlots(character)}
+                                </div>
+                            </div>
+                            
+                            <!-- Known Spells -->
+                            <div class="known-spells-section">
+                                <h4 class="spells-subheader">Known Spells</h4>
+                                <div class="spells-list">
+                                    ${generateKnownSpells(character)}
+                                </div>
+                                <button class="add-spell-btn" onclick="addSpell('${character.id}')">
+                                    + Add Spell
+                                </button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 
                 <div class="card-footer">
@@ -3842,6 +4103,190 @@
             `;
             
             return card;
+        }
+
+        // Spellcasting System Functions
+        function calculateSpellAttack(character) {
+            const spellcastingAbility = getSpellcastingAbility(character.class);
+            const abilityModifier = Math.floor((character[spellcastingAbility] - 10) / 2);
+            const proficiencyBonus = Math.floor((character.level - 1) / 4) + 2;
+            return abilityModifier + proficiencyBonus;
+        }
+
+        function calculateSpellDC(character) {
+            const spellcastingAbility = getSpellcastingAbility(character.class);
+            const abilityModifier = Math.floor((character[spellcastingAbility] - 10) / 2);
+            const proficiencyBonus = Math.floor((character.level - 1) / 4) + 2;
+            return 8 + abilityModifier + proficiencyBonus;
+        }
+
+        function getSpellcastingAbility(characterClass) {
+            const spellcasters = {
+                'Wizard': 'intelligence',
+                'Sorcerer': 'charisma',
+                'Warlock': 'charisma',
+                'Bard': 'charisma',
+                'Cleric': 'wisdom',
+                'Druid': 'wisdom',
+                'Paladin': 'charisma',
+                'Ranger': 'wisdom',
+                'Artificer': 'intelligence'
+            };
+            return spellcasters[characterClass] || 'intelligence';
+        }
+
+        function generateSpellSlots(character) {
+            const spellSlots = getSpellSlotsByLevel(character.level, character.class);
+            let html = '';
+            
+            for (let level = 1; level <= 9; level++) {
+                const maxSlots = spellSlots[level] || 0;
+                const usedSlots = character[`spellSlotsUsed${level}`] || 0;
+                const availableSlots = maxSlots - usedSlots;
+                
+                if (maxSlots > 0) {
+                    html += `
+                        <div class="spell-slot ${usedSlots >= maxSlots ? 'used' : ''}" 
+                             onclick="toggleSpellSlot('${character.id}', ${level})">
+                            <div class="spell-slot-level">${level}</div>
+                            <div class="spell-slot-count">${availableSlots}/${maxSlots}</div>
+                        </div>
+                    `;
+                }
+            }
+            
+            return html || '<div style="grid-column: 1/-1; text-align: center; color: #8b7355; font-size: 0.7rem;">No spell slots available</div>';
+        }
+
+        function getSpellSlotsByLevel(level, characterClass) {
+            // Simplified spell slot progression for common spellcasters
+            const spellcasters = ['Wizard', 'Sorcerer', 'Warlock', 'Bard', 'Cleric', 'Druid'];
+            
+            if (!spellcasters.includes(characterClass)) {
+                return {};
+            }
+            
+            // Basic spell slot progression (simplified)
+            const slots = {};
+            if (level >= 1) slots[1] = 2;
+            if (level >= 2) slots[1] = 3;
+            if (level >= 3) { slots[1] = 4; slots[2] = 2; }
+            if (level >= 4) { slots[1] = 4; slots[2] = 3; }
+            if (level >= 5) { slots[1] = 4; slots[2] = 3; slots[3] = 2; }
+            if (level >= 6) { slots[1] = 4; slots[2] = 3; slots[3] = 3; }
+            if (level >= 7) { slots[1] = 4; slots[2] = 3; slots[3] = 3; slots[4] = 1; }
+            if (level >= 8) { slots[1] = 4; slots[2] = 3; slots[3] = 3; slots[4] = 2; }
+            if (level >= 9) { slots[1] = 4; slots[2] = 3; slots[3] = 3; slots[4] = 3; slots[5] = 1; }
+            
+            return slots;
+        }
+
+        function generateKnownSpells(character) {
+            const spells = character.spells || [];
+            if (spells.length === 0) {
+                return '<div style="text-align: center; color: #8b7355; font-size: 0.7rem; padding: 8px;">No spells known</div>';
+            }
+            
+            return spells.map((spell, index) => `
+                <div class="spell-item">
+                    <div class="spell-info">
+                        <div class="spell-name">${spell.name}</div>
+                        <div class="spell-details">Level ${spell.level} • ${spell.school} • ${spell.castingTime}</div>
+                    </div>
+                    <div class="spell-actions">
+                        <button class="spell-action-btn" onclick="castSpell('${character.id}', ${index})">Cast</button>
+                        <button class="spell-action-btn" onclick="removeSpell('${character.id}', ${index})">✕</button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function toggleSpellSlot(characterId, level) {
+            const character = characters.find(c => c.id === characterId);
+            if (!character) return;
+            
+            const spellSlots = getSpellSlotsByLevel(character.level, character.class);
+            const maxSlots = spellSlots[level] || 0;
+            const usedSlots = character[`spellSlotsUsed${level}`] || 0;
+            
+            if (usedSlots < maxSlots) {
+                // Use a spell slot
+                updateCharacter(characterId, `spellSlotsUsed${level}`, usedSlots + 1);
+            } else {
+                // Restore a spell slot
+                updateCharacter(characterId, `spellSlotsUsed${level}`, Math.max(0, usedSlots - 1));
+            }
+        }
+
+        function addSpell(characterId) {
+            const spellName = prompt('Enter spell name:');
+            if (!spellName) return;
+            
+            const spellLevel = prompt('Enter spell level (0-9):');
+            if (spellLevel === null) return;
+            
+            const spellSchool = prompt('Enter spell school (e.g., Evocation, Abjuration):');
+            if (spellSchool === null) return;
+            
+            const castingTime = prompt('Enter casting time (e.g., 1 action, 1 bonus action):');
+            if (castingTime === null) return;
+            
+            const character = characters.find(c => c.id === characterId);
+            if (!character) return;
+            
+            const spells = character.spells || [];
+            spells.push({
+                name: spellName,
+                level: parseInt(spellLevel) || 0,
+                school: spellSchool,
+                castingTime: castingTime
+            });
+            
+            updateCharacter(characterId, 'spells', spells);
+        }
+
+        function castSpell(characterId, spellIndex) {
+            const character = characters.find(c => c.id === characterId);
+            if (!character || !character.spells || !character.spells[spellIndex]) return;
+            
+            const spell = character.spells[spellIndex];
+            const spellLevel = spell.level;
+            
+            // Check if character has available spell slots
+            const spellSlots = getSpellSlotsByLevel(character.level, character.class);
+            const maxSlots = spellSlots[spellLevel] || 0;
+            const usedSlots = character[`spellSlotsUsed${spellLevel}`] || 0;
+            
+            if (maxSlots === 0) {
+                alert(`${character.name} cannot cast ${spell.name} - no spell slots available for level ${spellLevel} spells.`);
+                return;
+            }
+            
+            if (usedSlots >= maxSlots) {
+                alert(`${character.name} has no available spell slots for level ${spellLevel} spells.`);
+                return;
+            }
+            
+            // Use a spell slot
+            updateCharacter(characterId, `spellSlotsUsed${spellLevel}`, usedSlots + 1);
+            
+            // Add to message board
+            const message = `${character.name} casts ${spell.name}! (Level ${spellLevel} ${spell.school})`;
+            addMessage('ic', message);
+            
+            alert(`${character.name} casts ${spell.name}!`);
+        }
+
+        function removeSpell(characterId, spellIndex) {
+            const character = characters.find(c => c.id === characterId);
+            if (!character || !character.spells) return;
+            
+            const spellName = character.spells[spellIndex].name;
+            if (confirm(`Remove ${spellName} from ${character.name}'s spell list?`)) {
+                const spells = [...character.spells];
+                spells.splice(spellIndex, 1);
+                updateCharacter(characterId, 'spells', spells);
+            }
         }
     </script>
             <footer class="basic-footer">
