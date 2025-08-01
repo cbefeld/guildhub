@@ -610,11 +610,22 @@
 
         // Create placeholder characters for a new guild
         function createPlaceholderCharacters(guildUrl) {
-            const characters = generatePlaceholderCharacters();
-            const promises = characters.map(character => {
-                return database.ref(`guilds/${guildUrl}/campaigns/default/characters`).push(character);
-            });
-            return Promise.all(promises);
+            // First create the default campaign structure
+            const defaultCampaign = {
+                name: 'Default Campaign',
+                createdDate: new Date().toISOString(),
+                lastUpdated: Date.now()
+            };
+            
+            return database.ref(`guilds/${guildUrl}/campaigns/default`).set(defaultCampaign)
+                .then(() => {
+                    // Then create the characters
+                    const characters = generatePlaceholderCharacters();
+                    const promises = characters.map(character => {
+                        return database.ref(`guilds/${guildUrl}/campaigns/default/characters`).push(character);
+                    });
+                    return Promise.all(promises);
+                });
         }
 
         // Generate 3 random placeholder characters
