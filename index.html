@@ -2442,6 +2442,7 @@
         let characters = [];
         let isConnected = false;
         let isAuthenticated = false;
+        let activeTabs = {}; // Track active tab for each character
 
         // Get guild ID from URL
         function getGuildId() {
@@ -3548,8 +3549,17 @@
             updateCharacter(characterId, 'isDead', newDeathStatus);
         }
 
+        // Helper function to get active tab class
+        function getActiveTabClass(characterId, tabName) {
+            const activeTab = activeTabs[characterId] || 'stats';
+            return activeTab === tabName ? 'active' : '';
+        }
+
         // Switch between tabs
         function switchTab(characterId, tabName) {
+            // Store the active tab for this character
+            activeTabs[characterId] = tabName;
+            
             // Get the card element
             const card = document.querySelector(`[data-character-id="${characterId}"]`) || 
                         document.querySelector(`#stats-content-${characterId}`)?.closest('.character-card');
@@ -3637,23 +3647,23 @@
                 </div>
 
                 <div class="card-tabs">
-                    <button class="tab-btn active" onclick="switchTab('${character.id}', 'stats')" data-tab="stats">
+                    <button class="tab-btn ${getActiveTabClass(character.id, 'stats')}" onclick="switchTab('${character.id}', 'stats')" data-tab="stats">
                         Stats
                     </button>
-                    <button class="tab-btn" onclick="switchTab('${character.id}', 'abilities')" data-tab="abilities">
+                    <button class="tab-btn ${getActiveTabClass(character.id, 'abilities')}" onclick="switchTab('${character.id}', 'abilities')" data-tab="abilities">
                         Abilities
                     </button>
-                    <button class="tab-btn" onclick="switchTab('${character.id}', 'inventory')" data-tab="inventory">
+                    <button class="tab-btn ${getActiveTabClass(character.id, 'inventory')}" onclick="switchTab('${character.id}', 'inventory')" data-tab="inventory">
                         Inventory
                     </button>
-                    <button class="tab-btn" onclick="switchTab('${character.id}', 'story')" data-tab="story">
+                    <button class="tab-btn ${getActiveTabClass(character.id, 'story')}" onclick="switchTab('${character.id}', 'story')" data-tab="story">
                         Story
                     </button>
                 </div>
 
                 <div class="card-body">
                     <!-- Stats Tab Content -->
-                    <div class="tab-content active" id="stats-content-${character.id}">
+                    <div class="tab-content ${getActiveTabClass(character.id, 'stats')}" id="stats-content-${character.id}">
                         <div class="card-stats">
                             <div class="stat-row">
                                 <span class="stat-label">HP:</span>
@@ -3755,7 +3765,7 @@
                     </div>
 
                     <!-- Abilities Tab Content -->
-                    <div class="tab-content" id="abilities-content-${character.id}">
+                    <div class="tab-content ${getActiveTabClass(character.id, 'abilities')}" id="abilities-content-${character.id}">
                         <div class="abilities-section">
                             <div class="abilities-item">
                                 <label class="abilities-label">Ability 1:</label>
@@ -3777,7 +3787,7 @@
                     </div>
 
                     <!-- Inventory Tab Content -->
-                    <div class="tab-content" id="inventory-content-${character.id}">
+                    <div class="tab-content ${getActiveTabClass(character.id, 'inventory')}" id="inventory-content-${character.id}">
                         <div class="inventory-section">
                             <div class="inventory-item">
                                 <label class="inventory-label">Weapon:</label>
@@ -3799,7 +3809,7 @@
                     </div>
 
                     <!-- Story Tab Content -->
-                    <div class="tab-content" id="story-content-${character.id}">
+                    <div class="tab-content ${getActiveTabClass(character.id, 'story')}" id="story-content-${character.id}">
                         <div class="story-section">
                             <div class="story-item">
                                 <label class="story-label">Background:</label>
