@@ -38,7 +38,11 @@
                 inset 0 1px 0 rgba(255, 255, 255, 0.1),
                 0 2px 4px rgba(0, 0, 0, 0.4);
             margin-bottom: 4px;
-            position: relative;
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            right: 10px;
+            z-index: 1000;
         }
 
         .header-left {
@@ -1422,6 +1426,7 @@
         .app-main {
             flex: 1;
             padding: 10px;
+            padding-top: 60px;
             overflow: auto;
         }
 
