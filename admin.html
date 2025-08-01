@@ -612,7 +612,7 @@
         function createPlaceholderCharacters(guildUrl) {
             const characters = generatePlaceholderCharacters();
             const promises = characters.map(character => {
-                return database.ref(`guilds/${guildUrl}/characters`).push(character);
+                return database.ref(`guilds/${guildUrl}/campaigns/default/characters`).push(character);
             });
             return Promise.all(promises);
         }
