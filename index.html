@@ -1446,12 +1446,13 @@
             border: none;
             border-radius: 8px;
             padding: 18px;
+            padding-bottom: 60px;
             box-shadow: 
                 inset 0 1px 0 rgba(255, 255, 255, 0.1),
                 0 6px 12px rgba(0, 0, 0, 0.6);
             position: relative;
             transition: all 0.3s ease;
-            min-height: 405px;
+            min-height: 480px;
             display: flex;
             flex-direction: column;
         }
@@ -1519,11 +1520,158 @@
             border-color: #a0522d;
         }
 
+        /* Card Texture System */
+        .card-texture {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            right: 10px;
+            height: 471px;
+            border-radius: 8px;
+            pointer-events: none;
+            z-index: 0;
+            opacity: 1;
+            transition: all 0.3s ease;
+        }
+
+        /* Default texture - bright yellow rounded rectangle */
+        .card-texture.default {
+            background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+            box-shadow: 
+                inset 0 2px 4px rgba(255, 255, 255, 0.3),
+                inset 0 -2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Race-specific textures */
+        .card-texture.human {
+            background-image: url('textures/human.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .card-texture.elf {
+            background-image: url('textures/elf.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .card-texture.dwarf {
+            background-image: url('textures/dwarf.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .card-texture.halfling {
+            background-image: url('textures/halfling.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .card-texture.dragonborn {
+            background-image: url('textures/dragonborn.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .card-texture.tiefling {
+            background-image: url('textures/tiefling.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .card-texture.half-orc {
+            background-image: url('textures/halforc.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .card-texture.gnome {
+            background-image: url('textures/gnome.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .card-texture.half-elf {
+            background-image: url('textures/halfelf.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .card-texture.aarakocra {
+            background: linear-gradient(135deg, #F0F8FF 0%, #B0C4DE 100%);
+        }
+
         .card-header {
             display: flex;
             flex-direction: column;
             gap: 2px;
             margin-bottom: 0;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Race-specific header element backgrounds */
+        .character-card.race-human .header-top-section,
+        .character-card.race-human .header-bottom-section,
+        .character-card.race-human .header-stat input[type="number"] {
+            background: #DCBB78;
+        }
+
+        .character-card.race-dragonborn .header-top-section,
+        .character-card.race-dragonborn .header-bottom-section,
+        .character-card.race-dragonborn .header-stat input[type="number"] {
+            background: #FFE0D3;
+        }
+
+        .character-card.race-elf .header-top-section,
+        .character-card.race-elf .header-bottom-section,
+        .character-card.race-elf .header-stat input[type="number"] {
+            background: #CFDDCD;
+        }
+
+        .character-card.race-gnome .header-top-section,
+        .character-card.race-gnome .header-bottom-section,
+        .character-card.race-gnome .header-stat input[type="number"] {
+            background: #D7DDCD;
+        }
+
+        .character-card.race-half-elf .header-top-section,
+        .character-card.race-half-elf .header-bottom-section,
+        .character-card.race-half-elf .header-stat input[type="number"] {
+            background: #CFDDCD;
+        }
+
+        .character-card.race-halfling .header-top-section,
+        .character-card.race-halfling .header-bottom-section,
+        .character-card.race-halfling .header-stat input[type="number"] {
+            background: #BDA89B;
+        }
+
+        .character-card.race-dwarf .header-top-section,
+        .character-card.race-dwarf .header-bottom-section,
+        .character-card.race-dwarf .header-stat input[type="number"] {
+            background: #DCBB78;
+        }
+
+        .character-card.race-tiefling .header-top-section,
+        .character-card.race-tiefling .header-bottom-section,
+        .character-card.race-tiefling .header-stat input[type="number"] {
+            background: #DCBB78;
+        }
+
+        .character-card.race-half-orc .header-top-section,
+        .character-card.race-half-orc .header-bottom-section,
+        .character-card.race-half-orc .header-stat input[type="number"] {
+            background: #DCBB78;
         }
 
         .card-title {
@@ -2016,6 +2164,14 @@
             align-items: center;
             margin-top: 8px;
             padding-top: 8px;
+            position: absolute;
+            bottom: 8px;
+            left: 8px;
+            right: 8px;
+            margin-left: -10px;
+            margin-right: -10px;
+            padding-left: 10px;
+            padding-right: 10px;
         }
 
         .footer-left,
@@ -2345,6 +2501,8 @@
             box-shadow: 1px -3px 3px 0 rgba(255, 255, 255, 0.30) inset, -3px 3px 3px 0 rgba(85, 85, 85, 0.45) inset;
             border-radius: 0 0 8px 8px;
             padding: 0 12px 12px 12px;
+            position: relative;
+            z-index: 1;
         }
 
         .tab-content.active {
@@ -4014,6 +4172,11 @@
             if (['strength', 'dexterity', 'constitution', 'intelligence', 'wisdom', 'charisma'].includes(field)) {
                 setTimeout(() => highlightStats(id), 100);
             }
+            
+            // Update card texture if race was changed
+            if (field === 'race') {
+                setTimeout(() => updateCardTexture(id, value), 100);
+            }
         }
 
         // Highlight highest and lowest stats
@@ -4157,12 +4320,72 @@
             });
         }
 
+        // Get texture class based on character race
+        function getRaceTextureClass(race) {
+            if (!race) return 'default';
+            
+            // Convert race name to lowercase and replace spaces/hyphens with hyphens
+            const normalizedRace = race.toLowerCase()
+                .replace(/\s+/g, '-')
+                .replace(/[^a-z0-9-]/g, '');
+            
+            // Map of supported races to their texture classes
+            const raceMap = {
+                'human': 'human',
+                'elf': 'elf', 
+                'dwarf': 'dwarf',
+                'halfling': 'halfling',
+                'dragonborn': 'dragonborn',
+                'tiefling': 'tiefling',
+                'half-orc': 'half-orc',
+                'gnome': 'gnome',
+                'half-elf': 'half-elf',
+                'aarakocra': 'aarakocra'
+            };
+            
+            return raceMap[normalizedRace] || 'default';
+        }
+
+        // Update card texture based on race
+        function updateCardTexture(characterId, race) {
+            const card = document.querySelector(`[data-character-id="${characterId}"]`);
+            if (!card) return;
+            
+            const textureElement = card.querySelector('.card-texture');
+            if (!textureElement) return;
+            
+            // Remove all existing race classes from texture
+            textureElement.className = 'card-texture';
+            
+            // Add new race class to texture
+            textureElement.classList.add(getRaceTextureClass(race));
+            
+            // Remove all existing race classes from card
+            card.classList.forEach(className => {
+                if (className.startsWith('race-')) {
+                    card.classList.remove(className);
+                }
+            });
+            
+            // Add new race class to card for header styling
+            if (race) {
+                const raceClass = 'race-' + getRaceTextureClass(race);
+                card.classList.add(raceClass);
+            }
+        }
+
         // Create a character card element
         function createCharacterCard(character, index) {
             const card = document.createElement('div');
             card.className = 'character-card';
             if (character.isDead) {
                 card.classList.add('dead');
+            }
+            
+            // Add race class for styling
+            if (character.race) {
+                const raceClass = 'race-' + getRaceTextureClass(character.race);
+                card.classList.add(raceClass);
             }
             
             // Add animation class for newly added characters
@@ -4180,6 +4403,7 @@
             card.setAttribute('data-character-id', character.id);
             
             card.innerHTML = `
+                <div class="card-texture ${getRaceTextureClass(character.race)}"></div>
                 <div class="card-header">
                     <!-- Top Section: Name + HP/AC -->
                     <div class="header-top-section">
