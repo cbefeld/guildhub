@@ -2724,6 +2724,46 @@
             color: #a0a0a0;
         }
 
+        .character-photo {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 0 0 4px 4px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            max-width: 100%;
+            max-height: 100%;
+        }
+
+        .character-image-placeholder {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .character-image-placeholder.has-photo .image-placeholder-content {
+            display: none;
+        }
+
+        .character-image-placeholder.has-photo:hover .image-placeholder-content {
+            display: flex;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 4px;
+        }
+
+        .character-image-placeholder.has-photo:hover .image-placeholder-text {
+            color: #ffffff;
+        }
+
+        .character-image-placeholder.has-photo:hover .image-placeholder-subtext {
+            color: #cccccc;
+        }
+
         /* Character Info Section */
         .character-info-section {
             margin-bottom: 12px;
@@ -4593,12 +4633,14 @@
                     <div class="tab-content ${getActiveTabClass(character.id, 'stats')}" id="stats-content-${character.id}">
 
                         <div class="character-image-section">
-                            <div class="character-image-placeholder">
+                            <div class="character-image-placeholder ${character.photo ? 'has-photo' : ''}" onclick="triggerPhotoUpload('${character.id}')">
                                 <div class="image-placeholder-content">
                                     <span class="image-placeholder-text">Character Image</span>
                                     <span class="image-placeholder-subtext">Click to upload</span>
                                 </div>
+                                ${character.photo ? `<img src="${character.photo}" alt="Character" class="character-photo">` : ''}
                             </div>
+                            <input type="file" id="photo-input-${character.id}" accept="image/*" style="display: none;" onchange="handlePhotoUpload(event, '${character.id}')">
                         </div>
 
                         <div class="character-info-section">
@@ -4742,6 +4784,67 @@
             `;
             
             return card;
+        }
+
+        // Photo upload functions
+        function triggerPhotoUpload(characterId) {
+            const fileInput = document.getElementById(`photo-input-${characterId}`);
+            fileInput.click();
+        }
+
+        function handlePhotoUpload(event, characterId) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            // Check file size (limit to 5MB)
+            if (file.size > 5 * 1024 * 1024) {
+                alert('Photo size must be less than 5MB');
+                return;
+            }
+
+            // Check file type
+            if (!file.type.startsWith('image/')) {
+                alert('Please select a valid image file');
+                return;
+            }
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const base64Image = e.target.result;
+                
+                // Update character with photo data
+                updateCharacter(characterId, 'photo', base64Image);
+                
+                // Update the UI immediately
+                updatePhotoDisplay(characterId, base64Image);
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function updatePhotoDisplay(characterId, photoData) {
+            const placeholder = document.querySelector(`[data-character-id="${characterId}"] .character-image-placeholder`);
+            if (!placeholder) return;
+
+            // Remove existing photo
+            const existingPhoto = placeholder.querySelector('.character-photo');
+            if (existingPhoto) {
+                existingPhoto.remove();
+            }
+
+            if (photoData) {
+                // Add has-photo class
+                placeholder.classList.add('has-photo');
+                
+                // Create and add new photo
+                const img = document.createElement('img');
+                img.src = photoData;
+                img.alt = 'Character';
+                img.className = 'character-photo';
+                placeholder.appendChild(img);
+            } else {
+                // Remove has-photo class
+                placeholder.classList.remove('has-photo');
+            }
         }
     </script>
             <footer class="basic-footer">
