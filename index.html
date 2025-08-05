@@ -14,7 +14,7 @@
 
         body {
             font-family: 'Times New Roman', serif;
-            background: linear-gradient(135deg, #0A0502 0%, #1A0F0A 50%, #0A0502 100%);
+            background: linear-gradient(90deg, #051A0F 0%, #021207 100%);
             min-height: 100vh;
             color: #e0e0e0;
         }
@@ -1423,15 +1423,18 @@
             padding: 10px;
             padding-top: 60px;
             overflow: auto;
+            transform: scale(0.9);
+            transform-origin: top center;
         }
 
         .character-deck {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            grid-template-columns: repeat(auto-fit, 320px);
             gap: 18px;
             max-width: 1400px;
             margin: 0 auto 30px auto;
             padding: 30px;
+            justify-content: center;
         }
 
         @media (max-width: 768px) {
@@ -1453,6 +1456,8 @@
             position: relative;
             transition: all 0.3s ease;
             min-height: 480px;
+            max-width: 320px;
+            width: 100%;
             display: flex;
             flex-direction: column;
         }
@@ -1619,60 +1624,93 @@
             z-index: 1;
         }
 
-        /* Race-specific header element backgrounds */
+        /* Race-specific header element backgrounds - Target only hex stat input (2nd), not HP shield (1st) */
         .character-card.race-human .header-top-section,
         .character-card.race-human .header-bottom-section,
-        .character-card.race-human .header-stat input[type="number"] {
+        .character-card.race-human .header-stat:nth-child(2) input[type="number"] {
             background: #DCBB78;
         }
 
         .character-card.race-dragonborn .header-top-section,
         .character-card.race-dragonborn .header-bottom-section,
-        .character-card.race-dragonborn .header-stat input[type="number"] {
+        .character-card.race-dragonborn .header-stat:nth-child(2) input[type="number"] {
             background: #FFE0D3;
         }
 
         .character-card.race-elf .header-top-section,
         .character-card.race-elf .header-bottom-section,
-        .character-card.race-elf .header-stat input[type="number"] {
+        .character-card.race-elf .header-stat:nth-child(2) input[type="number"] {
             background: #CFDDCD;
         }
 
         .character-card.race-gnome .header-top-section,
         .character-card.race-gnome .header-bottom-section,
-        .character-card.race-gnome .header-stat input[type="number"] {
+        .character-card.race-gnome .header-stat:nth-child(2) input[type="number"] {
             background: #D7DDCD;
         }
 
         .character-card.race-half-elf .header-top-section,
         .character-card.race-half-elf .header-bottom-section,
-        .character-card.race-half-elf .header-stat input[type="number"] {
+        .character-card.race-half-elf .header-stat:nth-child(2) input[type="number"] {
             background: #CFDDCD;
         }
 
         .character-card.race-halfling .header-top-section,
         .character-card.race-halfling .header-bottom-section,
-        .character-card.race-halfling .header-stat input[type="number"] {
+        .character-card.race-halfling .header-stat:nth-child(2) input[type="number"] {
             background: #BDA89B;
         }
 
         .character-card.race-dwarf .header-top-section,
         .character-card.race-dwarf .header-bottom-section,
-        .character-card.race-dwarf .header-stat input[type="number"] {
+        .character-card.race-dwarf .header-stat:nth-child(2) input[type="number"] {
             background: #DCBB78;
         }
 
         .character-card.race-tiefling .header-top-section,
         .character-card.race-tiefling .header-bottom-section,
-        .character-card.race-tiefling .header-stat input[type="number"] {
+        .character-card.race-tiefling .header-stat:nth-child(2) input[type="number"] {
             background: #DCBB78;
         }
 
         .character-card.race-half-orc .header-top-section,
         .character-card.race-half-orc .header-bottom-section,
-        .character-card.race-half-orc .header-stat input[type="number"] {
+        .character-card.race-half-orc .header-stat:nth-child(2) input[type="number"] {
             background: #DCBB78;
         }
+
+        /* NUCLEAR OPTION: Force HP shield to always be gold gradient */
+        .character-card .header-stat:first-child .ac-inputs,
+        .character-card.race-human .header-stat:first-child .ac-inputs,
+        .character-card.race-dragonborn .header-stat:first-child .ac-inputs,
+        .character-card.race-elf .header-stat:first-child .ac-inputs,
+        .character-card.race-gnome .header-stat:first-child .ac-inputs,
+        .character-card.race-half-elf .header-stat:first-child .ac-inputs,
+        .character-card.race-halfling .header-stat:first-child .ac-inputs,
+        .character-card.race-dwarf .header-stat:first-child .ac-inputs,
+        .character-card.race-tiefling .header-stat:first-child .ac-inputs,
+        .character-card.race-half-orc .header-stat:first-child .ac-inputs {
+            background: linear-gradient(180deg, #602D12 0%, #713A17 36.98%, #4A1C0D 77.08%, #50210F 96.87%), #86543B !important;
+            box-shadow: 2px -2px 3px 0 rgba(255, 255, 255, 0.40) inset, -2px 4px 4px 0 rgba(35, 35, 35, 0.70) inset !important;
+        }
+
+        /* NUCLEAR OPTION: Force HP shield inputs to be transparent */
+        .character-card .header-stat:first-child .ac-input,
+        .character-card .header-stat:first-child input.ac-input,
+        .character-card .header-stat:first-child input.editable-field.ac-input,
+        .character-card.race-human .header-stat:first-child .ac-input,
+        .character-card.race-dragonborn .header-stat:first-child .ac-input,
+        .character-card.race-elf .header-stat:first-child .ac-input,
+        .character-card.race-gnome .header-stat:first-child .ac-input,
+        .character-card.race-half-elf .header-stat:first-child .ac-input,
+        .character-card.race-halfling .header-stat:first-child .ac-input,
+        .character-card.race-dwarf .header-stat:first-child .ac-input,
+        .character-card.race-tiefling .header-stat:first-child .ac-input,
+        .character-card.race-half-orc .header-stat:first-child .ac-input {
+            background: transparent !important;
+        }
+
+
 
         .card-title {
             margin-bottom: 4px;
@@ -1762,7 +1800,7 @@
         }
 
         .header-stat:nth-child(2) .ac-inputs {
-            background: linear-gradient(180deg, #602D12 0%, #713A17 36.98%, #4A1C0D 77.08%, #50210F 96.87%), #86543B;
+            background: linear-gradient(180deg, #602D12 0%, #713A17 36.98%, #4A1C0D 77.08%, #50210F 96.87%), #86543B !important;
             box-shadow: 2px -2px 3px 0 rgba(255, 255, 255, 0.40) inset, -2px 4px 4px 0 rgba(35, 35, 35, 0.70) inset;
             border-radius: 18px;
             padding: 4px 10px;
@@ -1778,7 +1816,7 @@
         }
 
         .ac-input {
-            background: transparent;
+            background: transparent !important;
             color: #FFFFFF;
             border: none !important;
             border-radius: 0;
