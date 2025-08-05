@@ -1,0 +1,28 @@
+First 20 monsters for image generation:
+==================================================
+ 1. Aboleth                   -> aboleth.png
+ 2. Acolyte                   -> acolyte.png
+ 3. Adult Black Dragon        -> adult-black-dragon.png
+ 4. Adult Blue Dragon         -> adult-blue-dragon.png
+ 5. Adult Brass Dragon        -> adult-brass-dragon.png
+ 6. Adult Bronze Dragon       -> adult-bronze-dragon.png
+ 7. Adult Copper Dragon       -> adult-copper-dragon.png
+ 8. Adult Gold Dragon         -> adult-gold-dragon.png
+ 9. Adult Green Dragon        -> adult-green-dragon.png
+10. Adult Red Dragon          -> adult-red-dragon.png
+11. Adult Silver Dragon       -> adult-silver-dragon.png
+12. Adult White Dragon        -> adult-white-dragon.png
+13. Air Elemental             -> air-elemental.png
+14. Ancient Black Dragon      -> ancient-black-dragon.png
+15. Ancient Blue Dragon       -> ancient-blue-dragon.png
+16. Ancient Brass Dragon      -> ancient-brass-dragon.png
+17. Ancient Bronze Dragon     -> ancient-bronze-dragon.png
+18. Ancient Copper Dragon     -> ancient-copper-dragon.png
+19. Ancient Gold Dragon       -> ancient-gold-dragon.png
+20. Ancient Green Dragon      -> ancient-green-dragon.png
+
+Total: 334 monsters
+
+Example AI prompt for first monster:
+"Fantasy monster portrait of Aboleth, dark fantasy art style,
+detailed face and upper body, dramatic lighting, card game artwork"

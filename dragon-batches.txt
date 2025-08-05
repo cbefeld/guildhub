@@ -1,0 +1,29 @@
+=== PRIORITY BATCH 1: DRAGONS (First 10) ===
+1. Adult Black Dragon -> adult-black-dragon.png
+2. Adult Blue Dragon -> adult-blue-dragon.png
+3. Adult Brass Dragon -> adult-brass-dragon.png
+4. Adult Bronze Dragon -> adult-bronze-dragon.png
+5. Adult Copper Dragon -> adult-copper-dragon.png
+6. Adult Gold Dragon -> adult-gold-dragon.png
+7. Adult Green Dragon -> adult-green-dragon.png
+8. Adult Red Dragon -> adult-red-dragon.png
+9. Adult Silver Dragon -> adult-silver-dragon.png
+10. Adult White Dragon -> adult-white-dragon.png
+
+=== PRIORITY BATCH 2: HUMANOIDS (All 4) ===
+1. Goblin -> goblin.png
+2. Hobgoblin -> hobgoblin.png
+3. Kobold -> kobold.png
+4. Orc -> orc.png
+
+=== PRIORITY BATCH 3: DRAGONS (Next 10) ===
+1. Ancient Black Dragon -> ancient-black-dragon.png
+2. Ancient Blue Dragon -> ancient-blue-dragon.png
+3. Ancient Brass Dragon -> ancient-brass-dragon.png
+4. Ancient Bronze Dragon -> ancient-bronze-dragon.png
+5. Ancient Copper Dragon -> ancient-copper-dragon.png
+6. Ancient Gold Dragon -> ancient-gold-dragon.png
+7. Ancient Green Dragon -> ancient-green-dragon.png
+8. Ancient Red Dragon -> ancient-red-dragon.png
+9. Ancient Silver Dragon -> ancient-silver-dragon.png
+10. Ancient White Dragon -> ancient-white-dragon.png
