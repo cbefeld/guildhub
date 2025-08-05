@@ -1442,8 +1442,8 @@
         }
 
         .character-card {
-            background: linear-gradient(180deg, #3a3a3a 0%, #2a2a2a 100%);
-            border: 1px solid #8b7355;
+            background: #17140F;
+            border: none;
             border-radius: 8px;
             padding: 18px;
             box-shadow: 
@@ -1454,6 +1454,48 @@
             min-height: 405px;
             display: flex;
             flex-direction: column;
+        }
+
+        .character-card.new-card {
+            animation: cardDealt 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+            transform: translateX(-100vw) rotate(-15deg);
+            opacity: 0;
+        }
+
+        @keyframes cardDealt {
+            0% {
+                transform: translateX(-100vw) rotate(-15deg) scale(0.8);
+                opacity: 0;
+                box-shadow: 
+                    inset 0 1px 0 rgba(255, 255, 255, 0.1),
+                    0 20px 40px rgba(0, 0, 0, 0.8);
+            }
+            30% {
+                opacity: 1;
+                transform: translateX(-20px) rotate(-8deg) scale(0.95);
+                box-shadow: 
+                    inset 0 1px 0 rgba(255, 255, 255, 0.1),
+                    0 15px 30px rgba(0, 0, 0, 0.7);
+            }
+            70% {
+                transform: translateX(10px) rotate(2deg) scale(1.02);
+                box-shadow: 
+                    inset 0 1px 0 rgba(255, 255, 255, 0.1),
+                    0 8px 16px rgba(0, 0, 0, 0.6);
+            }
+            85% {
+                transform: translateX(0) rotate(-1deg) scale(1.01);
+                box-shadow: 
+                    inset 0 1px 0 rgba(255, 255, 255, 0.1),
+                    0 6px 12px rgba(0, 0, 0, 0.6);
+            }
+            100% {
+                transform: translateX(0) rotate(0deg) scale(1);
+                opacity: 1;
+                box-shadow: 
+                    inset 0 1px 0 rgba(255, 255, 255, 0.1),
+                    0 6px 12px rgba(0, 0, 0, 0.6);
+            }
         }
 
         .character-card::before {
@@ -1478,10 +1520,10 @@
         }
 
         .card-header {
-            border-bottom: 2px solid #8b7355;
-            padding-bottom: 6px;
-            margin-bottom: 6px;
-            position: relative;
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+            margin-bottom: 0;
         }
 
         .card-title {
@@ -1489,17 +1531,207 @@
         }
 
         .card-name {
-            font-size: 1.44rem;
+            font-size: 1.1rem;
             font-weight: bold;
-            color: #ffd700;
+            color: #000000;
             background: transparent;
             border: none;
             width: 100%;
-            padding: 4px 8px;
-            font-family: 'Times New Roman', serif;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+            padding: 2px 8px;
+            font-family: 'Merriweather', serif;
             border-radius: 4px;
             transition: all 0.2s ease;
+        }
+
+        .header-top-section {
+            background: #DCBB78;
+            border: 2px solid #000;
+            border-radius: 8px;
+            padding: 8px 12px;
+            position: relative;
+            box-shadow: 
+                -1.5px 4.5px 1.5px 0 rgba(255, 255, 255, 0.40) inset, 
+                4.5px -4.5px 1.5px 0 rgba(68, 68, 68, 0.20) inset, 
+                4.5px 0 1.5px 0 rgba(68, 68, 68, 0.20) inset, 
+                0 -4.5px 1.5px 0 rgba(51, 51, 51, 0.50) inset;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header-bottom-section {
+            background: #DCBB78;
+            border: 2px solid #000;
+            border-radius: 8px 8px 0 0;
+            padding: 6px 12px 20px 12px;
+            box-shadow: 
+                -1.5px 4.5px 1.5px 0 rgba(255, 255, 255, 0.40) inset, 
+                4.5px -4.5px 1.5px 0 rgba(68, 68, 68, 0.20) inset, 
+                4.5px 0 1.5px 0 rgba(68, 68, 68, 0.20) inset, 
+                0 -4.5px 1.5px 0 rgba(51, 51, 51, 0.50) inset;
+            display: flex;
+            flex-direction: column;
+            gap: 0px;
+            position: relative;
+        }
+
+        .header-stats {
+            display: flex;
+            gap: 5px;
+            position: absolute;
+            right: -15px;
+            top: -10px;
+            z-index: 10;
+        }
+
+        .header-stat {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .header-stat input[type="number"] {
+            background: #DCBB78;
+            color: #000000;
+            border: 1px solid #000000;
+            border-radius: 4px;
+            padding: 4px 8px;
+            width: 50px;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .header-stat:nth-child(2) {
+            position: relative;
+        }
+
+
+
+        .header-stat:nth-child(2) .heart-icon,
+        .header-stat:nth-child(2) .ac-inputs {
+            position: relative;
+            z-index: 3;
+        }
+
+        .header-stat:nth-child(2) .ac-inputs {
+            background: linear-gradient(180deg, #602D12 0%, #713A17 36.98%, #4A1C0D 77.08%, #50210F 96.87%), #86543B;
+            box-shadow: 2px -2px 3px 0 rgba(255, 255, 255, 0.40) inset, -2px 4px 4px 0 rgba(35, 35, 35, 0.70) inset;
+            border-radius: 18px;
+            padding: 4px 10px;
+            display: flex;
+            align-items: center;
+            gap: 2px;
+        }
+
+        .ac-inputs {
+            display: flex;
+            align-items: center;
+            gap: 0px;
+        }
+
+        .ac-input {
+            background: transparent;
+            color: #FFFFFF;
+            border: none !important;
+            border-radius: 0;
+            padding: 0;
+            width: 20px;
+            text-align: center;
+            font-weight: 700;
+            font-size: 1rem;
+            outline: none;
+        }
+
+        .ac-separator {
+            color: #FFFFFF;
+            font-weight: 700;
+            font-size: 0.85rem;
+            margin: 0;
+        }
+
+        .heart-icon {
+            font-size: 1rem;
+            margin: 0;
+        }
+
+        /* Remove number input arrows for AC inputs */
+        .ac-input::-webkit-outer-spin-button,
+        .ac-input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+        
+        .ac-input {
+            -moz-appearance: textfield;
+        }
+
+        .ac-input:focus {
+            outline: none;
+            border: none;
+            background: transparent !important;
+        }
+
+        .header-stat:nth-child(2) .ac-input {
+            background: transparent !important;
+            color: #FFFFFF !important;
+            width: 16px !important;
+            padding: 0 !important;
+            border: none !important;
+            border-radius: 0 !important;
+            font-size: 0.85rem !important;
+            font-weight: 700 !important;
+        }
+
+        /* Hexagonal HP input */
+        .hex-wrapper {
+            position: relative;
+            width: 41px;
+            height: 41px;
+            background: #000000;
+            clip-path: polygon(50% 0%, 85% 15%, 85% 60%, 50% 90%, 15% 60%, 15% 15%);
+            -webkit-clip-path: polygon(50% 0%, 85% 15%, 85% 60%, 50% 90%, 15% 60%, 15% 15%);
+        }
+        
+        .header-stat:first-child input[type="number"] {
+            background: linear-gradient(300deg, #DFCC66 14.12%, #E1D485 46.07%, #F0EECC 86.42%);
+            color: #000000;
+            border: none;
+            width: 35px;
+            height: 35px;
+            padding: 0;
+            text-align: center;
+            font-weight: 700;
+            font-size: 0.9rem;
+            clip-path: polygon(50% 0%, 85% 15%, 85% 60%, 50% 90%, 15% 60%, 15% 15%);
+            -webkit-clip-path: polygon(50% 0%, 85% 15%, 85% 60%, 50% 90%, 15% 60%, 15% 15%);
+            box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.3), inset 0 -1px 2px rgba(0, 0, 0, 0.2);
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            padding-bottom: 5px;
+        }
+        
+        .header-stat:first-child input[type="number"]:hover {
+            background: linear-gradient(300deg, #E8D675 14.12%, #E9D994 46.07%, #F5F2D4 86.42%);
+            box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.4), inset 0 -1px 2px rgba(0, 0, 0, 0.3);
+        }
+        
+        .header-stat:first-child input[type="number"]:focus {
+            outline: none;
+            background: #E8D675;
+        }
+        
+        /* Remove number input arrows */
+        .header-stat:first-child input[type="number"]::-webkit-outer-spin-button,
+        .header-stat:first-child input[type="number"]::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+        
+        .header-stat:first-child input[type="number"] {
+            -moz-appearance: textfield;
         }
 
         .card-name:focus {
@@ -1519,9 +1751,9 @@
         .card-class {
             font-size: 1.08rem;
             font-weight: 600;
-            color: #e0e0e0;
-            background: transparent;
-            border: none;
+            color: #2c1810;
+            background: rgba(255, 255, 255, 0.7);
+            border: 1px solid rgba(139, 115, 85, 0.3);
             width: 60%;
             padding: 3px 6px;
             font-family: 'Times New Roman', serif;
@@ -1531,9 +1763,9 @@
 
         .card-class:focus {
             outline: none;
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 1);
             border: 1px solid #a0522d;
-            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
+            box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.15), 0 0 0 2px rgba(160, 82, 45, 0.3);
         }
 
         .card-level {
@@ -1550,20 +1782,22 @@
         }
 
         .level-input {
-            background: transparent;
-            border: none;
-            color: #ffd700;
+            background: rgba(255, 255, 255, 0.7);
+            border: 1px solid rgba(139, 115, 85, 0.3);
+            color: #2c1810;
             width: 2.5rem;
             text-align: center;
             font-weight: bold;
             font-size: 0.81rem;
             font-family: 'Times New Roman', serif;
+            border-radius: 4px;
         }
 
         .level-input:focus {
             outline: none;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 4px;
+            background: rgba(255, 255, 255, 1);
+            border: 1px solid #a0522d;
+            box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.15), 0 0 0 2px rgba(160, 82, 45, 0.3);
         }
 
         .card-race {
@@ -1573,9 +1807,9 @@
         }
 
         .race-input {
-            background: transparent;
-            border: none;
-            color: #b0b0b0;
+            background: rgba(255, 255, 255, 0.7);
+            border: 1px solid rgba(139, 115, 85, 0.3);
+            color: #5c4a3a;
             font-style: italic;
             width: 100%;
             padding: 3px 6px;
@@ -1587,7 +1821,9 @@
 
         .race-input:focus {
             outline: none;
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 1);
+            border: 1px solid #a0522d;
+            box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.15), 0 0 0 2px rgba(160, 82, 45, 0.3);
             border: 1px solid #a0522d;
             box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
         }
@@ -1645,50 +1881,94 @@
         }
 
         .ability-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 8px;
+            display: flex;
+            justify-content: space-between;
+            gap: 0px;
+            flex-wrap: wrap;
         }
 
         .ability-item {
             display: flex;
-            justify-content: space-between;
+            flex-direction: column;
             align-items: center;
-            padding: 4px 8px;
-            background: linear-gradient(180deg, #4a4a4a 0%, #3a3a3a 100%);
-            border: 1px solid #8b7355;
-            border-radius: 4px;
-            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
+            gap: 1px;
+            flex: 1;
+            max-width: 35px;
         }
 
         .ability-label {
-            font-size: 0.81rem;
-            font-weight: 600;
-            color: #ffd700;
+            font-size: 0.7rem;
+            font-weight: 700;
+            color: #000000;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 0.5px;
+            margin-bottom: 2px;
+        }
+
+        .stat-shield-wrapper {
+            position: relative;
+            width: 45px;
+            height: 36px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='107' height='83' viewBox='0 0 107 83' fill='none'%3E%3Cg filter='url(%23filter0_ddii_6_396201)'%3E%3Cpath d='M15.6037 42.7525C15.0682 43.3716 15.1903 44.4322 15.9198 44.8037C23.0544 48.4369 51.9225 63.0908 53.4108 63.0908C54.913 63.0908 84.3066 48.1631 91.0953 44.7052C91.7785 44.3572 91.926 43.406 91.4883 42.7765C90.1543 40.8581 87.9555 36.5611 87.9555 29.0784C87.9555 23.0651 91.5097 14.221 92.9867 10.8053C93.2885 10.1072 92.8329 9.31156 92.0755 9.24168C86.4648 8.72402 66.7766 7.0001 53.4108 7.0001C40.3513 7.0001 21.2556 8.64595 15.1537 9.20425C14.2952 9.28279 13.8465 10.2887 14.3059 11.0181C16.2302 14.0741 19.9988 21.0799 19.9988 29.0784C19.9988 36.53 17.2731 40.8224 15.6037 42.7525Z' fill='url(%23paint0_linear_6_396201)'/%3E%3C/g%3E%3Cdefs%3E%3Cfilter id='filter0_ddii_6_396201' x='0.903583' y='0.390512' width='105.396' height='82.5288' filterUnits='userSpaceOnUse' color-interpolation-filters='sRGB'%3E%3CfeFlood flood-opacity='0' result='BackgroundImageFix'/%3E%3CfeColorMatrix in='SourceAlpha' type='matrix' values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0' result='hardAlpha'/%3E%3CfeOffset dy='6.60949'/%3E%3CfeGaussianBlur stdDeviation='6.60949'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.4 0'/%3E%3CfeBlend mode='normal' in2='BackgroundImageFix' result='effect1_dropShadow_6_396201'/%3E%3CfeColorMatrix in='SourceAlpha' type='matrix' values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0' result='hardAlpha'/%3E%3CfeOffset dy='2.20316'/%3E%3CfeGaussianBlur stdDeviation='2.20316'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.65 0'/%3E%3CfeBlend mode='normal' in2='effect1_dropShadow_6_396201' result='effect2_dropShadow_6_396201'/%3E%3CfeBlend mode='normal' in='SourceGraphic' in2='effect2_dropShadow_6_396201' result='shape'/%3E%3CfeColorMatrix in='SourceAlpha' type='matrix' values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0' result='hardAlpha'/%3E%3CfeOffset dx='1.10158' dy='-1.10158'/%3E%3CfeGaussianBlur stdDeviation='1.10158'/%3E%3CfeComposite in2='hardAlpha' operator='arithmetic' k2='-1' k3='1'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0.223529 0 0 0 0 0.184314 0 0 0 0 0.145098 0 0 0 0.6 0'/%3E%3CfeBlend mode='normal' in2='shape' result='effect3_innerShadow_6_396201'/%3E%3CfeColorMatrix in='SourceAlpha' type='matrix' values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0' result='hardAlpha'/%3E%3CfeOffset dx='-1.10158' dy='1.10158'/%3E%3CfeGaussianBlur stdDeviation='1.10158'/%3E%3CfeComposite in2='hardAlpha' operator='arithmetic' k2='-1' k3='1'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0.882422 0 0 0 0 0.87413 0 0 0 0 0.832671 0 0 0 1 0'/%3E%3CfeBlend mode='normal' in2='effect3_innerShadow_6_396201' result='effect4_innerShadow_6_396201'/%3E%3C/filter%3E%3ClinearGradient id='paint0_linear_6_396201' x1='53.4108' y1='63.0908' x2='53.4108' y2='7.0001' gradientUnits='userSpaceOnUse'%3E%3Cstop stop-color='%23E9EAEC'/%3E%3Cstop offset='0.385417' stop-color='%23E7E6E5'/%3E%3Cstop offset='0.71875' stop-color='%23DFDFE1'/%3E%3Cstop offset='1' stop-color='%23DFDEE3'/%3E%3C/linearGradient%3E%3C/defs%3E%3C/svg%3E");
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+
+        .stat-shield-wrapper::before {
+            content: '';
+            position: absolute;
+            top: calc(45% - 1px);
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 28px;
+            height: 19px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='66' height='45' viewBox='0 0 66 45' fill='none'%3E%3Cg filter='url(%23filter0_d_6_396202)'%3E%3Cpath d='M3.95285 29.7333C3.93233 30.0474 4.08932 30.3338 4.37428 30.4675C7.92686 32.1352 31.0762 42.9824 32.1645 42.9824C33.256 42.9824 56.5449 32.0682 59.9869 30.4524C60.255 30.3265 60.4105 30.0651 60.4114 29.769C60.4165 28.0844 60.4498 22.4451 60.6647 19.8644C61.0059 15.7664 62.6399 8.90147 63.2399 6.47406C63.3539 6.01283 63.0284 5.55756 62.5546 5.52195C58.4867 5.2162 41.7054 3.99993 32.1645 3.99993C22.6572 3.99993 6.82033 5.20762 2.89895 5.51868C2.42662 5.55615 2.10637 6.00861 2.21872 6.46892C2.81941 8.93006 4.45014 15.9701 4.45014 19.8644C4.45014 21.9603 4.07051 27.9326 3.95285 29.7333Z' fill='%23191621'/%3E%3C/g%3E%3Cdefs%3E%3Cfilter id='filter0_d_6_396202' x='-0.00687361' y='0.695256' width='65.4727' height='43.3887' filterUnits='userSpaceOnUse' color-interpolation-filters='sRGB'%3E%3CfeFlood flood-opacity='0' result='BackgroundImageFix'/%3E%3CfeColorMatrix in='SourceAlpha' type='matrix' values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0' result='hardAlpha'/%3E%3CfeOffset dy='-1.10158'/%3E%3CfeGaussianBlur stdDeviation='1.10158'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0.0980392 0 0 0 0 0.0862745 0 0 0 0 0.129412 0 0 0 1 0'/%3E%3CfeBlend mode='normal' in2='BackgroundImageFix' result='effect1_dropShadow_6_396202'/%3E%3CfeBlend mode='normal' in='SourceGraphic' in2='effect1_dropShadow_6_396202' result='shape'/%3E%3C/filter%3E%3C/defs%3E%3C/svg%3E");
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            z-index: 1;
         }
 
         .ability-input {
-            background: linear-gradient(180deg, #5a5a5a 0%, #4a4a4a 100%);
-            border: 1px solid #a0522d;
-            border-radius: 4px;
-            padding: 4px 6px;
-            width: 3rem;
+            background: transparent;
+            color: #FFFFFF;
+            border: none;
+            width: 45px;
+            height: 36px;
+            padding: 0;
             text-align: center;
-            font-family: 'Times New Roman', serif;
-            font-size: 0.81rem;
-            color: #e0e0e0;
-            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
+            font-weight: 700;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            position: absolute;
+            top: -3px;
+            left: 0;
+            z-index: 2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .ability-input:hover {
+            background: rgba(232, 214, 117, 0.3);
         }
 
         .ability-input:focus {
             outline: none;
-            border-color: #ffd700;
-            background: linear-gradient(180deg, #6a6a6a 0%, #5a5a5a 100%);
-            box-shadow: 
-                inset 0 2px 4px rgba(0, 0, 0, 0.3),
-                0 0 0 2px rgba(255, 215, 0, 0.3);
+            background: rgba(232, 214, 117, 0.5);
+        }
+
+        /* Remove spin buttons for stat inputs */
+        .ability-input::-webkit-outer-spin-button,
+        .ability-input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        .ability-input[type=number] {
+            -moz-appearance: textfield;
         }
 
         .custom-abilities {
@@ -1732,10 +2012,63 @@
 
         .card-footer {
             display: flex;
-            justify-content: flex-end;
-            margin-top: 15px;
-            padding-top: 15px;
-            border-top: 2px solid #8b7355;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 8px;
+            padding-top: 8px;
+        }
+
+        .footer-left,
+        .footer-right {
+            flex: 0 0 auto;
+        }
+
+        .footer-center {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+        }
+
+        /* Death Saves UI */
+        .death-saves {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .death-saves-label {
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: #8b7355;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-family: 'Times New Roman', serif;
+        }
+
+        .death-saves-bubbles {
+            display: flex;
+            gap: 6px;
+        }
+
+        .death-save-bubble {
+            width: 12px;
+            height: 12px;
+            border: 2px solid #8b7355;
+            border-radius: 50%;
+            background: transparent;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .death-save-bubble:hover {
+            border-color: #a0522d;
+        }
+
+        .death-save-bubble.filled {
+            background: #8b0000;
+            border-color: #a0522d;
+            box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.3), 0 0 4px rgba(139, 0, 0, 0.3);
         }
 
         .remove-card-btn {
@@ -1744,7 +2077,7 @@
             border: 2px solid #a0522d;
             border-radius: 6px;
             width: 2.5rem;
-            height: 2.5rem;
+            height: 1.8rem;
             font-size: 1.08rem;
             cursor: pointer;
             transition: all 0.2s ease;
@@ -1973,42 +2306,45 @@
         /* Card Tabs */
         .card-tabs {
             display: flex;
-            border-bottom: 2px solid #8b7355;
-            margin-bottom: 10px;
+            background: transparent;
+            position: absolute;
+            bottom: -2px;
+            left: 12px;
+            right: 12px;
+            border-radius: 0 0 8px 8px;
         }
 
         .tab-btn {
-            background: linear-gradient(180deg, #4a4a4a 0%, #3a3a3a 100%);
-            color: #e0e0e0;
+            background: transparent;
+            color: #000000;
             border: none;
-            border-bottom: 3px solid transparent;
-            padding: 6px 8px;
-            font-size: 0.6rem;
-            font-weight: bold;
-            font-family: 'Times New Roman', serif;
+            padding: 8px 3px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            font-family: 'Merriweather', serif;
             cursor: pointer;
-            transition: all 0.2s ease;
             flex: 1;
             text-transform: uppercase;
             letter-spacing: 0.5px;
         }
 
         .tab-btn:hover {
-            background: linear-gradient(180deg, #5a5a5a 0%, #4a4a4a 100%);
-            color: #ffd700;
+            color: #333333;
         }
 
         .tab-btn.active {
-            background: linear-gradient(180deg, #8b7355 0%, #6b5b3a 100%);
-            color: #ffd700;
-            border-bottom-color: #ffd700;
-            box-shadow: 
-                inset 0 1px 0 rgba(255, 255, 255, 0.2),
-                0 2px 4px rgba(0, 0, 0, 0.4);
+            background: transparent;
+            color: #000000;
+            font-weight: 700;
+            border-bottom: 4px solid #000000;
         }
 
         .tab-content {
             display: none;
+            background: var(--gold-text, #FCF4DF);
+            box-shadow: 1px -3px 3px 0 rgba(255, 255, 255, 0.30) inset, -3px 3px 3px 0 rgba(85, 85, 85, 0.45) inset;
+            border-radius: 0 0 8px 8px;
+            padding: 0 12px 12px 12px;
         }
 
         .tab-content.active {
@@ -2037,14 +2373,14 @@
         }
 
         .abilities-textarea {
-            background: linear-gradient(180deg, #4a4a4a 0%, #3a3a3a 100%);
+            background: rgba(255, 255, 255, 0.9);
             border: 1px solid #8b7355;
             border-radius: 4px;
             padding: 4px 6px;
             font-family: 'Times New Roman', serif;
-            color: #e0e0e0;
+            color: #2c1810;
             font-size: 0.75rem;
-            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
+            box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
             resize: vertical;
             min-height: 30px;
         }
@@ -2052,8 +2388,8 @@
         .abilities-textarea:focus {
             outline: none;
             border-color: #a0522d;
-            background: linear-gradient(180deg, #5a5a5a 0%, #4a4a4a 100%);
-            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3), 0 0 0 2px rgba(160, 82, 45, 0.3);
+            background: rgba(255, 255, 255, 1);
+            box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.15), 0 0 0 2px rgba(160, 82, 45, 0.3);
         }
 
         /* Inventory Tab Content */
@@ -2078,25 +2414,25 @@
         }
 
         .inventory-input {
-            background: linear-gradient(180deg, #4a4a4a 0%, #3a3a3a 100%);
+            background: rgba(255, 255, 255, 0.9);
             border: 1px solid #8b7355;
             border-radius: 4px;
             padding: 4px 6px;
             font-family: 'Times New Roman', serif;
-            color: #e0e0e0;
+            color: #2c1810;
             font-size: 0.75rem;
-            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
+            box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
         }
 
         .inventory-textarea {
-            background: linear-gradient(180deg, #4a4a4a 0%, #3a3a3a 100%);
+            background: rgba(255, 255, 255, 0.9);
             border: 1px solid #8b7355;
             border-radius: 4px;
             padding: 4px 6px;
             font-family: 'Times New Roman', serif;
-            color: #e0e0e0;
+            color: #2c1810;
             font-size: 0.75rem;
-            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
+            box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
             resize: vertical;
             min-height: 40px;
         }
@@ -2105,8 +2441,8 @@
         .inventory-textarea:focus {
             outline: none;
             border-color: #a0522d;
-            background: linear-gradient(180deg, #5a5a5a 0%, #4a4a4a 100%);
-            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3), 0 0 0 2px rgba(160, 82, 45, 0.3);
+            background: rgba(255, 255, 255, 1);
+            box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.15), 0 0 0 2px rgba(160, 82, 45, 0.3);
         }
 
         /* Story Tab Content */
@@ -2131,14 +2467,14 @@
         }
 
         .story-textarea {
-            background: linear-gradient(180deg, #4a4a4a 0%, #3a3a3a 100%);
+            background: rgba(255, 255, 255, 0.9);
             border: 1px solid #8b7355;
             border-radius: 4px;
             padding: 4px 6px;
             font-family: 'Times New Roman', serif;
-            color: #e0e0e0;
+            color: #2c1810;
             font-size: 0.75rem;
-            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
+            box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
             resize: vertical;
             min-height: 30px;
         }
@@ -2146,8 +2482,190 @@
         .story-textarea:focus {
             outline: none;
             border-color: #a0522d;
-            background: linear-gradient(180deg, #5a5a5a 0%, #4a4a4a 100%);
-            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3), 0 0 0 2px rgba(160, 82, 45, 0.3);
+            background: rgba(255, 255, 255, 1);
+            box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.15), 0 0 0 2px rgba(160, 82, 45, 0.3);
+        }
+
+        /* Character Image Section */
+        .character-image-section {
+            display: flex;
+            justify-content: center;
+            margin: 0 -12px 16px -12px;
+        }
+
+        .character-image-placeholder {
+            width: 100%;
+            height: 160px;
+            border: 2px solid #8b7355 inset;
+            background: linear-gradient(180deg, #3a3a3a 0%, #2a2a2a 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .character-image-placeholder:hover {
+            background: linear-gradient(180deg, #4a4a4a 0%, #3a3a3a 100%);
+        }
+
+        .image-placeholder-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            text-align: center;
+        }
+
+        .image-placeholder-text {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #e0e0e0;
+        }
+
+        .image-placeholder-subtext {
+            font-size: 0.7rem;
+            color: #a0a0a0;
+        }
+
+        /* Character Info Section */
+        .character-info-section {
+            margin-bottom: 12px;
+        }
+
+        .info-group {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+            gap: 10px;
+        }
+
+        .info-label {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #2c1810;
+            min-width: 60px;
+        }
+
+        /* Inline Info Row Styling */
+        .info-row {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 20px;
+            align-items: center;
+        }
+
+        .info-group-inline {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            flex: 1;
+        }
+
+        .info-label-inline {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #2c1810;
+            white-space: nowrap;
+        }
+
+        .card-class-inline {
+            background: transparent;
+            border: none;
+            border-bottom: 1px solid rgba(44, 24, 16, 0.3);
+            color: #2c1810;
+            font-size: 0.8rem;
+            font-weight: 500;
+            padding: 2px 4px;
+            font-family: 'Times New Roman', serif;
+            transition: all 0.2s ease;
+            width: 60px;
+        }
+
+        .race-input-inline {
+            background: transparent;
+            border: none;
+            border-bottom: 1px solid rgba(44, 24, 16, 0.3);
+            color: #2c1810;
+            font-size: 0.8rem;
+            font-weight: 500;
+            padding: 2px 4px;
+            font-family: 'Times New Roman', serif;
+            transition: all 0.2s ease;
+            flex: 1;
+            min-width: 0;
+        }
+
+        .level-input-inline {
+            background: transparent;
+            border: none;
+            border-bottom: 1px solid rgba(44, 24, 16, 0.3);
+            color: #2c1810;
+            font-size: 0.8rem;
+            font-weight: 500;
+            padding: 2px 4px;
+            font-family: 'Times New Roman', serif;
+            transition: all 0.2s ease;
+            width: 30px;
+            text-align: center;
+        }
+
+        .level-input-inline::-webkit-outer-spin-button,
+        .level-input-inline::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        .level-input-inline[type=number] {
+            -moz-appearance: textfield;
+        }
+
+        .card-class-inline:focus,
+        .race-input-inline:focus,
+        .level-input-inline:focus {
+            outline: none;
+            border-bottom: 2px solid #8b7355;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Bio Section */
+        .bio-section {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-bottom: 12px;
+        }
+
+        .bio-item {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .bio-label {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #2c1810;
+            text-transform: none;
+            letter-spacing: normal;
+        }
+
+        .bio-textarea {
+            background: transparent;
+            border: none;
+            border-radius: 0;
+            padding: 4px 0;
+            font-family: 'Times New Roman', serif;
+            color: #1a0f08;
+            font-size: 0.75rem;
+            box-shadow: none;
+            resize: vertical;
+            min-height: 30px;
+        }
+
+        .bio-textarea:focus {
+            outline: none;
+            background: transparent;
         }
 
         /* Active Effects Section */
@@ -2155,7 +2673,7 @@
             display: flex;
             flex-direction: column;
             gap: 8px;
-            margin-top: 15px;
+            margin-top: 0;
         }
 
         .active-effects-item {
@@ -2165,40 +2683,48 @@
         }
 
         .active-effects-label {
-            font-size: 0.75rem;
-            font-weight: bold;
-            color: #ffd700;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #2c1810;
+            text-transform: none;
+            letter-spacing: normal;
         }
 
         .active-effects-textarea {
-            background: linear-gradient(180deg, #4a4a4a 0%, #3a3a3a 100%);
-            border: 1px solid #8b7355;
-            border-radius: 4px;
-            padding: 4px 6px;
+            background: transparent;
+            border: none;
+            border-radius: 0;
+            padding: 4px 0;
             font-family: 'Times New Roman', serif;
-            color: #e0e0e0;
+            color: #1a0f08;
             font-size: 0.75rem;
-            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
+            box-shadow: none;
             resize: vertical;
             min-height: 30px;
         }
 
         .active-effects-textarea:focus {
             outline: none;
-            border-color: #a0522d;
-            background: linear-gradient(180deg, #5a5a5a 0%, #4a4a4a 100%);
-            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3), 0 0 0 2px rgba(160, 82, 45, 0.3);
+            background: transparent;
         }
 
-        /* Stat highlighting */
+        /* Stat highlighting - colored shields */
         .ability-input.highest-stat {
-            border-left: 3px solid #22c55e;
+            /* Remove border highlighting */
         }
 
         .ability-input.lowest-stat {
-            border-left: 3px solid #ef4444;
+            /* Remove border highlighting */
+        }
+
+        /* Gold shield for highest stat */
+        .stat-shield-wrapper.highest-stat {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='107' height='83' viewBox='0 0 107 83' fill='none'%3E%3Cg filter='url(%23filter0_ddii_6_396201)'%3E%3Cpath d='M15.6037 42.7525C15.0682 43.3716 15.1903 44.4322 15.9198 44.8037C23.0544 48.4369 51.9225 63.0908 53.4108 63.0908C54.913 63.0908 84.3066 48.1631 91.0953 44.7052C91.7785 44.3572 91.926 43.406 91.4883 42.7765C90.1543 40.8581 87.9555 36.5611 87.9555 29.0784C87.9555 23.0651 91.5097 14.221 92.9867 10.8053C93.2885 10.1072 92.8329 9.31156 92.0755 9.24168C86.4648 8.72402 66.7766 7.0001 53.4108 7.0001C40.3513 7.0001 21.2556 8.64595 15.1537 9.20425C14.2952 9.28279 13.8465 10.2887 14.3059 11.0181C16.2302 14.0741 19.9988 21.0799 19.9988 29.0784C19.9988 36.53 17.2731 40.8224 15.6037 42.7525Z' fill='url(%23paint0_linear_gold)'/%3E%3C/g%3E%3Cdefs%3E%3Cfilter id='filter0_ddii_6_396201' x='0.903583' y='0.390512' width='105.396' height='82.5288' filterUnits='userSpaceOnUse' color-interpolation-filters='sRGB'%3E%3CfeFlood flood-opacity='0' result='BackgroundImageFix'/%3E%3CfeColorMatrix in='SourceAlpha' type='matrix' values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0' result='hardAlpha'/%3E%3CfeOffset dy='6.60949'/%3E%3CfeGaussianBlur stdDeviation='6.60949'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.4 0'/%3E%3CfeBlend mode='normal' in2='BackgroundImageFix' result='effect1_dropShadow_6_396201'/%3E%3CfeColorMatrix in='SourceAlpha' type='matrix' values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0' result='hardAlpha'/%3E%3CfeOffset dy='2.20316'/%3E%3CfeGaussianBlur stdDeviation='2.20316'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.65 0'/%3E%3CfeBlend mode='normal' in2='effect1_dropShadow_6_396201' result='effect2_dropShadow_6_396201'/%3E%3CfeBlend mode='normal' in='SourceGraphic' in2='effect2_dropShadow_6_396201' result='shape'/%3E%3CfeColorMatrix in='SourceAlpha' type='matrix' values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0' result='hardAlpha'/%3E%3CfeOffset dx='1.10158' dy='-1.10158'/%3E%3CfeGaussianBlur stdDeviation='1.10158'/%3E%3CfeComposite in2='hardAlpha' operator='arithmetic' k2='-1' k3='1'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0.223529 0 0 0 0 0.184314 0 0 0 0 0.145098 0 0 0 0.6 0'/%3E%3CfeBlend mode='normal' in2='shape' result='effect3_innerShadow_6_396201'/%3E%3CfeColorMatrix in='SourceAlpha' type='matrix' values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0' result='hardAlpha'/%3E%3CfeOffset dx='-1.10158' dy='1.10158'/%3E%3CfeGaussianBlur stdDeviation='1.10158'/%3E%3CfeComposite in2='hardAlpha' operator='arithmetic' k2='-1' k3='1'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0.882422 0 0 0 0 0.87413 0 0 0 0 0.832671 0 0 0 1 0'/%3E%3CfeBlend mode='normal' in2='effect3_innerShadow_6_396201' result='effect4_innerShadow_6_396201'/%3E%3C/filter%3E%3ClinearGradient id='paint0_linear_gold' x1='53.4108' y1='63.0908' x2='53.4108' y2='7.0001' gradientUnits='userSpaceOnUse'%3E%3Cstop stop-color='%23FEF3C7'/%3E%3Cstop offset='0.385417' stop-color='%23FDE68A'/%3E%3Cstop offset='0.71875' stop-color='%23F59E0B'/%3E%3Cstop offset='1' stop-color='%23D97706'/%3E%3C/linearGradient%3E%3C/defs%3E%3C/svg%3E");
+        }
+
+        /* Red shield for lowest stat */
+        .stat-shield-wrapper.lowest-stat {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='107' height='83' viewBox='0 0 107 83' fill='none'%3E%3Cg filter='url(%23filter0_ddii_6_396201)'%3E%3Cpath d='M15.6037 42.7525C15.0682 43.3716 15.1903 44.4322 15.9198 44.8037C23.0544 48.4369 51.9225 63.0908 53.4108 63.0908C54.913 63.0908 84.3066 48.1631 91.0953 44.7052C91.7785 44.3572 91.926 43.406 91.4883 42.7765C90.1543 40.8581 87.9555 36.5611 87.9555 29.0784C87.9555 23.0651 91.5097 14.221 92.9867 10.8053C93.2885 10.1072 92.8329 9.31156 92.0755 9.24168C86.4648 8.72402 66.7766 7.0001 53.4108 7.0001C40.3513 7.0001 21.2556 8.64595 15.1537 9.20425C14.2952 9.28279 13.8465 10.2887 14.3059 11.0181C16.2302 14.0741 19.9988 21.0799 19.9988 29.0784C19.9988 36.53 17.2731 40.8224 15.6037 42.7525Z' fill='url(%23paint0_linear_red)'/%3E%3C/g%3E%3Cdefs%3E%3Cfilter id='filter0_ddii_6_396201' x='0.903583' y='0.390512' width='105.396' height='82.5288' filterUnits='userSpaceOnUse' color-interpolation-filters='sRGB'%3E%3CfeFlood flood-opacity='0' result='BackgroundImageFix'/%3E%3CfeColorMatrix in='SourceAlpha' type='matrix' values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0' result='hardAlpha'/%3E%3CfeOffset dy='6.60949'/%3E%3CfeGaussianBlur stdDeviation='6.60949'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.4 0'/%3E%3CfeBlend mode='normal' in2='BackgroundImageFix' result='effect1_dropShadow_6_396201'/%3E%3CfeColorMatrix in='SourceAlpha' type='matrix' values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0' result='hardAlpha'/%3E%3CfeOffset dy='2.20316'/%3E%3CfeGaussianBlur stdDeviation='2.20316'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.65 0'/%3E%3CfeBlend mode='normal' in2='effect1_dropShadow_6_396201' result='effect2_dropShadow_6_396201'/%3E%3CfeBlend mode='normal' in='SourceGraphic' in2='effect2_dropShadow_6_396201' result='shape'/%3E%3CfeColorMatrix in='SourceAlpha' type='matrix' values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0' result='hardAlpha'/%3E%3CfeOffset dx='1.10158' dy='-1.10158'/%3E%3CfeGaussianBlur stdDeviation='1.10158'/%3E%3CfeComposite in2='hardAlpha' operator='arithmetic' k2='-1' k3='1'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0.223529 0 0 0 0 0.184314 0 0 0 0 0.145098 0 0 0 0.6 0'/%3E%3CfeBlend mode='normal' in2='shape' result='effect3_innerShadow_6_396201'/%3E%3CfeColorMatrix in='SourceAlpha' type='matrix' values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0' result='hardAlpha'/%3E%3CfeOffset dx='-1.10158' dy='1.10158'/%3E%3CfeGaussianBlur stdDeviation='1.10158'/%3E%3CfeComposite in2='hardAlpha' operator='arithmetic' k2='-1' k3='1'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0.882422 0 0 0 0 0.87413 0 0 0 0 0.832671 0 0 0 1 0'/%3E%3CfeBlend mode='normal' in2='effect3_innerShadow_6_396201' result='effect4_innerShadow_6_396201'/%3E%3C/filter%3E%3ClinearGradient id='paint0_linear_red' x1='53.4108' y1='63.0908' x2='53.4108' y2='7.0001' gradientUnits='userSpaceOnUse'%3E%3Cstop stop-color='%23FECACA'/%3E%3Cstop offset='0.385417' stop-color='%23FCA5A5'/%3E%3Cstop offset='0.71875' stop-color='%23F87171'/%3E%3Cstop offset='1' stop-color='%23EF4444'/%3E%3C/linearGradient%3E%3C/defs%3E%3C/svg%3E");
         }
 
         /* Death styling */
@@ -2262,8 +2788,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 8px 12px;
-            border-top: 1px solid #8b7355;
+            padding: 4px 12px 2px 12px;
         }
 
         .footer-left {
@@ -3438,9 +3963,15 @@
             }
         }
 
+        // Track newly added characters for animation
+        let newCharacterTimestamp = null;
+
         // Add a new character
         function addCharacter() {
             const campaignPath = getCampaignPath();
+            const timestamp = Date.now();
+            newCharacterTimestamp = timestamp;
+            
             const newCharacter = {
                 name: "New Character",
                 class: "Fighter",
@@ -3455,10 +3986,12 @@
                 wisdom: 10,
                 charisma: 10,
                 isDead: false,
-                lastUpdated: Date.now()
+                lastUpdated: timestamp
             };
             
             console.log(`Adding character to guild: ${getGuildId()}, campaign: ${currentCampaignId} at path: ${campaignPath}/characters`);
+            
+            // Add the character to Firebase
             database.ref(`${campaignPath}/characters`).push(newCharacter);
         }
 
@@ -3491,12 +4024,12 @@
             const card = document.querySelector(`[data-character-id="${characterId}"]`);
             if (!card) return;
 
-            // Get all ability inputs for this specific card
-            const abilityInputs = card.querySelectorAll('.ability-input');
+            // Get all shield wrappers for this specific card
+            const shieldWrappers = card.querySelectorAll('.stat-shield-wrapper');
             
-            // Remove existing highlighting
-            abilityInputs.forEach(input => {
-                input.classList.remove('highest-stat', 'lowest-stat');
+            // Remove existing highlighting from shield wrappers
+            shieldWrappers.forEach(wrapper => {
+                wrapper.classList.remove('highest-stat', 'lowest-stat');
             });
 
             // Get stat values for this specific character only
@@ -3524,7 +4057,10 @@
                         input.getAttribute('onchange') && 
                         input.getAttribute('onchange').includes(`'${maxStats[0].field}'`)
                     );
-                    if (input) input.classList.add('highest-stat');
+                    if (input) {
+                        const wrapper = input.closest('.stat-shield-wrapper');
+                        if (wrapper) wrapper.classList.add('highest-stat');
+                    }
                 }
 
                 // Find and highlight the lowest stat (only the first one if there are ties)
@@ -3535,7 +4071,10 @@
                         input.getAttribute('onchange') && 
                         input.getAttribute('onchange').includes(`'${minStats[0].field}'`)
                     );
-                    if (input) input.classList.add('lowest-stat');
+                    if (input) {
+                        const wrapper = input.closest('.stat-shield-wrapper');
+                        if (wrapper) wrapper.classList.add('lowest-stat');
+                    }
                 }
             }
         }
@@ -3547,6 +4086,25 @@
             
             const newDeathStatus = !character.isDead;
             updateCharacter(characterId, 'isDead', newDeathStatus);
+        }
+
+        // Toggle death save bubbles
+        function toggleDeathSave(characterId, bubbleNumber) {
+            const character = characters.find(c => c.id === characterId);
+            if (!character) return;
+            
+            const currentSaves = character.deathSaves || 0;
+            let newSaves;
+            
+            if (currentSaves >= bubbleNumber) {
+                // If clicking on a filled bubble or higher, reduce to one less
+                newSaves = bubbleNumber - 1;
+            } else {
+                // If clicking on an empty bubble, fill up to that bubble
+                newSaves = bubbleNumber;
+            }
+            
+            updateCharacter(characterId, 'deathSaves', newSaves);
         }
 
         // Helper function to get active tab class
@@ -3606,159 +4164,224 @@
             if (character.isDead) {
                 card.classList.add('dead');
             }
+            
+            // Add animation class for newly added characters
+            // Check if this character was just added (within last 2 seconds)
+            if (newCharacterTimestamp && character.lastUpdated === newCharacterTimestamp) {
+                card.classList.add('new-card');
+                console.log('Adding animation to new character:', character.name);
+                // Clear the timestamp after applying animation
+                setTimeout(() => {
+                    newCharacterTimestamp = null;
+                    card.classList.remove('new-card');
+                }, 800); // Match animation duration
+            }
+            
             card.setAttribute('data-character-id', character.id);
             
             card.innerHTML = `
                 <div class="card-header">
-                    <div class="card-title">
+                    <!-- Top Section: Name + HP/AC -->
+                    <div class="header-top-section">
                         <input
                             type="text"
                             value="${character.name}"
                             onchange="updateCharacter('${character.id}', 'name', this.value)"
                             class="editable-field card-name"
                         >
-                    </div>
-                    <div class="card-type">
-                        <input
-                            type="text"
-                            value="${character.class}"
-                            onchange="updateCharacter('${character.id}', 'class', this.value)"
-                            class="editable-field card-class"
-                        >
-                        <span class="card-level">
-                            <input
-                                type="number"
-                                value="${character.level}"
-                                onchange="updateCharacter('${character.id}', 'level', parseInt(this.value) || 1)"
-                                class="editable-field level-input"
-                                min="1"
-                                max="20"
-                            >
-                        </span>
-                    </div>
-                    <div class="card-race">
-                        <input
-                            type="text"
-                            value="${character.race}"
-                            onchange="updateCharacter('${character.id}', 'race', this.value)"
-                            class="editable-field race-input"
+                        <div class="header-stats">
+                            <div class="header-stat">
+                                <div class="hex-wrapper">
+                                    <input
+                                        type="number"
+                                        value="${character.hp}"
+                                        onchange="updateCharacter('${character.id}', 'hp', parseInt(this.value) || 0)"
+                                        class="editable-field stat-input"
                         >
                     </div>
-                </div>
-
-                <div class="card-tabs">
-                    <button class="tab-btn ${getActiveTabClass(character.id, 'stats')}" onclick="switchTab('${character.id}', 'stats')" data-tab="stats">
-                        Stats
-                    </button>
-                    <button class="tab-btn ${getActiveTabClass(character.id, 'abilities')}" onclick="switchTab('${character.id}', 'abilities')" data-tab="abilities">
-                        Abilities
-                    </button>
-                    <button class="tab-btn ${getActiveTabClass(character.id, 'inventory')}" onclick="switchTab('${character.id}', 'inventory')" data-tab="inventory">
-                        Inventory
-                    </button>
-                    <button class="tab-btn ${getActiveTabClass(character.id, 'story')}" onclick="switchTab('${character.id}', 'story')" data-tab="story">
-                        Story
-                    </button>
+                            </div>
+                            <div class="header-stat">
+                                <div class="ac-inputs">
+                                    <span class="heart-icon">❤️</span>
+                                    <input
+                                        type="number"
+                                        value="${character.ac || 10}"
+                                        onchange="updateCharacter('${character.id}', 'ac', parseInt(this.value) || 0)"
+                                        class="editable-field ac-input"
+                                    >
+                                    <span class="ac-separator">/</span>
+                                    <input
+                                        type="number"
+                                        value="${character.acMax || 10}"
+                                        onchange="updateCharacter('${character.id}', 'acMax', parseInt(this.value) || 0)"
+                                        class="editable-field ac-input"
+                                    >
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Bottom Section: 6 Main Stats -->
+                    <div class="header-bottom-section">
+                        <div class="card-abilities">
+                            <div class="ability-grid">
+                                <div class="ability-item">
+                                    <span class="ability-label">STR</span>
+                                    <div class="stat-shield-wrapper">
+                                        <input
+                                            type="number"
+                                            value="${character.strength}"
+                                            onchange="updateCharacter('${character.id}', 'strength', parseInt(this.value) || 0)"
+                                            class="editable-field ability-input"
+                                            min="1"
+                                            max="20"
+                                        >
+                                    </div>
+                                </div>
+                                <div class="ability-item">
+                                    <span class="ability-label">DEX</span>
+                                    <div class="stat-shield-wrapper">
+                                        <input
+                                            type="number"
+                                            value="${character.dexterity}"
+                                            onchange="updateCharacter('${character.id}', 'dexterity', parseInt(this.value) || 0)"
+                                            class="editable-field ability-input"
+                                            min="1"
+                                            max="20"
+                                        >
+                                    </div>
+                                </div>
+                                <div class="ability-item">
+                                    <span class="ability-label">CON</span>
+                                    <div class="stat-shield-wrapper">
+                                        <input
+                                            type="number"
+                                            value="${character.constitution}"
+                                            onchange="updateCharacter('${character.id}', 'constitution', parseInt(this.value) || 0)"
+                                            class="editable-field ability-input"
+                                            min="1"
+                                            max="20"
+                                        >
+                                    </div>
+                                </div>
+                                <div class="ability-item">
+                                    <span class="ability-label">INT</span>
+                                    <div class="stat-shield-wrapper">
+                                        <input
+                                            type="number"
+                                            value="${character.intelligence}"
+                                            onchange="updateCharacter('${character.id}', 'intelligence', parseInt(this.value) || 0)"
+                                            class="editable-field ability-input"
+                                            min="1"
+                                            max="20"
+                                        >
+                                    </div>
+                                </div>
+                                <div class="ability-item">
+                                    <span class="ability-label">WIS</span>
+                                    <div class="stat-shield-wrapper">
+                                        <input
+                                            type="number"
+                                            value="${character.wisdom}"
+                                            onchange="updateCharacter('${character.id}', 'wisdom', parseInt(this.value) || 0)"
+                                            class="editable-field ability-input"
+                                            min="1"
+                                            max="20"
+                                        >
+                                    </div>
+                                </div>
+                                <div class="ability-item">
+                                    <span class="ability-label">CHA</span>
+                                    <div class="stat-shield-wrapper">
+                                        <input
+                                            type="number"
+                                            value="${character.charisma}"
+                                            onchange="updateCharacter('${character.id}', 'charisma', parseInt(this.value) || 0)"
+                                            class="editable-field ability-input"
+                                            min="1"
+                                            max="20"
+                                        >
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="card-tabs">
+                            <button class="tab-btn ${getActiveTabClass(character.id, 'stats')}" onclick="switchTab('${character.id}', 'stats')" data-tab="stats">
+                                Home
+                            </button>
+                            <button class="tab-btn ${getActiveTabClass(character.id, 'newstats')}" onclick="switchTab('${character.id}', 'newstats')" data-tab="newstats">
+                                Stats
+                            </button>
+                            <button class="tab-btn ${getActiveTabClass(character.id, 'abilities')}" onclick="switchTab('${character.id}', 'abilities')" data-tab="abilities">
+                                Skills
+                            </button>
+                            <button class="tab-btn ${getActiveTabClass(character.id, 'inventory')}" onclick="switchTab('${character.id}', 'inventory')" data-tab="inventory">
+                                Bag
+                            </button>
+                            <button class="tab-btn ${getActiveTabClass(character.id, 'story')}" onclick="switchTab('${character.id}', 'story')" data-tab="story">
+                                Story
+                            </button>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="card-body">
                     <!-- Stats Tab Content -->
                     <div class="tab-content ${getActiveTabClass(character.id, 'stats')}" id="stats-content-${character.id}">
-                        <div class="card-stats">
-                            <div class="stat-row">
-                                <span class="stat-label">HP:</span>
-                                <input
-                                    type="number"
-                                    value="${character.hp}"
-                                    onchange="updateCharacter('${character.id}', 'hp', parseInt(this.value) || 0)"
-                                    class="editable-field stat-input"
-                                >
-                            </div>
-                            <div class="stat-row">
-                                <span class="stat-label">AC:</span>
-                                <input
-                                    type="number"
-                                    value="${character.ac}"
-                                    onchange="updateCharacter('${character.id}', 'ac', parseInt(this.value) || 0)"
-                                    class="editable-field stat-input"
-                                >
+
+                        <div class="character-image-section">
+                            <div class="character-image-placeholder">
+                                <div class="image-placeholder-content">
+                                    <span class="image-placeholder-text">Character Image</span>
+                                    <span class="image-placeholder-subtext">Click to upload</span>
+                                </div>
                             </div>
                         </div>
 
-                        <div class="card-abilities">
-                            <div class="ability-grid">
-                                <div class="ability-item">
-                                    <span class="ability-label">Str:</span>
+                        <div class="character-info-section">
+                            <div class="info-row">
+                                <div class="info-group-inline">
+                                    <label class="info-label-inline">Class:</label>
+                                    <input
+                                        type="text"
+                                        value="${character.class}"
+                                        onchange="updateCharacter('${character.id}', 'class', this.value)"
+                                        class="editable-field card-class-inline"
+                                    >
+                                </div>
+                                <div class="info-group-inline">
+                                    <label class="info-label-inline">Level:</label>
                                     <input
                                         type="number"
-                                        value="${character.strength}"
-                                        onchange="updateCharacter('${character.id}', 'strength', parseInt(this.value) || 0)"
-                                        class="editable-field ability-input"
+                                        value="${character.level}"
+                                        onchange="updateCharacter('${character.id}', 'level', parseInt(this.value) || 1)"
+                                        class="editable-field level-input-inline"
                                         min="1"
                                         max="20"
                                     >
                                 </div>
-                                <div class="ability-item">
-                                    <span class="ability-label">Dex:</span>
+                                <div class="info-group-inline">
+                                    <label class="info-label-inline">Race:</label>
                                     <input
-                                        type="number"
-                                        value="${character.dexterity}"
-                                        onchange="updateCharacter('${character.id}', 'dexterity', parseInt(this.value) || 0)"
-                                        class="editable-field ability-input"
-                                        min="1"
-                                        max="20"
+                                        type="text"
+                                        value="${character.race}"
+                                        onchange="updateCharacter('${character.id}', 'race', this.value)"
+                                        class="editable-field race-input-inline"
                                     >
                                 </div>
-                                <div class="ability-item">
-                                    <span class="ability-label">Con:</span>
-                                    <input
-                                        type="number"
-                                        value="${character.constitution}"
-                                        onchange="updateCharacter('${character.id}', 'constitution', parseInt(this.value) || 0)"
-                                        class="editable-field ability-input"
-                                        min="1"
-                                        max="20"
-                                    >
-                                </div>
-                                <div class="ability-item">
-                                    <span class="ability-label">Int:</span>
-                                    <input
-                                        type="number"
-                                        value="${character.intelligence}"
-                                        onchange="updateCharacter('${character.id}', 'intelligence', parseInt(this.value) || 0)"
-                                        class="editable-field ability-input"
-                                        min="1"
-                                        max="20"
-                                    >
-                                </div>
-                                <div class="ability-item">
-                                    <span class="ability-label">Wis:</span>
-                                    <input
-                                        type="number"
-                                        value="${character.wisdom}"
-                                        onchange="updateCharacter('${character.id}', 'wisdom', parseInt(this.value) || 0)"
-                                        class="editable-field ability-input"
-                                        min="1"
-                                        max="20"
-                                    >
-                                </div>
-                                <div class="ability-item">
-                                    <span class="ability-label">Cha:</span>
-                                    <input
-                                        type="number"
-                                        value="${character.charisma}"
-                                        onchange="updateCharacter('${character.id}', 'charisma', parseInt(this.value) || 0)"
-                                        class="editable-field ability-input"
-                                        min="1"
-                                        max="20"
-                                    >
-                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bio-section">
+                            <div class="bio-item">
+                                <textarea value="${character.bio || ''}" onchange="updateCharacter('${character.id}', 'bio', this.value)" class="editable-field bio-textarea" placeholder="Add a short bio of your character, what abilities they have and what they are after">${character.bio || ''}</textarea>
                             </div>
                         </div>
 
                         <div class="active-effects-section">
                             <div class="active-effects-item">
-                                <label class="active-effects-label">Active Effects:</label>
+                                <label class="active-effects-label">Active Conditions:</label>
                                 <textarea value="${character.activeEffects || ''}" onchange="updateCharacter('${character.id}', 'activeEffects', this.value)" class="editable-field active-effects-textarea" placeholder="Enter active effects, buffs, debuffs, conditions...">${character.activeEffects || ''}</textarea>
                             </div>
                         </div>
@@ -3825,6 +4448,11 @@
                             </div>
                         </div>
                     </div>
+
+                    <!-- New Stats Tab Content -->
+                    <div class="tab-content" id="newstats-content-${character.id}">
+                        <!-- Content will be added here -->
+                    </div>
                 </div>
                 
                 <div class="card-footer">
@@ -3832,6 +4460,16 @@
                                             <button class="death-toggle-btn ${character.isDead ? '' : 'alive'}" onclick="toggleDeath('${character.id}')">
                         ${character.isDead ? '💀 Dead' : '⚡ Alive'}
                     </button>
+                    </div>
+                    <div class="footer-center">
+                        <div class="death-saves">
+                            <span class="death-saves-label">Death Saves</span>
+                            <div class="death-saves-bubbles">
+                                <div class="death-save-bubble ${(character.deathSaves || 0) >= 1 ? 'filled' : ''}" onclick="toggleDeathSave('${character.id}', 1)"></div>
+                                <div class="death-save-bubble ${(character.deathSaves || 0) >= 2 ? 'filled' : ''}" onclick="toggleDeathSave('${character.id}', 2)"></div>
+                                <div class="death-save-bubble ${(character.deathSaves || 0) >= 3 ? 'filled' : ''}" onclick="toggleDeathSave('${character.id}', 3)"></div>
+                            </div>
+                        </div>
                     </div>
                     <div class="footer-right">
                         <button class="remove-card-btn" onclick="removeCharacter('${character.id}')">

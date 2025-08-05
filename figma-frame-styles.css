@@ -1,0 +1,500 @@
+/* Generated from Figma EXAMPLE CARD Frame */
+/* Frame: EXAMPLE CARD */
+/* Dimensions: 672x936 */
+
+.figma-card {
+  width: 672px;
+  height: 936px;
+  position: relative;
+  margin: 20px auto;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* border / black */
+.figma-card-1 {
+  position: absolute;
+  left: 272px;
+  top: 1834px;
+  width: 672px;
+  height: 936px;
+  background-color: rgb(23, 20, 15);
+  border-radius: 30px;
+}
+
+/* ---cardColor */
+.figma-card-2 {
+  position: absolute;
+  left: 293px;
+  top: 1850px;
+  width: 624px;
+  height: 847px;
+  background-color: rgb(255, 255, 255);
+}
+
+/* colorBase (child of 2) */
+.figma-card-2-1 {
+  position: absolute;
+  left: 293px;
+  top: 1850px;
+  width: 624px;
+  height: 847px;
+  background-color: rgb(203, 167, 76);
+}
+
+/* exposure (child of 2) */
+.figma-card-2-2 {
+  position: absolute;
+  left: 293px;
+  top: 1850px;
+  width: 624px;
+  height: 847px;
+  background-color: transparent;
+}
+
+/* INNER TOGGLE: GOLD FRAME */
+.figma-card-3 {
+  position: absolute;
+  left: 308px;
+  top: 1857px;
+  width: 600.9732666015625px;
+  height: 829.00244140625px;
+  background-color: rgb(255, 255, 255);
+}
+
+/* ThreeColorGold (child of 3) */
+.figma-card-3-1 {
+  position: absolute;
+  left: 308px;
+  top: 1857px;
+  width: 600.9732666015625px;
+  height: 830.003662109375px;
+  background-color: rgb(255, 255, 255);
+}
+
+/* UR-IZZET (child of 3) */
+.figma-card-3-2 {
+  position: absolute;
+  left: 308px;
+  top: 1857px;
+  width: 600.9732666015625px;
+  height: 830.003662109375px;
+  background-color: rgb(255, 255, 255);
+}
+
+/* UG-SIMIC (child of 3) */
+.figma-card-3-3 {
+  position: absolute;
+  left: 308px;
+  top: 1857px;
+  width: 600.9732666015625px;
+  height: 830.003662109375px;
+  background-color: rgb(255, 255, 255);
+}
+
+/* RW-BOROS (child of 3) */
+.figma-card-3-4 {
+  position: absolute;
+  left: 308px;
+  top: 1857px;
+  width: 600.9732666015625px;
+  height: 830.003662109375px;
+  background-color: rgb(255, 255, 255);
+}
+
+/* GW-SELSNYA (child of 3) */
+.figma-card-3-5 {
+  position: absolute;
+  left: 308px;
+  top: 1857px;
+  width: 600.9732666015625px;
+  height: 830.003662109375px;
+  background-color: rgb(255, 255, 255);
+}
+
+/* BR-RAKDOS (child of 3) */
+.figma-card-3-6 {
+  position: absolute;
+  left: 308px;
+  top: 1857px;
+  width: 600.9732666015625px;
+  height: 830.003662109375px;
+  background-color: rgb(255, 255, 255);
+}
+
+/* UB-DIMIR (child of 3) */
+.figma-card-3-7 {
+  position: absolute;
+  left: 308px;
+  top: 1857px;
+  width: 600.9732666015625px;
+  height: 830.003662109375px;
+  background-color: rgb(255, 255, 255);
+}
+
+/* RG-GRUUL (child of 3) */
+.figma-card-3-8 {
+  position: absolute;
+  left: 308px;
+  top: 1857px;
+  width: 600.9732666015625px;
+  height: 830.003662109375px;
+  background-color: rgb(255, 255, 255);
+}
+
+/* WB-ORZHOV (child of 3) */
+.figma-card-3-9 {
+  position: absolute;
+  left: 308px;
+  top: 1857px;
+  width: 600.9732666015625px;
+  height: 830.003662109375px;
+  background-color: rgb(255, 255, 255);
+}
+
+/* BG-GOLGARI (child of 3) */
+.figma-card-3-10 {
+  position: absolute;
+  left: 308px;
+  top: 1857px;
+  width: 600.9732666015625px;
+  height: 830.003662109375px;
+  background-color: rgb(255, 255, 255);
+}
+
+/* WU-AZORIOUS (child of 3) */
+.figma-card-3-11 {
+  position: absolute;
+  left: 308px;
+  top: 1857px;
+  width: 600.9732666015625px;
+  height: 830.003662109375px;
+  background-color: rgb(255, 255, 255);
+}
+
+/* WU-AZORIOUS (child of 3) */
+.figma-card-3-12 {
+  position: absolute;
+  left: 308px;
+  top: 1857px;
+  width: 600.9732666015625px;
+  height: 830.003662109375px;
+  background-color: rgb(255, 255, 255);
+}
+
+/* ---rulesTextbox */
+.figma-card-4 {
+  position: absolute;
+  left: 325px;
+  top: 2399px;
+  width: 569px;
+  height: 279px;
+  background-color: rgb(255, 255, 255);
+}
+
+/* text box (child of 4) */
+.figma-card-4-1 {
+  position: absolute;
+  left: 325px;
+  top: 2399px;
+  width: 569px;
+  height: 279px;
+  background-color: rgb(252, 244, 223);
+}
+
+/* Watermark (child of 4) */
+.figma-card-4-2 {
+  position: absolute;
+  left: 478.0205993652344px;
+  top: 2407.002197265625px;
+  width: 262.0352783203125px;
+  height: 262.07318115234375px;
+  background-color: rgb(255, 255, 255);
+}
+
+/* TEXT: Rules Text */
+.figma-card-5 {
+  position: absolute;
+  left: 348px;
+  top: 2432px;
+  width: 546px;
+  height: 124px;
+  background-color: rgb(0, 0, 0);
+  border: 0.10000000149011612px solid rgb(0, 0, 0);
+  color: #ffffff;
+  font-family: Merriweather;
+  font-size: 25px;
+  font-weight: 400;
+  line-height: 31.424999237060547px;
+  padding: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* INNER TOGGLE: LEGEND FRAME */
+.figma-card-6 {
+  position: absolute;
+  left: 290px;
+  top: 1849px;
+  width: 635.4998779296875px;
+  height: 514.5px;
+  background-color: rgb(255, 255, 255);
+}
+
+/* border color mask (child of 6) */
+.figma-card-6-1 {
+  position: absolute;
+  left: 290px;
+  top: 1849px;
+  width: 635px;
+  height: 84px;
+  background-color: rgb(23, 20, 15);
+}
+
+/* ThreeColorGold (child of 6) */
+.figma-card-6-2 {
+  position: absolute;
+  left: 290px;
+  top: 1849px;
+  width: 635.4998779296875px;
+  height: 514.5px;
+}
+
+/* UR - IZZET (child of 6) */
+.figma-card-6-3 {
+  position: absolute;
+  left: 290px;
+  top: 1849px;
+  width: 635.4998779296875px;
+  height: 514.5px;
+}
+
+/* GU - SIMIC (child of 6) */
+.figma-card-6-4 {
+  position: absolute;
+  left: 290px;
+  top: 1849px;
+  width: 635.4998779296875px;
+  height: 514.5px;
+}
+
+/* RW - BOROS (child of 6) */
+.figma-card-6-5 {
+  position: absolute;
+  left: 290px;
+  top: 1849px;
+  width: 635.4998779296875px;
+  height: 514.5px;
+}
+
+/* GW - SELESNYA (child of 6) */
+.figma-card-6-6 {
+  position: absolute;
+  left: 290px;
+  top: 1849px;
+  width: 635.4998779296875px;
+  height: 514.5px;
+}
+
+/* BR - RAKDOS (child of 6) */
+.figma-card-6-7 {
+  position: absolute;
+  left: 290px;
+  top: 1849px;
+  width: 635.4998779296875px;
+  height: 514.5px;
+}
+
+/* UB - DIMIR (child of 6) */
+.figma-card-6-8 {
+  position: absolute;
+  left: 290px;
+  top: 1849px;
+  width: 635.4998779296875px;
+  height: 514.5px;
+}
+
+/* RG - GRUUL (child of 6) */
+.figma-card-6-9 {
+  position: absolute;
+  left: 290px;
+  top: 1849px;
+  width: 635.4998779296875px;
+  height: 514.5px;
+}
+
+/* WB - ORZHOV (child of 6) */
+.figma-card-6-10 {
+  position: absolute;
+  left: 290px;
+  top: 1849px;
+  width: 635.4998779296875px;
+  height: 514.5px;
+}
+
+/* BG - GOLGARI (child of 6) */
+.figma-card-6-11 {
+  position: absolute;
+  left: 290px;
+  top: 1849px;
+  width: 635.4998779296875px;
+  height: 514.5px;
+}
+
+/* WU - AZORIOUS (child of 6) */
+.figma-card-6-12 {
+  position: absolute;
+  left: 290px;
+  top: 1849px;
+  width: 635.4998779296875px;
+  height: 514.5px;
+}
+
+/* REPLACE: Image Fill (child of 6) */
+.figma-card-6-13 {
+  position: absolute;
+  left: 323px;
+  top: 1933px;
+  width: 570px;
+  height: 416px;
+  background-color: rgb(255, 255, 255);
+}
+
+/* ---cardName (child of 6) */
+.figma-card-6-14 {
+  position: absolute;
+  left: 313px;
+  top: 1873px;
+  width: 593px;
+  height: 52px;
+  background-color: rgb(255, 255, 255);
+}
+
+/* TEXT: Card Name (child of 6) */
+.figma-card-6-15 {
+  position: absolute;
+  left: 336px;
+  top: 1873px;
+  width: 567px;
+  height: 52px;
+  background-color: rgb(0, 0, 0);
+  color: #ffffff;
+  font-family: Merriweather;
+  font-size: 36px;
+  font-weight: 700;
+}
+
+/* TOGGLE: Copywrite 1 */
+.figma-card-7 {
+  position: absolute;
+  left: 714px;
+  top: 2724px;
+  width: 195px;
+  height: 15px;
+  background-color: rgb(255, 255, 255);
+}
+
+/* copywrite information (child of 7) */
+.figma-card-7-1 {
+  position: absolute;
+  left: 711px;
+  top: 2724px;
+  width: 198px;
+  height: 15px;
+  background-color: rgb(237, 237, 237);
+  color: #000000;
+  font-family: Merriweather;
+  font-size: 12px;
+  font-weight: 400;
+}
+
+/* CUS: Metadata */
+.figma-card-8 {
+  position: absolute;
+  left: 296px;
+  top: 2703px;
+  width: 380px;
+  height: 40px;
+}
+
+/* card number (child of 8) */
+.figma-card-8-1 {
+  position: absolute;
+  left: 296px;
+  top: 2703px;
+  width: 71px;
+  height: 23px;
+  background-color: rgb(237, 237, 237);
+  color: #000000;
+  font-family: Inter;
+  font-size: 18px;
+  font-weight: 400;
+}
+
+/* set code and language (child of 8) */
+.figma-card-8-2 {
+  position: absolute;
+  left: 296px;
+  top: 2720px;
+  width: 78px;
+  height: 23px;
+  background-color: rgb(237, 237, 237);
+  color: #000000;
+  font-family: Source Sans Pro;
+  font-size: 18px;
+  font-weight: 400;
+}
+
+/* artist credit (child of 8) */
+.figma-card-8-3 {
+  position: absolute;
+  left: 407px;
+  top: 2723px;
+  width: 96px;
+  height: 17px;
+  background-color: rgb(237, 237, 237);
+  color: #000000;
+  font-family: Beleren;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+/* rarity abbreviation CURM (child of 8) */
+.figma-card-8-4 {
+  position: absolute;
+  left: 379px;
+  top: 2703px;
+  width: 11px;
+  height: 23px;
+  background-color: rgb(237, 237, 237);
+  color: #000000;
+  font-family: Source Sans Pro;
+  font-size: 18px;
+  font-weight: 400;
+}
+
+/* Figma (child of 8) */
+.figma-card-8-5 {
+  position: absolute;
+  left: 407px;
+  top: 2705px;
+  width: 85px;
+  height: 18px;
+  background-color: rgb(237, 237, 237);
+  color: #000000;
+  font-family: Source Sans Pro;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+/* icon/artist (child of 8) */
+.figma-card-8-6 {
+  position: absolute;
+  left: 383px;
+  top: 2726px;
+  width: 19px;
+  height: 11px;
+}
+
