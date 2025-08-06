@@ -1,0 +1,16 @@
+{
+  "name": "dnd-monster-generator",
+  "version": "1.0.0",
+  "description": "Automated D&D monster image generation using Midjourney API",
+  "main": "monster-generator.js",
+  "scripts": {
+    "start": "node monster-generator.js",
+    "test": "node monster-generator.js"
+  },
+  "keywords": ["midjourney", "dnd", "monsters", "api", "automation"],
+  "author": "Your Name",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^1.6.0"
+  }
+}

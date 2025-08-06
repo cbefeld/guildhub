@@ -1771,12 +1771,14 @@
 
         .header-stats {
             display: flex;
-            gap: 5px;
+            gap: 2px;
             position: absolute;
             right: -15px;
             top: -10px;
             z-index: 10;
         }
+
+
 
         .header-stat {
             display: flex;
@@ -1829,19 +1831,13 @@
             border: none !important;
             border-radius: 0;
             padding: 0;
-            width: 20px;
-            min-width: 20px;
+            width: 32px;
+            min-width: 32px;
             text-align: center;
             font-weight: 700;
             font-size: 1rem;
             outline: none;
         }
-
-        /* Dynamic width classes for different number sizes */
-        .ac-input.width-1-digit { width: 20px !important; }
-        .ac-input.width-2-digit { width: 26px !important; }
-        .ac-input.width-3-digit { width: 32px !important; }
-        .ac-input.width-4-digit { width: 38px !important; }
 
         .ac-separator {
             color: #FFFFFF;
@@ -1875,20 +1871,14 @@
         .header-stat:nth-child(2) .ac-input {
             background: transparent !important;
             color: #FFFFFF !important;
-            width: 20px !important;
-            min-width: 20px;
+            width: 32px !important;
+            min-width: 32px;
             padding: 0 !important;
             border: none !important;
             border-radius: 0 !important;
             font-size: 0.85rem !important;
             font-weight: 700 !important;
         }
-
-        /* Dynamic width classes for HP fields (second stat) */
-        .header-stat:nth-child(2) .ac-input.width-1-digit { width: 20px !important; }
-        .header-stat:nth-child(2) .ac-input.width-2-digit { width: 26px !important; }
-        .header-stat:nth-child(2) .ac-input.width-3-digit { width: 32px !important; }
-        .header-stat:nth-child(2) .ac-input.width-4-digit { width: 38px !important; }
 
         /* Hexagonal HP input */
         .hex-wrapper {
@@ -2285,6 +2275,138 @@
             background: #8b0000;
             border-color: #a0522d;
             box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.3), 0 0 4px rgba(139, 0, 0, 0.3);
+        }
+
+        /* Enemy Footer Controls */
+        .attack-btn, .hide-toggle-btn {
+            background: linear-gradient(135deg, #8b0000 0%, #a0522d 100%);
+            border: 2px solid #654321;
+            color: #ffffff;
+            font-size: 0.8rem;
+            font-weight: bold;
+            padding: 6px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            margin: 0 4px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .attack-btn:hover, .hide-toggle-btn:hover {
+            background: linear-gradient(135deg, #a0522d 0%, #8b0000 100%);
+            border-color: #8b4513;
+            transform: translateY(-1px);
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.4);
+        }
+
+        .hide-toggle-btn.hidden {
+            background: linear-gradient(135deg, #4a4a4a 0%, #666666 100%);
+            border-color: #333333;
+        }
+
+        .hide-toggle-btn.hidden:hover {
+            background: linear-gradient(135deg, #666666 0%, #4a4a4a 100%);
+            border-color: #555555;
+        }
+
+        /* Attack Overlay - positioned on card */
+        .attack-overlay {
+            display: none;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: linear-gradient(135deg, #2a1810 0%, #1a0f08 100%);
+            border: 3px solid #8b0000;
+            border-radius: 12px;
+            padding: 15px;
+            width: 240px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.9);
+            z-index: 2000;
+            backdrop-filter: blur(2px);
+        }
+
+        .attack-overlay::before {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            right: -5px;
+            bottom: -5px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 15px;
+            z-index: -1;
+        }
+
+        .attack-overlay h3 {
+            color: #ffd700;
+            margin-bottom: 10px;
+            font-family: 'Times New Roman', serif;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+            font-size: 1.1rem;
+        }
+
+        .damage-input {
+            width: 80px;
+            padding: 6px;
+            font-size: 1.1rem;
+            text-align: center;
+            border: 2px solid #8b0000;
+            border-radius: 6px;
+            background: #1a1a1a;
+            color: #ffffff;
+            margin: 8px;
+        }
+
+        .attack-overlay-buttons {
+            display: flex;
+            gap: 8px;
+            justify-content: center;
+            margin-top: 12px;
+        }
+
+        .attack-confirm-btn, .attack-cancel-btn {
+            padding: 6px 12px;
+            border: 2px solid;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 0.85rem;
+            transition: all 0.2s ease;
+        }
+
+        .attack-confirm-btn {
+            background: linear-gradient(135deg, #8b0000 0%, #a0522d 100%);
+            border-color: #654321;
+            color: #ffffff;
+        }
+
+        .attack-cancel-btn {
+            background: linear-gradient(135deg, #4a4a4a 0%, #666666 100%);
+            border-color: #333333;
+            color: #ffffff;
+        }
+
+        .attack-confirm-btn:hover {
+            background: linear-gradient(135deg, #a0522d 0%, #8b0000 100%);
+            transform: translateY(-1px);
+        }
+
+        .attack-cancel-btn:hover {
+            background: linear-gradient(135deg, #666666 0%, #4a4a4a 100%);
+            transform: translateY(-1px);
+        }
+
+
+
+        /* Hidden monster cards */
+        .character-card.hidden-monster {
+            opacity: 0.3;
+            filter: grayscale(100%);
+            transform: scale(0.95);
+            transition: all 0.3s ease;
         }
 
         .remove-card-btn {
@@ -3512,6 +3634,7 @@
         let currentCampaignId = null;
         let campaigns = [];
         let characters = [];
+        let enemies = [];
         let isConnected = false;
         let isAuthenticated = false;
         let activeTabs = {}; // Track active tab for each character
@@ -3740,7 +3863,9 @@
             
             // Clear current data
             characters = [];
+            enemies = [];
             renderCharacters();
+            renderEnemies();
             
             // Update current campaign
             currentCampaignId = campaignId;
@@ -3893,6 +4018,8 @@
         function renderCampaignInfo(info) {
             const content = document.getElementById('campaignInfoContent');
             
+            if (!content) return;
+            
             content.innerHTML = `
                 <div class="campaign-info-grid">
                     <div class="campaign-info-card">
@@ -4013,18 +4140,24 @@
             const generateBtn = document.getElementById('generateBannerBtn');
             const regenerateBtn = document.getElementById('regenerateBannerBtn');
 
-            title.textContent = campaignName;
+            if (title) {
+                title.textContent = campaignName;
+            }
 
             if (imageUrl) {
-                banner.style.backgroundImage = `url(${imageUrl})`;
-                banner.classList.add('has-image');
-                generateBtn.style.display = 'none';
-                regenerateBtn.style.display = 'block';
+                if (banner) {
+                    banner.style.backgroundImage = `url(${imageUrl})`;
+                    banner.classList.add('has-image');
+                }
+                if (generateBtn) generateBtn.style.display = 'none';
+                if (regenerateBtn) regenerateBtn.style.display = 'block';
             } else {
-                banner.style.backgroundImage = 'none';
-                banner.classList.remove('has-image');
-                generateBtn.style.display = 'block';
-                regenerateBtn.style.display = 'none';
+                if (banner) {
+                    banner.style.backgroundImage = 'none';
+                    banner.classList.remove('has-image');
+                }
+                if (generateBtn) generateBtn.style.display = 'block';
+                if (regenerateBtn) regenerateBtn.style.display = 'none';
             }
         }
 
@@ -4479,6 +4612,7 @@
                 }
                 
                 renderCharacters();
+                renderEnemies();
                 updateConnectionStatus();
             }, (error) => {
                 console.error('Firebase data error:', error);
@@ -4643,6 +4777,8 @@
                 bio: enemy.description || '',
                 // Use monster image if available
                 photo: enemy.imageUrl || '',
+                // Mark as enemy for conditional display
+                isEnemy: true,
                 // Other fields enemies don't need
                 activeEffects: '',
                 ability1: '',
@@ -4709,9 +4845,6 @@
                 const card = createEnemyCard(enemy, index);
                 enemyDeck.appendChild(card);
             });
-            
-            // Adjust input widths after rendering
-            setTimeout(() => adjustAllInputWidths(), 100);
         }
 
         // Monster Search Functions
@@ -4887,27 +5020,7 @@
             };
         }
 
-        // Auto-adjust input field widths based on number of digits
-        function adjustInputWidth(input) {
-            if (!input || !input.classList.contains('ac-input')) return;
-            
-            const value = input.value || '0';
-            const numDigits = value.toString().length;
-            
-            // Remove existing width classes
-            input.classList.remove('width-1-digit', 'width-2-digit', 'width-3-digit', 'width-4-digit');
-            
-            // Add appropriate width class
-            if (numDigits <= 1) {
-                input.classList.add('width-1-digit');
-            } else if (numDigits === 2) {
-                input.classList.add('width-2-digit');
-            } else if (numDigits === 3) {
-                input.classList.add('width-3-digit');
-            } else {
-                input.classList.add('width-4-digit');
-            }
-        }
+
 
         // Handle monster image loading errors by falling back to placeholder
         function handleImageError(img) {
@@ -4917,17 +5030,7 @@
             }
         }
 
-        // Apply width adjustment to all HP inputs on page load and when values change
-        function adjustAllInputWidths() {
-            const hpInputs = document.querySelectorAll('.ac-input');
-            hpInputs.forEach(input => {
-                adjustInputWidth(input);
-                
-                // Add event listener for future changes
-                input.addEventListener('input', () => adjustInputWidth(input));
-                input.addEventListener('change', () => adjustInputWidth(input));
-            });
-        }
+
 
         // Show delete confirmation dialog
         function removeCharacter(id) {
@@ -5098,6 +5201,171 @@
             updateCharacter(characterId, 'deathSaves', newSaves);
         }
 
+        // Enemy attack functions
+        let currentAttackTarget = null;
+
+        function showAttackModal(characterId) {
+            currentAttackTarget = characterId;
+            
+            // Look for the target in both characters and enemies arrays
+            let character = characters.find(c => c.id === characterId);
+            if (!character) {
+                character = enemies.find(e => e.id === characterId);
+            }
+            
+            if (!character) {
+                return;
+            }
+            
+            // Find the character card
+            const card = document.querySelector(`[data-character-id="${characterId}"]`);
+            if (!card) {
+                return;
+            }
+            
+            // Remove any existing overlay
+            const existingOverlay = card.querySelector('.attack-overlay');
+            if (existingOverlay) {
+                existingOverlay.remove();
+            }
+            
+            // Clone the overlay template
+            const template = document.getElementById('attackOverlayTemplate');
+            if (!template) {
+                return;
+            }
+            
+            const overlay = template.cloneNode(true);
+            overlay.id = `attackOverlay-${characterId}`;
+            overlay.style.display = 'block';
+            
+            // Add the overlay to the card
+            card.appendChild(overlay);
+            
+            // Focus the damage input
+            const damageInput = overlay.querySelector('.damage-input');
+            damageInput.value = '';
+            damageInput.focus();
+            
+            // Add keyboard event listener for this overlay
+            document.addEventListener('keydown', handleAttackModalKeys);
+        }
+
+        function closeAttackOverlay() {
+            if (currentAttackTarget) {
+                const overlay = document.getElementById(`attackOverlay-${currentAttackTarget}`);
+                if (overlay) {
+                    overlay.remove();
+                }
+                currentAttackTarget = null;
+            }
+            
+            // Remove keyboard event listener
+            document.removeEventListener('keydown', handleAttackModalKeys);
+        }
+
+
+        
+        // Keep the old function name for backward compatibility
+        function closeAttackModal() {
+            closeAttackOverlay();
+        }
+
+        function handleAttackModalKeys(e) {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                confirmAttack();
+            } else if (e.key === 'Escape') {
+                e.preventDefault();
+                closeAttackOverlay();
+            }
+        }
+
+        function confirmAttack() {
+            console.log('confirmAttack called');
+            if (!currentAttackTarget) {
+                console.log('No current attack target');
+                return;
+            }
+            
+            const overlay = document.getElementById(`attackOverlay-${currentAttackTarget}`);
+            if (!overlay) {
+                console.log('No overlay found');
+                return;
+            }
+            const damage = parseInt(overlay.querySelector('.damage-input').value) || 0;
+            console.log('Damage amount:', damage);
+            if (damage <= 0) {
+                alert('Please enter a valid damage amount!');
+                return;
+            }
+            
+            // Look for the target in both characters and enemies arrays
+            let character = characters.find(c => c.id === currentAttackTarget);
+            let isEnemy = false;
+            if (!character) {
+                character = enemies.find(e => e.id === currentAttackTarget);
+                isEnemy = true;
+            }
+            
+            if (!character) return;
+            
+            // Subtract damage from current HP
+            const newHp = Math.max(0, (character.hp || 0) - damage);
+            
+
+            
+            // Use the appropriate update function based on whether it's an enemy or character
+            if (isEnemy) {
+                updateEnemy(currentAttackTarget, 'hp', newHp);
+                // If HP reaches 0, mark as dead
+                if (newHp === 0) {
+                    updateEnemy(currentAttackTarget, 'isDead', true);
+                }
+            } else {
+                updateCharacter(currentAttackTarget, 'hp', newHp);
+                // If HP reaches 0, mark as dead
+                if (newHp === 0) {
+                    updateCharacter(currentAttackTarget, 'isDead', true);
+                }
+            }
+            
+            closeAttackOverlay();
+        }
+
+
+
+        function toggleMonsterVisibility(characterId) {
+            // Look for the target in both characters and enemies arrays
+            let character = characters.find(c => c.id === characterId);
+            let isEnemy = false;
+            if (!character) {
+                character = enemies.find(e => e.id === characterId);
+                isEnemy = true;
+            }
+            
+            if (!character) return;
+            
+            const newHiddenStatus = !character.isHidden;
+            
+            // Use the appropriate update function based on whether it's an enemy or character
+            if (isEnemy) {
+                updateEnemy(characterId, 'isHidden', newHiddenStatus);
+            } else {
+                updateCharacter(characterId, 'isHidden', newHiddenStatus);
+            }
+            
+            // Update the card's visual state
+            const card = document.querySelector(`[data-character-id="${characterId}"]`);
+            if (card) {
+                if (newHiddenStatus) {
+                    card.classList.add('hidden-monster');
+                } else {
+                    card.classList.remove('hidden-monster');
+                }
+            }
+        }
+
         // Helper function to get active tab class
         function getActiveTabClass(characterId, tabName) {
             const activeTab = activeTabs[characterId] || 'stats';
@@ -5146,9 +5414,20 @@
                 // Highlight stats for this character
                 setTimeout(() => highlightStats(character.id), 50);
             });
+        }
+
+        // Render all enemies
+        function renderEnemies() {
+            const enemyDeck = document.getElementById('enemyDeck');
+            enemyDeck.innerHTML = '';
             
-            // Adjust input widths after rendering
-            setTimeout(() => adjustAllInputWidths(), 100);
+            enemies.forEach((enemy, index) => {
+                const card = createEnemyCard(enemy, index);
+                enemyDeck.appendChild(card);
+                
+                // Highlight stats for this enemy
+                setTimeout(() => highlightStats(enemy.id), 50);
+            });
         }
 
         // Get texture class based on character race
@@ -5372,12 +5651,12 @@
                             <button class="tab-btn ${getActiveTabClass(character.id, 'abilities')}" onclick="switchTab('${character.id}', 'abilities')" data-tab="abilities">
                                 Skills
                             </button>
-                            <button class="tab-btn ${getActiveTabClass(character.id, 'inventory')}" onclick="switchTab('${character.id}', 'inventory')" data-tab="inventory">
+                            ${!character.isEnemy ? `<button class="tab-btn ${getActiveTabClass(character.id, 'inventory')}" onclick="switchTab('${character.id}', 'inventory')" data-tab="inventory">
                                 Bag
-                            </button>
-                            <button class="tab-btn ${getActiveTabClass(character.id, 'story')}" onclick="switchTab('${character.id}', 'story')" data-tab="story">
+                            </button>` : ''}
+                            ${!character.isEnemy ? `<button class="tab-btn ${getActiveTabClass(character.id, 'story')}" onclick="switchTab('${character.id}', 'story')" data-tab="story">
                                 Story
-                            </button>
+                            </button>` : ''}
                         </div>
                     </div>
                 </div>
@@ -5467,7 +5746,7 @@
                         </div>
                     </div>
 
-                    <!-- Inventory Tab Content -->
+                    ${!character.isEnemy ? `<!-- Inventory Tab Content -->
                     <div class="tab-content ${getActiveTabClass(character.id, 'inventory')}" id="inventory-content-${character.id}">
                         <div class="inventory-section">
                             <div class="inventory-item">
@@ -5487,9 +5766,9 @@
                                 <textarea value="${character.items || ''}" onchange="updateCharacter('${character.id}', 'items', this.value)" class="editable-field inventory-textarea" placeholder="Enter inventory items...">${character.items || ''}</textarea>
                             </div>
                         </div>
-                    </div>
+                    </div>` : ''}
 
-                    <!-- Story Tab Content -->
+                    ${!character.isEnemy ? `<!-- Story Tab Content -->
                     <div class="tab-content ${getActiveTabClass(character.id, 'story')}" id="story-content-${character.id}">
                         <div class="story-section">
                             <div class="story-item">
@@ -5505,7 +5784,7 @@
                                 <textarea value="${character.goals || ''}" onchange="updateCharacter('${character.id}', 'goals', this.value)" class="editable-field story-textarea" placeholder="Enter character goals...">${character.goals || ''}</textarea>
                             </div>
                         </div>
-                    </div>
+                    </div>` : ''}
 
                     <!-- New Stats Tab Content -->
                     <div class="tab-content" id="newstats-content-${character.id}">
@@ -5515,19 +5794,30 @@
                 
                 <div class="card-footer">
                     <div class="footer-left">
-                                            <button class="death-toggle-btn ${character.isDead ? '' : 'alive'}" onclick="toggleDeath('${character.id}')">
-                        ${character.isDead ? '💀 Dead' : '⚡ Alive'}
-                    </button>
+                        <button class="death-toggle-btn ${character.isDead ? '' : 'alive'}" onclick="toggleDeath('${character.id}')">
+                            ${character.isDead ? '💀 Dead' : '⚡ Alive'}
+                        </button>
                     </div>
                     <div class="footer-center">
-                        <div class="death-saves">
-                            <span class="death-saves-label">Death Saves</span>
-                            <div class="death-saves-bubbles">
-                                <div class="death-save-bubble ${(character.deathSaves || 0) >= 1 ? 'filled' : ''}" onclick="toggleDeathSave('${character.id}', 1)"></div>
-                                <div class="death-save-bubble ${(character.deathSaves || 0) >= 2 ? 'filled' : ''}" onclick="toggleDeathSave('${character.id}', 2)"></div>
-                                <div class="death-save-bubble ${(character.deathSaves || 0) >= 3 ? 'filled' : ''}" onclick="toggleDeathSave('${character.id}', 3)"></div>
+                        ${character.isEnemy ? `
+                            <!-- Enemy Controls -->
+                            <button class="attack-btn" onclick="showAttackModal('${character.id}')">
+                                ⚔️ Attack
+                            </button>
+                            <button class="hide-toggle-btn ${character.isHidden ? 'hidden' : 'visible'}" onclick="toggleMonsterVisibility('${character.id}')">
+                                ${character.isHidden ? '👁️ Show' : '🙈 Hide'}
+                            </button>
+                        ` : `
+                            <!-- Player Death Saves -->
+                            <div class="death-saves">
+                                <span class="death-saves-label">Death Saves</span>
+                                <div class="death-saves-bubbles">
+                                    <div class="death-save-bubble ${(character.deathSaves || 0) >= 1 ? 'filled' : ''}" onclick="toggleDeathSave('${character.id}', 1)"></div>
+                                    <div class="death-save-bubble ${(character.deathSaves || 0) >= 2 ? 'filled' : ''}" onclick="toggleDeathSave('${character.id}', 2)"></div>
+                                    <div class="death-save-bubble ${(character.deathSaves || 0) >= 3 ? 'filled' : ''}" onclick="toggleDeathSave('${character.id}', 3)"></div>
+                                </div>
                             </div>
-                        </div>
+                        `}
                     </div>
                     <div class="footer-right">
                         <button class="remove-card-btn" onclick="removeCharacter('${character.id}')">
@@ -5751,6 +6041,17 @@
                 <p style="color: #c0c0c0; text-align: center;">Type to search for D&D 5E monsters...</p>
             </div>
             <button class="monster-search-close" onclick="hideMonsterSearch()">Close</button>
+        </div>
+    </div>
+
+    <!-- Attack Overlay Template (will be cloned and positioned on cards) -->
+    <div id="attackOverlayTemplate" class="attack-overlay" style="display: none;">
+        <h3>Attack</h3>
+        <p>Damage:</p>
+        <input type="number" class="damage-input" min="0" placeholder="0">
+        <div class="attack-overlay-buttons">
+            <button class="attack-confirm-btn" onclick="confirmAttack()">Apply</button>
+            <button class="attack-cancel-btn" onclick="closeAttackOverlay()">Cancel</button>
         </div>
     </div>
 
