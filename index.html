@@ -13,16 +13,291 @@
         }
 
         html {
-            overflow-x: hidden; /* Prevent horizontal scrollbar at root level */
+            height: 100%;
         }
 
         body {
             font-family: 'Times New Roman', serif;
             background: linear-gradient(90deg, #051A0F 0%, #021207 100%);
             min-height: 100vh;
+            margin: 0;
+            padding: 0;
             color: #e0e0e0;
-            overflow-x: hidden; /* Prevent horizontal scrollbar */
         }
+
+        /* Hide ALL scrollbars globally */
+        * {
+            scrollbar-width: none; /* Firefox */
+            -ms-overflow-style: none; /* Internet Explorer 10+ */
+        }
+
+        *::-webkit-scrollbar {
+            display: none; /* WebKit browsers */
+        }
+
+        /* Spell Library Styles - copied from monster browser */
+        .spell-browser-section {
+            margin: 0 0 15px 0;
+            padding: 20px;
+            background: rgba(4, 14, 8, 0.8);
+            border-radius: 8px;
+            margin-top: -80px;
+            z-index: 100;
+        }
+
+        .spell-browser-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            gap: 20px;
+        }
+
+        .spell-browser-header h3 {
+            color: #9d4edd;
+            font-size: 12px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2pt;
+            margin: 0;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+        }
+
+        .spell-browser-controls {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .spell-search-input {
+            background: linear-gradient(180deg, #4a4a4a 0%, #3a3a3a 100%);
+            color: #e0e0e0;
+            border: 2px solid #8b7355;
+            border-radius: 6px;
+            padding: 8px 12px;
+            font-size: 0.9rem;
+            font-family: 'Times New Roman', serif;
+            min-width: 200px;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .spell-search-input:focus {
+            outline: none;
+            border-color: #9d4edd;
+            box-shadow: 
+                inset 0 2px 4px rgba(0, 0, 0, 0.3),
+                0 0 0 2px rgba(157, 78, 221, 0.3);
+        }
+
+        .spell-level-filter, .spell-school-filter {
+            background: linear-gradient(180deg, #4a4a4a 0%, #3a3a3a 100%);
+            color: #e0e0e0;
+            border: 2px solid #8b7355;
+            border-radius: 6px;
+            padding: 8px 12px;
+            font-size: 0.9rem;
+            font-family: 'Times New Roman', serif;
+            cursor: pointer;
+        }
+
+
+
+        .spell-browser-container {
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+        }
+
+        .spell-browser-container::before,
+        .spell-browser-container::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 120px;
+            z-index: 10;
+            pointer-events: none;
+        }
+
+        .spell-browser-container::before {
+            left: 0;
+            background: linear-gradient(to right, 
+                rgba(4, 14, 8, 1) 0%, 
+                rgba(4, 14, 8, 0.9) 20%, 
+                rgba(4, 14, 8, 0.6) 50%, 
+                rgba(4, 14, 8, 0) 100%);
+        }
+
+        .spell-browser-container::after {
+            right: 0;
+            background: linear-gradient(to left, 
+                rgba(4, 14, 8, 1) 0%, 
+                rgba(4, 14, 8, 0.9) 20%, 
+                rgba(4, 14, 8, 0.6) 50%, 
+                rgba(4, 14, 8, 0) 100%);
+        }
+
+        .spell-browser-scroll {
+            overflow-x: auto;
+            overflow-y: hidden;
+            scrollbar-width: thin;
+            scrollbar-color: #8b7355 rgba(139, 115, 85, 0.2);
+            scroll-behavior: smooth;
+            padding: 15px 0;
+        }
+
+        .spell-browser-content {
+            display: flex;
+            gap: 12px;
+            min-width: min-content;
+            padding: 0;
+        }
+
+        .spell-library-card {
+            background: linear-gradient(180deg, #2a2a3a 0%, #1a1a2a 100%);
+            border-radius: 8px;
+            min-width: 200px;
+            max-width: 200px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 
+                inset 0 1px 0 rgba(255, 255, 255, 0.1),
+                0 4px 8px rgba(0, 0, 0, 0.4);
+            overflow: hidden;
+        }
+
+        .spell-library-card:hover {
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: 
+                inset 0 1px 0 rgba(255, 255, 255, 0.2),
+                0 12px 40px rgba(157, 78, 221, 0.6);
+        }
+
+        .spell-library-content {
+            padding: 12px;
+            text-align: center;
+        }
+
+        .spell-library-name {
+            color: #9d4edd;
+            font-size: 0.95rem;
+            font-weight: bold;
+            margin-bottom: 8px;
+            line-height: 1.2;
+            height: 2.4em;
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+        }
+
+        .spell-library-level {
+            color: #ffd700;
+            font-size: 0.75rem;
+            margin-bottom: 6px;
+        }
+
+        .spell-library-school {
+            color: #e0e0e0;
+            font-size: 0.7rem;
+            margin-bottom: 8px;
+            text-transform: capitalize;
+        }
+
+        .spell-library-description {
+            color: #c0c0c0;
+            font-size: 0.7rem;
+            line-height: 1.3;
+            max-height: 60px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            margin-bottom: 12px;
+        }
+
+        .spell-library-image-section {
+            width: 100%;
+            height: 150px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .spell-library-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: all 0.3s ease;
+        }
+
+        .spell-library-image-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.7) 100%);
+        }
+
+        .spell-library-add-btn {
+            background: linear-gradient(180deg, #9d4edd 0%, #7b2cbf 100%);
+            color: #ffffff;
+            border: none;
+            border-radius: 4px;
+            padding: 6px 12px;
+            font-size: 0.75rem;
+            font-family: 'Times New Roman', serif;
+            font-weight: normal;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            width: 100%;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .spell-library-add-btn:hover {
+            background: linear-gradient(180deg, #b968f0 0%, #9d4edd 100%);
+            transform: translateY(-1px);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .spell-library-add-btn:active {
+            transform: translateY(0);
+            box-shadow: 
+                inset 0 2px 4px rgba(0, 0, 0, 0.4),
+                0 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Animation for newly added spell cards */
+        @keyframes spellCardAdded {
+            0% {
+                transform: translateX(-200px) rotate(-8deg) scale(0.9);
+                opacity: 0;
+                box-shadow: 
+                    inset 0 1px 0 rgba(255, 255, 255, 0.1),
+                    0 12px 24px rgba(0, 0, 0, 0.6);
+            }
+            60% {
+                opacity: 1;
+                transform: translateX(8px) rotate(1deg) scale(1.01);
+                box-shadow: 
+                    inset 0 1px 0 rgba(255, 255, 255, 0.1),
+                    0 8px 16px rgba(0, 0, 0, 0.5);
+            }
+            100% {
+                transform: translateX(0) rotate(0deg) scale(1);
+                opacity: 1;
+                box-shadow: 
+                    inset 0 1px 0 rgba(255, 255, 255, 0.1),
+                    0 6px 12px rgba(0, 0, 0, 0.4);
+            }
+        }
+
+        .spell-card-new {
+            animation: spellCardAdded 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+        }
+
+        /* Deck open state - no longer needed as we cover the scrollbar */
 
         .app {
             min-height: 100vh;
@@ -1433,6 +1708,13 @@
             overflow: auto;
             transform: scale(0.9);
             transform-origin: top center;
+            /* Hide scrollbar */
+            scrollbar-width: none; /* Firefox */
+            -ms-overflow-style: none; /* Internet Explorer 10+ */
+        }
+
+        .app-main::-webkit-scrollbar {
+            display: none; /* WebKit browsers */
         }
 
         .character-deck {
@@ -1443,6 +1725,7 @@
             margin: 0 auto 30px auto;
             padding: 30px;
             justify-content: center;
+            overflow: visible;
         }
 
         @media (max-width: 768px) {
@@ -1463,54 +1746,20 @@
                 0 6px 12px rgba(0, 0, 0, 0.6);
             position: relative;
             transition: all 0.3s ease;
-            min-height: 480px;
+            min-height: 380px;
             max-width: 320px;
             width: 100%;
             display: flex;
             flex-direction: column;
+            overflow: visible;
         }
 
+        /* Character card opening animation removed */
         .character-card.new-card {
-            animation: cardDealt 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
-            transform: translateX(-100vw) rotate(-15deg);
-            opacity: 0;
+            /* No animation - cards appear instantly */
         }
 
-        @keyframes cardDealt {
-            0% {
-                transform: translateX(-100vw) rotate(-15deg) scale(0.8);
-                opacity: 0;
-                box-shadow: 
-                    inset 0 1px 0 rgba(255, 255, 255, 0.1),
-                    0 20px 40px rgba(0, 0, 0, 0.8);
-            }
-            30% {
-                opacity: 1;
-                transform: translateX(-20px) rotate(-8deg) scale(0.95);
-                box-shadow: 
-                    inset 0 1px 0 rgba(255, 255, 255, 0.1),
-                    0 15px 30px rgba(0, 0, 0, 0.7);
-            }
-            70% {
-                transform: translateX(10px) rotate(2deg) scale(1.02);
-                box-shadow: 
-                    inset 0 1px 0 rgba(255, 255, 255, 0.1),
-                    0 8px 16px rgba(0, 0, 0, 0.6);
-            }
-            85% {
-                transform: translateX(0) rotate(-1deg) scale(1.01);
-                box-shadow: 
-                    inset 0 1px 0 rgba(255, 255, 255, 0.1),
-                    0 6px 12px rgba(0, 0, 0, 0.6);
-            }
-            100% {
-                transform: translateX(0) rotate(0deg) scale(1);
-                opacity: 1;
-                box-shadow: 
-                    inset 0 1px 0 rgba(255, 255, 255, 0.1),
-                    0 6px 12px rgba(0, 0, 0, 0.6);
-            }
-        }
+        /* cardDealt animation removed - character cards no longer animate */
 
         .character-card::before {
             content: '';
@@ -2518,6 +2767,1063 @@
                 0 4px 8px rgba(0, 0, 0, 0.6);
         }
 
+        /* Open Deck Button */
+        .open-deck-btn {
+            background: linear-gradient(180deg, #4a6b4a 0%, #2a4a2a 100%);
+            color: #d4af8c;
+            border: 2px solid #5a7355;
+            border-radius: 6px;
+            padding: 4px 8px;
+            font-size: 0.7rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 
+                inset 0 1px 0 rgba(255, 255, 255, 0.2),
+                0 2px 4px rgba(0, 0, 0, 0.4);
+            font-family: 'Times New Roman', serif;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .open-deck-btn:hover {
+            background: linear-gradient(180deg, #5a7a5a 0%, #3a5a3a 100%);
+            transform: translateY(-1px);
+            box-shadow: 
+                inset 0 1px 0 rgba(255, 255, 255, 0.3),
+                0 4px 8px rgba(0, 0, 0, 0.6);
+        }
+
+        .open-deck-btn.deck-open {
+            background: linear-gradient(180deg, #6b4a4a 0%, #4a2a2a 100%);
+            border-color: #7a5555;
+        }
+
+        /* Deck Popup Window */
+        .deck-popup {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            width: 100vw;
+            height: 100vh;
+            background: #040E08;
+            border: none;
+            border-radius: 0;
+            z-index: 1100;
+            box-shadow: none;
+            backdrop-filter: none;
+            overflow-y: auto;
+        }
+
+
+
+        .deck-popup.open {
+            display: flex;
+            flex-direction: column;
+            animation: deckPopupOpen 0.6s ease-out;
+        }
+
+        @keyframes deckPopupOpen {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .deck-popup.closing {
+            display: flex;
+            flex-direction: column;
+            animation: deckPopupClose 1.0s ease-out forwards;
+        }
+
+        @keyframes deckPopupClose {
+            from {
+                opacity: 1;
+            }
+            to {
+                opacity: 0;
+            }
+        }
+
+        /* Main page transition animations removed */
+
+        .deck-popup-content {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .deck-popup-close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: linear-gradient(180deg, #8b0000 0%, #6b0000 100%);
+            color: #ffd700;
+            border: 1px solid #a0522d;
+            border-radius: 4px;
+            width: 1.5rem;
+            height: 1.5rem;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+            box-shadow: 
+                inset 0 1px 0 rgba(255, 255, 255, 0.2),
+                0 2px 4px rgba(0, 0, 0, 0.4);
+        }
+
+        .deck-popup-close:hover {
+            background: linear-gradient(180deg, #a00000 0%, #8b0000 100%);
+            transform: scale(1.1);
+        }
+
+        /* New Deck Layout */
+        .deck-main-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            padding: 40px;
+            gap: 20px;
+            min-height: 100%;
+        }
+
+        /* Legacy styles - keeping for compatibility */
+
+        .deck-title {
+            color: #ffd700;
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-align: center;
+            font-family: 'Times New Roman', serif;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+            width: 100%;
+        }
+
+        .deck-character-display {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            /* Removed height constraint - let the card determine its own height */
+            margin-bottom: -500px; /* Negative margin to create overlay effect */
+            padding: 20px;
+            position: relative;
+            pointer-events: none;
+        }
+
+        .deck-character-display .character-card {
+            position: relative;
+            z-index: 100;
+            pointer-events: auto;
+            overflow: visible;
+            min-height: 380px; /* Ensure minimum height is maintained */
+            height: auto; /* Allow content to expand */
+            transition: all 0.4s ease; /* Smooth transition for transform changes */
+            /* Transform will be applied via JavaScript with a slight delay */
+        }
+
+        .deck-character-display .character-card.deck-positioned {
+            transform: scale(0.9) translateY(-40px);
+        }
+
+        /* Let the footer use its original absolute positioning */
+        
+        /* Ensure the main content areas expand properly in deck view */
+        .deck-character-display .character-card .tab-content {
+            flex: 1;
+            min-height: 250px; /* Ensure content has minimum height */
+        }
+
+        .deck-content-rows {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .deck-rows-container {
+            display: flex;
+            gap: 10px;
+            width: 100%;
+            max-width: 100%;
+            box-sizing: border-box;
+            overflow: hidden;
+        }
+
+        .deck-row-spells,
+        .deck-row-items {
+            flex: 1;
+            min-width: 0;
+            box-sizing: border-box;
+        }
+
+        /* Clean styling for sections */
+        .deck-row-items {
+            padding: 10px;
+            max-width: 50%;
+            overflow: hidden;
+        }
+
+        .deck-row-spells {
+            padding: 10px;
+            max-width: 50%;
+            overflow: hidden;
+        }
+
+        .deck-row-items .deck-row-header {
+            padding: 5px;
+            text-align: center;
+            padding-left: 0;
+        }
+
+        .deck-row-spells .deck-row-header {
+            padding: 5px;
+            text-align: center;
+            padding-left: 0;
+        }
+
+        /* Full width rows layout */
+
+        /* Scrollable Rows */
+        .deck-row {
+            flex: 0 0 auto;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            width: 100%;
+        }
+
+        /* Fade effects for deck rows - copied from monster library */
+        .deck-row::before,
+        .deck-row::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 120px; /* Fade width */
+            z-index: 10;
+            pointer-events: none;
+        }
+
+        .deck-row::before {
+            left: 0;
+            background: linear-gradient(to right, 
+                rgba(4, 14, 8, 1) 0%, 
+                rgba(4, 14, 8, 0.9) 20%, 
+                rgba(4, 14, 8, 0.6) 50%, 
+                rgba(4, 14, 8, 0) 100%);
+        }
+
+        .deck-row::after {
+            right: 0;
+            background: linear-gradient(to left, 
+                rgba(4, 14, 8, 1) 0%, 
+                rgba(4, 14, 8, 0.9) 20%, 
+                rgba(4, 14, 8, 0.6) 50%, 
+                rgba(4, 14, 8, 0) 100%);
+        }
+
+        .deck-row-header {
+            color: #ffd700;
+            font-size: 12px;
+            font-weight: bold;
+            font-family: 'Times New Roman', serif;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+            padding-left: 140px; /* Offset to match content padding */
+            flex: 0 0 auto;
+        }
+
+        .deck-row-content {
+            flex: 0 0 auto;
+            overflow-x: auto;
+            overflow-y: visible;
+            padding: 0;
+        }
+
+        .deck-row-scroll {
+            display: flex;
+            gap: 15px;
+            align-items: flex-start;
+            min-width: min-content;
+            transform: scale(0.8);
+            transform-origin: left top;
+            padding-bottom: 5px; /* Minimal space to prevent cutoff */
+            padding-left: 130px; /* Offset content from left fade gradient */
+            padding-right: 130px; /* Offset content from right fade gradient */
+        }
+
+        /* Hide horizontal scrollbars but show vertical scrollbar for right column */
+        .deck-right-column::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .deck-right-column::-webkit-scrollbar-track {
+            background: rgba(74, 107, 74, 0.1);
+            border-radius: 4px;
+        }
+
+        .deck-right-column::-webkit-scrollbar-thumb {
+            background: rgba(139, 115, 85, 0.6);
+            border-radius: 4px;
+        }
+
+        .deck-right-column::-webkit-scrollbar-thumb:hover {
+            background: rgba(139, 115, 85, 0.8);
+        }
+
+        /* Hide scrollbars */
+        .deck-row-content::-webkit-scrollbar {
+            display: none;
+        }
+
+        .deck-row-content {
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+
+        .deck-scroll-container::-webkit-scrollbar {
+            display: none;
+        }
+
+        .deck-scroll-container {
+            scrollbar-width: none; /* Firefox */
+            -ms-overflow-style: none; /* Internet Explorer 10+ */
+        }
+
+        /* Character Card in Deck Popup */
+        .deck-character-card {
+            flex: 0 0 320px;
+            width: 320px;
+            position: relative;
+        }
+
+        .deck-character-card.flying {
+            animation: flyToPopup 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+        }
+
+        @keyframes flyToPopup {
+            0% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            50% {
+                transform: scale(0.8);
+                opacity: 0.7;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        /* Add Item Button in Deck */
+        .deck-add-item {
+            flex: 0 0 320px;
+            width: 320px;
+            height: 380px;
+            background: rgba(74, 107, 74, 0.1);
+            border: 3px dashed #4a6b4a;
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: #4a6b4a;
+            font-family: 'Times New Roman', serif;
+        }
+
+        .deck-add-item:hover {
+            background: rgba(74, 107, 74, 0.2);
+            border-color: #5a7a5a;
+            transform: translateY(-4px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+        }
+
+        .deck-add-item-icon {
+            font-size: 3.5rem;
+            margin-bottom: 14px;
+        }
+
+        .deck-add-item-text {
+            font-size: 1.1rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .deck-add-item-subtext {
+            font-size: 0.85rem;
+            margin-top: 7px;
+            opacity: 0.8;
+        }
+
+        /* Item Cards in Deck Popup */
+        .deck-item-card {
+            flex: 0 0 320px;
+            width: 320px;
+        }
+
+        /* Base Item Card Styling */
+        .item-card {
+            background: #17140F;
+            border: none;
+            border-radius: 8px;
+            padding: 18px;
+            padding-bottom: 60px;
+            box-shadow: 
+                inset 0 1px 0 rgba(255, 255, 255, 0.1),
+                0 6px 12px rgba(0, 0, 0, 0.6);
+            position: relative;
+            transition: all 0.3s ease;
+            min-height: 380px;
+            max-width: 320px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            overflow: visible;
+        }
+
+        .item-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 
+                inset 0 1px 0 rgba(255, 255, 255, 0.15),
+                0 8px 16px rgba(0, 0, 0, 0.8);
+        }
+
+        .item-card-header {
+            margin-bottom: 15px;
+            z-index: 1;
+            position: relative;
+        }
+
+        .item-card-name {
+            background: transparent;
+            border: none;
+            color: #ffd700;
+            font-size: 1.2rem;
+            font-weight: bold;
+            font-family: 'Times New Roman', serif;
+            text-align: center;
+            width: 100%;
+            padding: 8px;
+            border-radius: 4px;
+            transition: all 0.2s ease;
+        }
+
+        .item-card-name:focus {
+            outline: none;
+            background: rgba(255, 215, 0, 0.1);
+            box-shadow: 0 0 0 2px rgba(255, 215, 0, 0.3);
+        }
+
+        .item-card-body {
+            flex: 1;
+            z-index: 1;
+            position: relative;
+            margin-bottom: 15px;
+        }
+
+        .item-card-description {
+            width: 100%;
+            height: 100%;
+            min-height: 200px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid #8b7355;
+            border-radius: 4px;
+            padding: 12px;
+            color: #e0e0e0;
+            font-family: 'Times New Roman', serif;
+            font-size: 0.9rem;
+            line-height: 1.4;
+            resize: vertical;
+            transition: all 0.2s ease;
+        }
+
+        .item-card-description:focus {
+            outline: none;
+            border-color: #a0522d;
+            background: rgba(255, 255, 255, 0.08);
+            box-shadow: 0 0 0 2px rgba(160, 82, 45, 0.3);
+        }
+
+        .item-card-footer {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 50px;
+            background: rgba(0, 0, 0, 0.8);
+            border-top: 2px solid #8b7355;
+            border-radius: 0 0 5px 5px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 15px;
+            z-index: 2;
+        }
+
+        .item-card-type {
+            color: #4a6b4a;
+            font-weight: bold;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-family: 'Times New Roman', serif;
+        }
+
+        .delete-item-btn {
+            background: linear-gradient(180deg, #8b0000 0%, #6b0000 100%);
+            color: #ffd700;
+            border: 2px solid #a0522d;
+            border-radius: 4px;
+            width: 2rem;
+            height: 2rem;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 
+                inset 0 1px 0 rgba(255, 255, 255, 0.2),
+                0 2px 4px rgba(0, 0, 0, 0.4);
+        }
+
+        .delete-item-btn:hover {
+            background: linear-gradient(180deg, #a00000 0%, #8b0000 100%);
+            transform: scale(1.05);
+        }
+
+        /* Spell Cards */
+        .spell-card {
+            background: #0F1317; /* Slightly different from item cards */
+            border: none;
+            border-radius: 8px;
+            padding: 18px;
+            padding-bottom: 60px;
+            box-shadow: 
+                inset 0 1px 0 rgba(138, 43, 226, 0.1), /* Purple tint */
+                0 6px 12px rgba(0, 0, 0, 0.6);
+            position: relative;
+            transition: all 0.3s ease;
+            min-height: 380px;
+            max-width: 320px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            overflow: visible;
+            flex: 0 0 320px;
+        }
+
+        .spell-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 
+                inset 0 1px 0 rgba(138, 43, 226, 0.2),
+                0 8px 16px rgba(138, 43, 226, 0.3);
+        }
+
+        .spell-card .card-texture {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(75, 0, 130, 0.15) 0%, rgba(138, 43, 226, 0.1) 100%);
+            opacity: 0.8;
+            border-radius: 6px;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* Spell Card Image Section */
+        .spell-card-image-section {
+            display: flex;
+            justify-content: center;
+            margin: 0 -12px 16px -12px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .spell-card-image {
+            width: 100%;
+            height: 180px; /* Adjusted for 16:9 aspect ratio */
+            object-fit: cover;
+            border-radius: 6px;
+            border: 2px solid rgba(138, 43, 226, 0.3);
+            box-shadow: 
+                0 4px 8px rgba(0, 0, 0, 0.4),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .spell-card:hover .spell-card-image {
+            border-color: rgba(138, 43, 226, 0.5);
+            box-shadow: 
+                0 6px 12px rgba(138, 43, 226, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2);
+        }
+
+        .spell-card-header {
+            margin-bottom: 15px;
+            z-index: 1;
+            position: relative;
+        }
+
+        .spell-card-name {
+            background: transparent;
+            border: none;
+            color: #da70d6; /* Orchid color for spells */
+            font-size: 1.2rem;
+            font-weight: bold;
+            font-family: 'Times New Roman', serif;
+            text-align: center;
+            width: 100%;
+            padding: 8px;
+            border-radius: 4px;
+            transition: all 0.2s ease;
+            z-index: 1;
+            position: relative;
+        }
+
+        .spell-card-name:focus {
+            outline: none;
+            background: rgba(138, 43, 226, 0.1);
+            border: 1px solid #da70d6;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .spell-card-body {
+            flex: 1;
+            z-index: 1;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .spell-card-level {
+            background: rgba(138, 43, 226, 0.2);
+            border: 1px solid #da70d6;
+            border-radius: 4px;
+            padding: 4px 8px;
+            font-family: 'Times New Roman', serif;
+            color: #da70d6;
+            font-size: 0.9rem;
+            font-weight: bold;
+            text-align: center;
+            width: 100%;
+        }
+
+        .spell-card-description {
+            background: transparent;
+            border: none;
+            color: #e0e0e0;
+            font-family: 'Times New Roman', serif;
+            font-size: 0.85rem;
+            line-height: 1.4;
+            resize: vertical;
+            width: 100%;
+            min-height: 80px;
+            padding: 8px;
+            border-radius: 4px;
+            transition: all 0.2s ease;
+            z-index: 1;
+            position: relative;
+        }
+
+        .spell-card-description:focus {
+            outline: none;
+            background: rgba(138, 43, 226, 0.1);
+            border: 1px solid #da70d6;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .spell-card-footer {
+            position: absolute;
+            bottom: 18px;
+            left: 18px;
+            right: 18px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1;
+        }
+
+        .spell-card-school {
+            background: rgba(138, 43, 226, 0.3);
+            color: #da70d6;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 0.7rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-family: 'Times New Roman', serif;
+        }
+
+        /* Add Spell Button */
+        .deck-add-spell {
+            flex: 0 0 320px;
+            width: 320px;
+            height: 380px;
+            background: rgba(138, 43, 226, 0.1);
+            border: 3px dashed #da70d6;
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: #da70d6;
+            font-family: 'Times New Roman', serif;
+        }
+
+        .deck-add-spell:hover {
+            background: rgba(138, 43, 226, 0.2);
+            border-color: #dda0dd;
+            transform: translateY(-4px);
+            box-shadow: 0 8px 16px rgba(138, 43, 226, 0.4);
+        }
+
+        .deck-add-spell-icon {
+            font-size: 3.5rem;
+            margin-bottom: 14px;
+        }
+
+        .deck-add-spell-text {
+            font-size: 1.1rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .deck-add-spell-subtext {
+            font-size: 0.85rem;
+            margin-top: 7px;
+            opacity: 0.8;
+        }
+
+        .deck-overlay-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #8b7355;
+        }
+
+        .deck-overlay-title {
+            color: #ffd700;
+            font-size: 1.4rem;
+            font-weight: bold;
+            font-family: 'Times New Roman', serif;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+        }
+
+        .deck-close-btn {
+            background: linear-gradient(180deg, #8b0000 0%, #6b0000 100%);
+            color: #ffd700;
+            border: 2px solid #a0522d;
+            border-radius: 6px;
+            width: 2.5rem;
+            height: 2.5rem;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 
+                inset 0 1px 0 rgba(255, 255, 255, 0.2),
+                0 2px 4px rgba(0, 0, 0, 0.4);
+        }
+
+        .deck-close-btn:hover {
+            background: linear-gradient(180deg, #a00000 0%, #8b0000 100%);
+            transform: scale(1.05);
+        }
+
+        .deck-items-section {
+            position: relative;
+        }
+
+        .deck-items-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .deck-items-title {
+            color: #ffd700;
+            font-size: 1.2rem;
+            font-weight: bold;
+            font-family: 'Times New Roman', serif;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .add-item-btn {
+            background: linear-gradient(180deg, #4a6b4a 0%, #2a4a2a 100%);
+            color: #d4af8c;
+            border: 2px solid #5a7355;
+            border-radius: 6px;
+            padding: 8px 16px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-family: 'Times New Roman', serif;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            box-shadow: 
+                inset 0 1px 0 rgba(255, 255, 255, 0.2),
+                0 2px 4px rgba(0, 0, 0, 0.4);
+        }
+
+        .add-item-btn:hover {
+            background: linear-gradient(180deg, #5a7a5a 0%, #3a5a3a 100%);
+            transform: translateY(-1px);
+            box-shadow: 
+                inset 0 1px 0 rgba(255, 255, 255, 0.3),
+                0 4px 8px rgba(0, 0, 0, 0.6);
+        }
+
+        .deck-items-container {
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+        }
+
+        .deck-items {
+            display: flex;
+            gap: 20px;
+            padding: 10px;
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+
+        .deck-items::-webkit-scrollbar {
+            display: none;
+        }
+
+        .deck-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            pointer-events: none;
+            display: flex;
+            justify-content: space-between;
+            left: 0;
+            right: 0;
+            padding: 0 10px;
+        }
+
+        .deck-nav-btn {
+            background: linear-gradient(180deg, #8b7355 0%, #6b5b3a 100%);
+            color: #ffd700;
+            border: 2px solid #a0522d;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            font-size: 1.5rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            pointer-events: auto;
+            box-shadow: 
+                inset 0 1px 0 rgba(255, 255, 255, 0.2),
+                0 4px 8px rgba(0, 0, 0, 0.6);
+        }
+
+        .deck-nav-btn:hover {
+            background: linear-gradient(180deg, #a0522d 0%, #8b7355 100%);
+            transform: scale(1.1);
+            box-shadow: 
+                inset 0 1px 0 rgba(255, 255, 255, 0.3),
+                0 6px 12px rgba(0, 0, 0, 0.8);
+        }
+
+        .deck-nav-btn:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* Item Card Styling - Full Size Like Character Cards */
+        .item-card {
+            flex: 0 0 320px;
+            background: #17140F;
+            border: none;
+            border-radius: 8px;
+            padding: 18px;
+            padding-bottom: 60px;
+            box-shadow: 
+                inset 0 1px 0 rgba(255, 255, 255, 0.1),
+                0 6px 12px rgba(0, 0, 0, 0.6);
+            position: relative;
+            transition: all 0.3s ease;
+            min-height: 380px;
+            max-width: 320px;
+            width: 320px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .item-card:hover {
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: 
+                inset 0 1px 0 rgba(255, 255, 255, 0.2),
+                0 12px 40px rgba(74, 107, 74, 0.6);
+        }
+
+        .item-card .card-texture {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('textures/human.png') center center / cover;
+            opacity: 0.15;
+            border-radius: 6px;
+            pointer-events: none;
+        }
+
+        .item-card-header {
+            position: relative;
+            z-index: 1;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .item-card-name {
+            background: rgba(255, 255, 255, 0.9);
+            border: 2px solid #8b7355;
+            border-radius: 6px;
+            padding: 12px 16px;
+            font-family: 'Times New Roman', serif;
+            color: #2c1810;
+            font-size: 1.1rem;
+            font-weight: bold;
+            width: 100%;
+            text-align: center;
+            box-shadow: 
+                inset 0 1px 0 rgba(255, 255, 255, 0.8),
+                0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .item-card-name:focus {
+            outline: none;
+            background: rgba(255, 255, 255, 1);
+            box-shadow: 
+                inset 0 1px 0 rgba(255, 255, 255, 0.8),
+                0 2px 4px rgba(0, 0, 0, 0.3),
+                0 0 0 3px rgba(74, 107, 74, 0.3);
+        }
+
+        .item-card-body {
+            position: relative;
+            z-index: 1;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .item-card-description {
+            background: rgba(255, 255, 255, 0.9);
+            border: 2px solid #8b7355;
+            border-radius: 6px;
+            padding: 15px;
+            font-family: 'Times New Roman', serif;
+            color: #2c1810;
+            font-size: 0.9rem;
+            min-height: 200px;
+            resize: vertical;
+            width: 100%;
+            flex: 1;
+            box-shadow: 
+                inset 0 1px 0 rgba(255, 255, 255, 0.8),
+                0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .item-card-description:focus {
+            outline: none;
+            background: rgba(255, 255, 255, 1);
+            box-shadow: 
+                inset 0 1px 0 rgba(255, 255, 255, 0.8),
+                0 2px 4px rgba(0, 0, 0, 0.3),
+                0 0 0 3px rgba(74, 107, 74, 0.3);
+        }
+
+        .item-card-footer {
+            position: absolute;
+            bottom: 8px;
+            left: 8px;
+            right: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1;
+            padding: 8px 10px;
+        }
+
+        .item-card-type {
+            color: #4a6b4a;
+            font-size: 0.7rem;
+            font-weight: bold;
+            font-family: 'Times New Roman', serif;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .delete-item-btn {
+            background: linear-gradient(180deg, #8b0000 0%, #6b0000 100%);
+            color: #ffd700;
+            border: 2px solid #a0522d;
+            border-radius: 6px;
+            width: 2.5rem;
+            height: 1.8rem;
+            font-size: 1.08rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 
+                inset 0 1px 0 rgba(255, 255, 255, 0.2),
+                0 2px 4px rgba(0, 0, 0, 0.4);
+        }
+
+        .delete-item-btn:hover {
+            background: linear-gradient(180deg, #a00000 0%, #8b0000 100%);
+            transform: scale(1.05);
+            box-shadow: 
+                inset 0 1px 0 rgba(255, 255, 255, 0.3),
+                0 4px 8px rgba(0, 0, 0, 0.6);
+        }
+
         .remove-card-btn:active {
             transform: scale(1);
             box-shadow: 
@@ -3083,6 +4389,133 @@
             transform: translateY(-1px);
             box-shadow: 0 4px 12px rgba(102, 102, 102, 0.3);
         }
+
+        /* Item Card Delete Overlay */
+        .item-delete-overlay {
+            display: none;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: linear-gradient(135deg, #2a1810 0%, #1a0f08 100%);
+            border: none;
+            border-radius: 12px;
+            padding: 20px;
+            width: 280px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.9);
+            z-index: 2000;
+            backdrop-filter: blur(2px);
+        }
+
+        .item-delete-overlay::before {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            right: -5px;
+            bottom: -5px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 15px;
+            z-index: -1;
+        }
+
+        .item-delete-overlay h3 {
+            color: #ff6b6b;
+            margin-bottom: 12px;
+            font-family: 'Times New Roman', serif;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+            font-size: 1.1rem;
+        }
+
+        .item-delete-overlay p {
+            color: #e0e0e0;
+            margin-bottom: 16px;
+            font-size: 0.9rem;
+            line-height: 1.3;
+        }
+
+        /* Spell Card Delete Overlay */
+        .spell-delete-overlay {
+            display: none;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: linear-gradient(135deg, #2a1810 0%, #1a0f08 100%);
+            border: none;
+            border-radius: 12px;
+            padding: 20px;
+            width: 280px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.9);
+            z-index: 2000;
+            backdrop-filter: blur(2px);
+        }
+
+        .spell-delete-overlay::before {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            right: -5px;
+            bottom: -5px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 15px;
+            z-index: -1;
+        }
+
+        .spell-delete-overlay h3 {
+            color: #ff6b6b;
+            margin-bottom: 12px;
+            font-family: 'Times New Roman', serif;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+            font-size: 1.1rem;
+        }
+
+        .spell-delete-overlay p {
+            color: #e0e0e0;
+            margin-bottom: 16px;
+            font-size: 0.9rem;
+            line-height: 1.3;
+        }
+
+        /* Card Dealing Animations */
+        @keyframes slideFromLeft {
+            0% {
+                transform: translateX(-400px) scale(0.9);
+                opacity: 0;
+            }
+            100% {
+                transform: translateX(0) scale(1);
+                opacity: 1;
+            }
+        }
+
+        /* Reverse animations for deck closing */
+        /* Individual card closing animations removed - everything fades together */
+
+        /* Animation classes */
+        .item-card.dealing {
+            animation: slideFromLeft 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+        }
+
+        .spell-card.dealing {
+            animation: slideFromLeft 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+        }
+
+        /* Initial state for cards before animation */
+        .item-card.pre-deal {
+            transform: translateX(-400px) scale(0.9);
+            opacity: 0;
+        }
+
+        .spell-card.pre-deal {
+            transform: translateX(-400px) scale(0.9);
+            opacity: 0;
+        }
+
+        /* All individual card closing animations removed - everything fades together */
 
         /* Add Enemy Button */
         .add-enemy-btn {
@@ -3750,6 +5183,38 @@
 
         .monster-error {
             color: #ff6b6b;
+        }
+
+        /* Spell loading spinner */
+        .spell-loading {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 200px;
+            width: 100%;
+            color: #e0e0e0;
+            font-size: 1rem;
+            text-align: center;
+            padding: 20px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            background: rgba(4, 14, 8, 0.8);
+            border-radius: 8px;
+        }
+
+        .spell-loading-spinner {
+            width: 24px;
+            height: 24px;
+            border: 3px solid rgba(157, 78, 221, 0.3);
+            border-top: 3px solid #9d4edd;
+            border-radius: 50%;
+            animation: spell-spinner-rotate 1s linear infinite;
+        }
+
+        @keyframes spell-spinner-rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
     </style>
 </head>
@@ -4677,7 +6142,7 @@
                             rollBtn.disabled = false;
                             rollBtn.textContent = '🎲 ROLL';
                         }
-                    }, 800);
+                    }, 1200);
                 }, index * 200); // Staggered rolls
             });
         }
@@ -4938,8 +6403,35 @@
                         id: key,
                         ...data[key]
                     }));
+                    
+                    // Load items and spells for each character
+                    characters.forEach(character => {
+                        // Load items
+                        if (character.items) {
+                            characterItems[character.id] = Object.keys(character.items).map(itemKey => ({
+                                id: itemKey,
+                                ...character.items[itemKey]
+                            }));
+                        } else {
+                            characterItems[character.id] = [];
+                        }
+                        
+                        // Load spells
+                        if (character.spells) {
+                            if (!characterSpells[character.id]) {
+                                characterSpells[character.id] = {};
+                            }
+                            characterSpells[character.id] = character.spells;
+                        } else {
+                            if (!characterSpells[character.id]) {
+                                characterSpells[character.id] = {};
+                            }
+                        }
+                    });
                 } else {
                     characters = [];
+                    characterItems = {};
+                    characterSpells = {};
                 }
                 
                 renderCharacters();
@@ -5292,6 +6784,148 @@
             database.ref(`${campaignPath}/characters/${id}`).remove();
         }
 
+        // Show item delete confirmation overlay
+        function showItemDeleteConfirmation(itemName, itemId, characterId, itemCard) {
+            // Remove any existing delete overlay on this card
+            const existingOverlay = itemCard.querySelector('.item-delete-overlay');
+            if (existingOverlay) {
+                existingOverlay.remove();
+            }
+
+            // Create the overlay
+            const overlay = document.createElement('div');
+            overlay.className = 'item-delete-overlay';
+            overlay.innerHTML = `
+                <h3>Delete Item</h3>
+                <p>Are you sure you want to delete "${itemName}"?</p>
+                <div class="delete-overlay-buttons">
+                    <button class="delete-confirm-btn">Delete</button>
+                    <button class="delete-cancel-btn">Cancel</button>
+                </div>
+            `;
+            
+            // Add event listeners with stopPropagation
+            const confirmBtn = overlay.querySelector('.delete-confirm-btn');
+            const cancelBtn = overlay.querySelector('.delete-cancel-btn');
+            
+            confirmBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                confirmItemDelete(itemId, characterId);
+            });
+            
+            cancelBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                closeItemDeleteOverlay(itemId);
+            });
+            
+            // Stop propagation on the overlay itself
+            overlay.addEventListener('click', (e) => {
+                e.stopPropagation();
+            });
+            
+            // Add overlay to card
+            itemCard.style.position = 'relative';
+            itemCard.appendChild(overlay);
+            overlay.style.display = 'block';
+            
+            // Add keyboard support
+            const handleKeyPress = (e) => {
+                if (e.key === 'Escape') {
+                    closeItemDeleteOverlay(itemId);
+                    document.removeEventListener('keydown', handleKeyPress);
+                }
+            };
+            document.addEventListener('keydown', handleKeyPress);
+        }
+
+        // Show spell delete confirmation overlay
+        function showSpellDeleteConfirmation(spellName, characterId, spellId, spellCard) {
+            // Remove any existing delete overlay on this card
+            const existingOverlay = spellCard.querySelector('.spell-delete-overlay');
+            if (existingOverlay) {
+                existingOverlay.remove();
+            }
+
+            // Create the overlay
+            const overlay = document.createElement('div');
+            overlay.className = 'spell-delete-overlay';
+            overlay.innerHTML = `
+                <h3>Delete Spell</h3>
+                <p>Are you sure you want to delete "${spellName}"?</p>
+                <div class="delete-overlay-buttons">
+                    <button class="delete-confirm-btn">Delete</button>
+                    <button class="delete-cancel-btn">Cancel</button>
+                </div>
+            `;
+            
+            // Add event listeners with stopPropagation
+            const confirmBtn = overlay.querySelector('.delete-confirm-btn');
+            const cancelBtn = overlay.querySelector('.delete-cancel-btn');
+            
+            confirmBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                confirmSpellDelete(characterId, spellId);
+            });
+            
+            cancelBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                closeSpellDeleteOverlay(spellId);
+            });
+            
+            // Stop propagation on the overlay itself
+            overlay.addEventListener('click', (e) => {
+                e.stopPropagation();
+            });
+            
+            // Add overlay to card
+            spellCard.style.position = 'relative';
+            spellCard.appendChild(overlay);
+            overlay.style.display = 'block';
+            
+            // Add keyboard support
+            const handleKeyPress = (e) => {
+                if (e.key === 'Escape') {
+                    closeSpellDeleteOverlay(spellId);
+                    document.removeEventListener('keydown', handleKeyPress);
+                }
+            };
+            document.addEventListener('keydown', handleKeyPress);
+        }
+
+        // Close item delete overlay
+        function closeItemDeleteOverlay(itemId) {
+            const itemCard = document.querySelector(`[data-item-id="${itemId}"]`);
+            if (itemCard) {
+                const overlay = itemCard.querySelector('.item-delete-overlay');
+                if (overlay) {
+                    overlay.remove();
+                }
+            }
+        }
+
+        // Close spell delete overlay
+        function closeSpellDeleteOverlay(spellId) {
+            const spellCard = document.querySelector(`[data-spell-id="${spellId}"]`);
+            if (spellCard) {
+                const overlay = spellCard.querySelector('.spell-delete-overlay');
+                if (overlay) {
+                    overlay.remove();
+                }
+            }
+        }
+
+        // Confirm item deletion
+        function confirmItemDelete(itemId, characterId) {
+            closeItemDeleteOverlay(itemId);
+            confirmDeleteItem(itemId, characterId);
+        }
+
+        // Confirm spell deletion
+        function confirmSpellDelete(characterId, spellId) {
+            closeSpellDeleteOverlay(spellId);
+            confirmDeleteSpell(characterId, spellId);
+        }
+
         // Update a character field
         function updateCharacter(id, field, value) {
             const campaignPath = getCampaignPath();
@@ -5401,6 +7035,720 @@
             
             updateCharacter(characterId, 'deathSaves', newSaves);
         }
+
+        // Deck Popup Functions
+        let characterItems = {}; // Store items for each character: { characterId: [items] }
+        let characterSpells = {}; // Store spells for each character: { characterId: {spellId: spell} }
+        let currentDeckPopup = null;
+
+        function toggleDeck(characterId) {
+            const button = document.getElementById(`deck-btn-${characterId}`);
+            
+            if (!button) return;
+            
+            if (currentDeckPopup) {
+                // Close existing popup
+                closeDeckPopup();
+            } else {
+                // Open deck popup
+                openDeckPopup(characterId);
+            }
+        }
+
+        function openDeckPopup(characterId) {
+            const character = characters.find(c => c.id === characterId);
+            if (!character) return;
+
+            // Create popup
+            const popup = document.createElement('div');
+            popup.className = 'deck-popup';
+            popup.id = 'deck-popup';
+            
+            popup.innerHTML = `
+                <button class="deck-popup-close" onclick="closeDeckPopup()">✕</button>
+                <div class="deck-main-container">
+                    <div class="deck-title" id="deck-title">Character's Deck</div>
+                    <div class="deck-character-display" id="deck-character-display">
+                        <!-- Character card will be populated here -->
+                    </div>
+                    <div class="deck-content-rows">
+                        <div class="deck-rows-container">
+                            <div class="deck-row deck-row-items">
+                                <div class="deck-row-header">Items</div>
+                                <div class="deck-row-content">
+                                    <div class="deck-row-scroll" id="deck-items-scroll">
+                                        <!-- Items will be populated here -->
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="deck-row deck-row-spells">
+                                <div class="deck-row-header">Spells</div>
+                                <div class="deck-row-content">
+                                    <div class="deck-row-scroll" id="deck-spells-scroll">
+                                        <!-- Spells will be populated here -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Spell Library Section -->
+                        <div class="spell-browser-section">
+                            <div class="spell-browser-header">
+                                <h3>Spell Library</h3>
+                                <div class="spell-browser-controls">
+                                    <input type="text" id="spellSearchInput" class="spell-search-input" placeholder="Search spells..." onkeyup="filterSpells(this.value)">
+                                    <select id="spellLevelFilter" class="spell-level-filter" onchange="filterSpellsByLevel(this.value)">
+                                        <option value="">All Levels</option>
+                                        <option value="0">Cantrip</option>
+                                        <option value="1">1st Level</option>
+                                        <option value="2">2nd Level</option>
+                                        <option value="3">3rd Level</option>
+                                        <option value="4">4th Level</option>
+                                        <option value="5">5th Level</option>
+                                        <option value="6">6th Level</option>
+                                        <option value="7">7th Level</option>
+                                        <option value="8">8th Level</option>
+                                        <option value="9">9th Level</option>
+                                    </select>
+                                    <select id="spellSchoolFilter" class="spell-school-filter" onchange="filterSpellsBySchool(this.value)">
+                                        <option value="">All Schools</option>
+                                        <option value="abjuration">Abjuration</option>
+                                        <option value="conjuration">Conjuration</option>
+                                        <option value="divination">Divination</option>
+                                        <option value="enchantment">Enchantment</option>
+                                        <option value="evocation">Evocation</option>
+                                        <option value="illusion">Illusion</option>
+                                        <option value="necromancy">Necromancy</option>
+                                        <option value="transmutation">Transmutation</option>
+                                    </select>
+
+                                </div>
+                            </div>
+                            <div class="spell-browser-container">
+                                <div class="spell-browser-scroll" id="spellBrowserScroll">
+                                    <div class="spell-browser-content" id="spellBrowserContent">
+                                        <!-- Spell library cards will be dynamically loaded here -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            // Append to main content area so it scrolls with the page
+            const mainContent = document.querySelector('#main-content') || document.body;
+            mainContent.appendChild(popup);
+            currentDeckPopup = popup;
+            
+            // Show popup
+            setTimeout(() => {
+                popup.classList.add('open');
+                populateDeckContent(characterId);
+            }, 10);
+            
+            // Don't change button state since deck window covers main page
+        }
+
+        function closeDeckPopup() {
+            if (!currentDeckPopup) return;
+            
+            // Move the character card back to its original location immediately
+            const deckCharacterCard = currentDeckPopup.querySelector('.deck-character-card');
+            if (deckCharacterCard && deckCharacterCard.originalParent) {
+                // Remove deck-specific styling and restore button
+                deckCharacterCard.classList.remove('deck-character-card');
+                deckCharacterCard.classList.remove('deck-positioned');
+                
+                // Restore the original deck button state
+                const deckButton = deckCharacterCard.querySelector('.open-deck-btn');
+                if (deckButton) {
+                    deckButton.textContent = '⚔ Open Deck';
+                    deckButton.style.background = '';
+                    deckButton.onclick = () => openDeckPopup(deckCharacterCard.dataset.characterId);
+                }
+                
+                // Restore the delete button
+                const deleteButton = deckCharacterCard.querySelector('.remove-card-btn');
+                if (deleteButton) {
+                    deleteButton.style.display = '';
+                }
+                
+                // Move card back to original location
+                if (deckCharacterCard.originalNextSibling) {
+                    deckCharacterCard.originalParent.insertBefore(deckCharacterCard, deckCharacterCard.originalNextSibling);
+                } else {
+                    deckCharacterCard.originalParent.appendChild(deckCharacterCard);
+                }
+                
+                // Clean up the stored references
+                delete deckCharacterCard.originalParent;
+                delete deckCharacterCard.originalNextSibling;
+            }
+            
+            // Start the 1-second fade-out animation
+            currentDeckPopup.classList.remove('open');
+            currentDeckPopup.classList.add('closing');
+            
+            // Clean up after fade completes
+            setTimeout(() => {
+                if (currentDeckPopup) {
+                    currentDeckPopup.remove();
+                    currentDeckPopup = null;
+                }
+            }, 1000);
+        }
+
+        function populateDeckContent(characterId) {
+            // Update title with character name
+            const titleElement = document.getElementById('deck-title');
+            const characterDisplayElement = document.getElementById('deck-character-display');
+            const itemsScrollElement = document.getElementById('deck-items-scroll');
+            const spellsScrollElement = document.getElementById('deck-spells-scroll');
+            
+            if (!titleElement || !characterDisplayElement || !itemsScrollElement || !spellsScrollElement) return;
+            
+            // Find the actual character card
+            const originalCard = document.querySelector(`[data-character-id="${characterId}"]`);
+            if (!originalCard) return;
+            
+            // Get character name for title
+            const characterNameInput = originalCard.querySelector('.card-name');
+            const characterName = characterNameInput ? characterNameInput.value || 'Character' : 'Character';
+            titleElement.textContent = `${characterName}'s Deck`;
+            
+            // Store the original parent so we can move it back later
+            originalCard.originalParent = originalCard.parentNode;
+            originalCard.originalNextSibling = originalCard.nextSibling;
+            
+            // Move the actual card to the deck window
+            originalCard.classList.add('deck-character-card');
+            
+            // Toggle the deck button to "Close Deck" state
+            const deckButton = originalCard.querySelector('.open-deck-btn');
+            if (deckButton) {
+                deckButton.textContent = '✕ Close Deck';
+                deckButton.style.background = '#dc2626';
+                deckButton.onclick = () => closeDeckPopup();
+            }
+            
+            // Hide the delete button for safety while viewing deck
+            const deleteButton = originalCard.querySelector('.remove-card-btn');
+            if (deleteButton) {
+                deleteButton.style.display = 'none';
+            }
+            
+            characterDisplayElement.appendChild(originalCard);
+            
+            // Add deck positioning with a slight delay for smooth transition
+            setTimeout(() => {
+                originalCard.classList.add('deck-positioned');
+            }, 100);
+            
+            // Populate items row
+            populateItemsRow(characterId, itemsScrollElement);
+            
+            // Populate spells row
+            populateSpellsRow(characterId, spellsScrollElement);
+            
+            // Initialize spell library
+            initializeSpellLibrary(characterId);
+        }
+
+        // No longer needed - we're using the actual card with all its original functionality
+
+        function populateItemsRow(characterId, itemsScrollElement) {
+            // Add existing item cards first
+            loadCharacterItemsToRow(characterId, itemsScrollElement);
+            
+            // Add "Add Item" button after existing cards
+            const addItemButton = document.createElement('div');
+            addItemButton.className = 'deck-add-item';
+            addItemButton.onclick = () => addNewItemToDeck(characterId);
+            addItemButton.innerHTML = `
+                <div class="deck-add-item-icon">➕</div>
+                <div class="deck-add-item-text">Add Item</div>
+                <div class="deck-add-item-subtext">Create a new item card</div>
+            `;
+            itemsScrollElement.appendChild(addItemButton);
+        }
+
+        function populateSpellsRow(characterId, spellsScrollElement) {
+            // Add existing spell cards first
+            loadCharacterSpellsToRow(characterId, spellsScrollElement);
+            
+            // Add "Add Spell" button after existing cards
+            const addSpellButton = document.createElement('div');
+            addSpellButton.className = 'deck-add-spell';
+            addSpellButton.onclick = () => addNewSpellToDeck(characterId);
+            addSpellButton.innerHTML = `
+                <div class="deck-add-spell-icon">✨</div>
+                <div class="deck-add-spell-text">Add Spell</div>
+                <div class="deck-add-spell-subtext">Create a new spell card</div>
+            `;
+            spellsScrollElement.appendChild(addSpellButton);
+        }
+
+        function loadCharacterItemsToRow(characterId, itemsScrollElement) {
+            // Initialize items array if it doesn't exist
+            if (!characterItems[characterId]) {
+                characterItems[characterId] = [];
+            }
+            
+            const items = characterItems[characterId];
+            items.forEach((item, index) => {
+                const itemCard = createItemCard(item, characterId);
+                itemCard.classList.add('deck-item-card');
+                
+                // Add pre-deal state for animation
+                itemCard.classList.add('pre-deal');
+                itemsScrollElement.appendChild(itemCard);
+                
+                // Trigger dealing animation with staggered timing
+                setTimeout(() => {
+                    itemCard.classList.remove('pre-deal');
+                    itemCard.classList.add('dealing');
+                    
+                    // Clean up animation class after animation completes
+                    setTimeout(() => {
+                        itemCard.classList.remove('dealing');
+                    }, 600);
+                }, 200 + (index * 100)); // Stagger by 100ms per card
+            });
+        }
+
+        function loadCharacterSpellsToRow(characterId, spellsScrollElement) {
+            // Initialize spells object if it doesn't exist
+            if (!characterSpells) {
+                characterSpells = {};
+            }
+            if (!characterSpells[characterId]) {
+                characterSpells[characterId] = {};
+            }
+            
+            // Convert object to array for iteration
+            const spells = Object.values(characterSpells[characterId]);
+            const itemCount = characterItems[characterId] ? characterItems[characterId].length : 0;
+            
+            spells.forEach((spell, index) => {
+                const spellCard = createSpellCard(spell, characterId);
+                
+                // Add pre-deal state for animation
+                spellCard.classList.add('pre-deal');
+                spellsScrollElement.appendChild(spellCard);
+                
+                // Trigger dealing animation with staggered timing (after items)
+                setTimeout(() => {
+                    spellCard.classList.remove('pre-deal');
+                    spellCard.classList.add('dealing');
+                    
+                    // Clean up animation class after animation completes
+                    setTimeout(() => {
+                        spellCard.classList.remove('dealing');
+                    }, 600);
+                }, 300 + (itemCount * 100) + (index * 100)); // Start after items, stagger by 100ms per card
+            });
+        }
+
+        function loadCharacterItemsToDeck(characterId) {
+            const scrollContent = document.getElementById('deck-scroll-content');
+            if (!scrollContent) return;
+            
+            // Initialize items array if it doesn't exist
+            if (!characterItems[characterId]) {
+                characterItems[characterId] = [];
+            }
+            
+            const items = characterItems[characterId];
+            items.forEach(item => {
+                const itemCard = createItemCard(item, characterId);
+                itemCard.classList.add('deck-item-card');
+                scrollContent.appendChild(itemCard);
+            });
+        }
+
+        function addNewItemToDeck(characterId) {
+            const newItem = {
+                id: Date.now().toString(),
+                name: '',
+                description: '',
+                characterId: characterId,
+                createdAt: Date.now()
+            };
+            
+            // Initialize items array if it doesn't exist
+            if (!characterItems[characterId]) {
+                characterItems[characterId] = [];
+            }
+            
+            characterItems[characterId].push(newItem);
+            
+            // Save to Firebase
+            const campaignPath = getCampaignPath();
+            database.ref(`${campaignPath}/characters/${characterId}/items/${newItem.id}`).set(newItem);
+            
+            // Add to the deck popup
+            const itemsScrollElement = document.getElementById('deck-items-scroll');
+            if (itemsScrollElement) {
+                const itemCard = createItemCard(newItem, characterId);
+                itemCard.classList.add('deck-item-card');
+                
+                // Insert before the "Add Item" button
+                const addButton = itemsScrollElement.querySelector('.deck-add-item');
+                if (addButton) {
+                    itemsScrollElement.insertBefore(itemCard, addButton);
+                } else {
+                    itemsScrollElement.appendChild(itemCard);
+                }
+                
+                // Focus on name field
+                setTimeout(() => {
+                    const nameField = itemCard.querySelector('.item-card-name');
+                    if (nameField) {
+                        nameField.focus();
+                        nameField.select();
+                    }
+                }, 100);
+            }
+        }
+
+        function addNewSpellToDeck(characterId) {
+            const newSpell = {
+                id: Date.now().toString(),
+                name: '',
+                level: 'Cantrip',
+                school: 'Evocation',
+                description: '',
+                characterId: characterId,
+                createdAt: Date.now()
+            };
+            
+            // Initialize spells object if it doesn't exist (consistent with spell explorer)
+            if (!characterSpells) {
+                characterSpells = {};
+            }
+            if (!characterSpells[characterId]) {
+                characterSpells[characterId] = {};
+            }
+            
+            characterSpells[characterId][newSpell.id] = newSpell;
+            
+            // Save to Firebase
+            const campaignPath = getCampaignPath();
+            database.ref(`${campaignPath}/characters/${characterId}/spells/${newSpell.id}`).set(newSpell);
+            
+            // Add to the deck popup
+            const spellsScrollElement = document.getElementById('deck-spells-scroll');
+            if (spellsScrollElement) {
+                const spellCard = createSpellCard(newSpell, characterId);
+                
+                // Insert before the "Add Spell" button
+                const addButton = spellsScrollElement.querySelector('.deck-add-spell');
+                if (addButton) {
+                    spellsScrollElement.insertBefore(spellCard, addButton);
+                } else {
+                    spellsScrollElement.appendChild(spellCard);
+                }
+                
+                // Focus on name field
+                setTimeout(() => {
+                    const nameField = spellCard.querySelector('.spell-card-name');
+                    if (nameField) {
+                        nameField.focus();
+                        nameField.select();
+                    }
+                }, 100);
+            }
+        }
+
+        function createSpellCard(spell, characterId) {
+            const spellCard = document.createElement('div');
+            spellCard.className = 'spell-card';
+            spellCard.dataset.spellId = spell.id;
+            
+            // Generate potential image path based on spell name
+            const spellImagePath = getSpellImagePath(spell.name);
+            const imageSection = spellImagePath ? `
+                <div class="spell-card-image-section">
+                    <img src="${spellImagePath}" alt="${spell.name}" class="spell-card-image" 
+                         onerror="this.parentElement.style.display='none'">
+                </div>
+            ` : '';
+            
+            spellCard.innerHTML = `
+                <div class="card-texture"></div>
+                ${imageSection}
+                <div class="spell-card-header">
+                    <input type="text" class="spell-card-name" value="${spell.name}" placeholder="Spell Name" 
+                           onchange="updateSpell('${characterId}', '${spell.id}', 'name', this.value)">
+                </div>
+                <div class="spell-card-body">
+                    <input type="text" class="spell-card-level" value="${spell.level}" placeholder="Spell Level"
+                           onchange="updateSpell('${characterId}', '${spell.id}', 'level', this.value)">
+                    <textarea class="spell-card-description" placeholder="Spell description, components, range, duration, etc..."
+                              onchange="updateSpell('${characterId}', '${spell.id}', 'description', this.value)">${spell.description}</textarea>
+                </div>
+                <div class="spell-card-footer">
+                    <div class="spell-card-school" onclick="cycleSpellSchool('${characterId}', '${spell.id}')">${spell.school}</div>
+                    <button class="delete-item-btn" onclick="deleteSpell('${characterId}', '${spell.id}', event)">🗑️</button>
+                </div>
+            `;
+            
+            return spellCard;
+        }
+
+        // Helper function to get spell image path
+        function getSpellImagePath(spellName) {
+            // Convert spell name to the same format used by the API (lowercase, hyphens)
+            const spellIndex = spellName.toLowerCase()
+                .replace(/'/g, '')
+                .replace(/\s+/g, '-')
+                .replace(/[^a-z0-9\-]/g, '');
+            
+            // Return the image path - the onerror handler will hide it if it doesn't exist
+            return `spell-images/${spellIndex}.png`;
+        }
+
+        function updateSpell(characterId, spellId, field, value) {
+            if (!characterSpells[characterId]) return;
+            
+            const spell = characterSpells[characterId][spellId];
+            if (spell) {
+                spell[field] = value;
+                spell.lastUpdated = Date.now();
+                
+                // Save to Firebase
+                const campaignPath = getCampaignPath();
+                const updates = {};
+                updates[`${campaignPath}/characters/${characterId}/spells/${spellId}/${field}`] = value;
+                updates[`${campaignPath}/characters/${characterId}/spells/${spellId}/lastUpdated`] = Date.now();
+                database.ref().update(updates);
+            }
+        }
+
+        function deleteSpell(characterId, spellId, event) {
+            if (event) event.stopPropagation(); // Prevent event bubbling
+            
+            // Find the spell card
+            const spellCard = document.querySelector(`[data-spell-id="${spellId}"]`);
+            if (!spellCard) return;
+            
+            // Get spell name for the confirmation
+            const spellNameInput = spellCard.querySelector('.spell-card-name');
+            const spellName = spellNameInput ? spellNameInput.value || 'Spell' : 'Spell';
+            
+            // Show delete confirmation overlay
+            showSpellDeleteConfirmation(spellName, characterId, spellId, spellCard);
+        }
+
+        function confirmDeleteSpell(characterId, spellId) {
+            if (!characterSpells[characterId]) return;
+            
+            delete characterSpells[characterId][spellId];
+            
+            // Remove from deck popup if open
+            const spellCard = document.querySelector(`[data-spell-id="${spellId}"]`);
+            if (spellCard) {
+                spellCard.remove();
+            }
+            
+            // Delete from Firebase
+            const campaignPath = getCampaignPath();
+            database.ref(`${campaignPath}/characters/${characterId}/spells/${spellId}`).remove();
+        }
+
+        function cycleSpellSchool(characterId, spellId) {
+            const schools = ['Abjuration', 'Conjuration', 'Divination', 'Enchantment', 'Evocation', 'Illusion', 'Necromancy', 'Transmutation'];
+            
+            if (!characterSpells[characterId]) return;
+            
+            const spell = characterSpells[characterId][spellId];
+            if (spell) {
+                const currentIndex = schools.indexOf(spell.school);
+                const nextIndex = (currentIndex + 1) % schools.length;
+                spell.school = schools[nextIndex];
+                
+                // Save to Firebase
+                const campaignPath = getCampaignPath();
+                const updates = {};
+                updates[`${campaignPath}/characters/${characterId}/spells/${spellId}/school`] = spell.school;
+                updates[`${campaignPath}/characters/${characterId}/spells/${spellId}/lastUpdated`] = Date.now();
+                database.ref().update(updates);
+                
+                // Update the display
+                const spellCard = document.querySelector(`[data-spell-id="${spellId}"]`);
+                if (spellCard) {
+                    const schoolElement = spellCard.querySelector('.spell-card-school');
+                    if (schoolElement) {
+                        schoolElement.textContent = spell.school;
+                    }
+                }
+            }
+        }
+
+        function loadCharacterItems(characterId) {
+            // Initialize items array if it doesn't exist
+            if (!characterItems[characterId]) {
+                characterItems[characterId] = [];
+            }
+            
+            renderCharacterItems(characterId);
+        }
+
+        function renderCharacterItems(characterId) {
+            const itemsContainer = document.getElementById(`deck-items-${characterId}`);
+            if (!itemsContainer) return;
+            
+            itemsContainer.innerHTML = '';
+            
+            const items = characterItems[characterId] || [];
+            items.forEach(item => {
+                const itemCard = createItemCard(item, characterId);
+                itemsContainer.appendChild(itemCard);
+            });
+            
+            // Show message if no items
+            if (items.length === 0) {
+                itemsContainer.innerHTML = `
+                    <div style="flex: 0 0 320px; display: flex; align-items: center; justify-content: center; text-align: center; color: #8b7355; font-style: italic; padding: 40px; min-height: 480px; background: rgba(139, 115, 85, 0.1); border: 2px dashed #8b7355; border-radius: 8px; font-size: 1.1rem;">
+                        <div>
+                            <div style="font-size: 3rem; margin-bottom: 15px;">📦</div>
+                            <div>No items in this deck yet.</div>
+                            <div style="margin-top: 10px; font-size: 0.9rem;">Click "Add New Item" to get started!</div>
+                        </div>
+                    </div>
+                `;
+            }
+            
+            // Update navigation buttons
+            updateDeckNavigation(characterId);
+            
+            // Add scroll listener to update navigation buttons
+            const container = document.getElementById(`deck-items-${characterId}`);
+            if (container) {
+                container.addEventListener('scroll', () => updateDeckNavigation(characterId));
+            }
+        }
+
+        function scrollDeckItems(characterId, direction) {
+            const container = document.getElementById(`deck-items-${characterId}`);
+            if (!container) return;
+            
+            const scrollAmount = 340; // Card width + gap
+            container.scrollBy({
+                left: direction * scrollAmount,
+                behavior: 'smooth'
+            });
+            
+            // Update navigation buttons after scroll
+            setTimeout(() => updateDeckNavigation(characterId), 300);
+        }
+
+        function updateDeckNavigation(characterId) {
+            const container = document.getElementById(`deck-items-${characterId}`);
+            const leftBtn = document.getElementById(`deck-nav-left-${characterId}`);
+            const rightBtn = document.getElementById(`deck-nav-right-${characterId}`);
+            
+            if (!container || !leftBtn || !rightBtn) return;
+            
+            const isAtStart = container.scrollLeft <= 0;
+            const isAtEnd = container.scrollLeft >= container.scrollWidth - container.clientWidth;
+            
+            leftBtn.disabled = isAtStart;
+            rightBtn.disabled = isAtEnd;
+        }
+
+        function addNewItem(characterId) {
+            const newItem = {
+                id: Date.now().toString(),
+                name: '',
+                description: '',
+                characterId: characterId,
+                createdAt: Date.now()
+            };
+            
+            // Initialize items array if it doesn't exist
+            if (!characterItems[characterId]) {
+                characterItems[characterId] = [];
+            }
+            
+            characterItems[characterId].push(newItem);
+            renderCharacterItems(characterId);
+            
+            // Focus on the name field of the new item
+            setTimeout(() => {
+                const newItemCard = document.querySelector(`[data-item-id="${newItem.id}"] .item-card-name`);
+                if (newItemCard) {
+                    newItemCard.focus();
+                    newItemCard.select();
+                }
+            }, 100);
+        }
+
+        function updateItem(itemId, field, value) {
+            // Find the item across all characters
+            for (const characterId in characterItems) {
+                const items = characterItems[characterId];
+                const item = items.find(i => i.id === itemId);
+                if (item) {
+                    item[field] = value;
+                    item.lastUpdated = Date.now();
+                    
+                    // Save to Firebase
+                    const campaignPath = getCampaignPath();
+                    const updates = {};
+                    updates[`${campaignPath}/characters/${characterId}/items/${itemId}/${field}`] = value;
+                    updates[`${campaignPath}/characters/${characterId}/items/${itemId}/lastUpdated`] = Date.now();
+                    database.ref().update(updates);
+                    break;
+                }
+            }
+        }
+
+        function deleteItem(itemId, characterId, event) {
+            if (event) event.stopPropagation(); // Prevent event bubbling
+            
+            // Find the item card
+            const itemCard = document.querySelector(`[data-item-id="${itemId}"]`);
+            if (!itemCard) return;
+            
+            // Get item name for the confirmation
+            const itemNameInput = itemCard.querySelector('.item-card-name');
+            const itemName = itemNameInput ? itemNameInput.value || 'Item' : 'Item';
+            
+            // Show delete confirmation overlay
+            showItemDeleteConfirmation(itemName, itemId, characterId, itemCard);
+        }
+
+        function confirmDeleteItem(itemId, characterId) {
+            const items = characterItems[characterId] || [];
+            const itemIndex = items.findIndex(i => i.id === itemId);
+            if (itemIndex > -1) {
+                items.splice(itemIndex, 1);
+                
+                // Remove from deck popup if open
+                const itemCard = document.querySelector(`[data-item-id="${itemId}"]`);
+                if (itemCard) {
+                    itemCard.remove();
+                }
+                
+                // Delete from Firebase
+                const campaignPath = getCampaignPath();
+                database.ref(`${campaignPath}/characters/${characterId}/items/${itemId}`).remove();
+                
+                // Also update any other views that might show items
+                renderCharacterItems(characterId);
+            }
+        }
+
+        // Close deck popup when clicking outside
+        document.addEventListener('click', function(event) {
+            // Check if there's an open popup and the click is outside it
+            if (currentDeckPopup && 
+                !event.target.closest('.deck-popup') && 
+                !event.target.closest('.open-deck-btn')) {
+                closeDeckPopup();
+            }
+        });
 
         // Enemy attack functions
         let currentAttackTarget = null;
@@ -6057,14 +8405,51 @@
                         `}
                     </div>
                     <div class="footer-right">
+                        ${!character.isEnemy ? `
+                            <button class="open-deck-btn" onclick="toggleDeck('${character.id}')" id="deck-btn-${character.id}">
+                                📦 Deck
+                            </button>
+                        ` : ''}
                         <button class="remove-card-btn" onclick="removeCharacter('${character.id}')">
                             ✕
                         </button>
                     </div>
                 </div>
+
             `;
             
             return card;
+        }
+
+        // Create item card HTML
+        function createItemCard(item, characterId) {
+            const itemCard = document.createElement('div');
+            itemCard.className = 'item-card';
+            itemCard.setAttribute('data-item-id', item.id);
+            
+            itemCard.innerHTML = `
+                <div class="card-texture"></div>
+                <div class="item-card-header">
+                    <input type="text" 
+                           class="item-card-name editable-field" 
+                           value="${item.name || 'New Item'}"
+                           onchange="updateItem('${item.id}', 'name', this.value)"
+                           placeholder="Item Name">
+                </div>
+                <div class="item-card-body">
+                    <textarea class="item-card-description editable-field"
+                              onchange="updateItem('${item.id}', 'description', this.value)"
+                              placeholder="Enter item description, effects, or lore...">${item.description || ''}</textarea>
+                </div>
+                <div class="item-card-footer">
+                    <div class="item-card-type">Item</div>
+                    <button class="delete-item-btn" onclick="deleteItem('${item.id}', '${characterId}', event)">
+                        ✕
+                    </button>
+                </div>
+            `;
+            
+            return itemCard;
         }
 
         // Photo upload functions
@@ -6621,6 +9006,407 @@
                 scrollContainer.addEventListener('scroll', updateNavigationButtons);
             }
         });
+
+        // Spell Library Functionality
+        let allSpells = [];
+        let filteredSpells = [];
+        let currentCharacterForSpells = null;
+
+
+        // Load all spells from D&D 5e API (simplified approach like monsters)
+        async function loadAllSpellsFromAPI() {
+            try {
+                const container = document.getElementById('spellBrowserContent');
+                if (!container) return;
+                
+                container.innerHTML = '<div class="spell-loading">Loading spells from D&D 5e API...</div>';
+
+                const response = await fetch('https://www.dnd5eapi.co/api/2014/spells');
+                const data = await response.json();
+                
+                if (data.results && data.results.length > 0) {
+                    allSpells = data.results;
+                    filteredSpells = [...allSpells];
+                    console.log(`Loaded ${allSpells.length} spells from D&D 5e API`);
+                    
+                    // Render spell library immediately with basic info
+                    renderSpellLibrary();
+                } else {
+                    container.innerHTML = '<div class="spell-error">No spells found in API</div>';
+                }
+            } catch (error) {
+                console.error('Error loading spells:', error);
+                const container = document.getElementById('spellBrowserContent');
+                if (container) {
+                    container.innerHTML = '<div class="spell-error">Error loading spells. Please try again later.</div>';
+                }
+            }
+        }
+
+        // Load basic spell details (school, level) for filtering - ATOMIC operation with rate limiting
+        async function loadBasicSpellDetails() {
+            const spellsNeedingDetails = allSpells.filter(spell => !spell.school || spell.school === 'Loading...');
+            if (spellsNeedingDetails.length === 0) return;
+            
+            console.log(`Loading basic details for ${spellsNeedingDetails.length} spells...`);
+            
+            try {
+                // Create a map to store the loaded data WITHOUT modifying original objects yet
+                const spellDataMap = new Map();
+                let successCount = 0;
+                let errorCount = 0;
+                
+                // Process spells in smaller batches to avoid rate limiting
+                const batchSize = 10;
+                const batches = [];
+                for (let i = 0; i < spellsNeedingDetails.length; i += batchSize) {
+                    batches.push(spellsNeedingDetails.slice(i, i + batchSize));
+                }
+                
+                console.log(`Processing ${batches.length} batches of ${batchSize} spells each...`);
+                
+                for (let batchIndex = 0; batchIndex < batches.length; batchIndex++) {
+                    const batch = batches[batchIndex];
+                    console.log(`Processing batch ${batchIndex + 1}/${batches.length}...`);
+                    
+                    const promises = batch.map(async (spell) => {
+                        try {
+                            const response = await fetch(`https://www.dnd5eapi.co${spell.url}`);
+                            if (!response.ok) {
+                                throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                            }
+                            const detailedSpell = await response.json();
+                            
+                            // Store the data in our map instead of modifying the spell directly
+                            spellDataMap.set(spell.index, {
+                                level: detailedSpell.level,
+                                school: detailedSpell.school ? detailedSpell.school.name : 'Unknown',
+                                classes: detailedSpell.classes || []
+                            });
+                            
+                            successCount++;
+                            return spell;
+                        } catch (error) {
+                            console.error(`Error loading basic details for spell ${spell.name}:`, error.message);
+                            // Set default values for failed spells
+                            spellDataMap.set(spell.index, {
+                                level: 0,
+                                school: 'Unknown',
+                                classes: []
+                            });
+                            errorCount++;
+                            return spell;
+                        }
+                    });
+                    
+                    // Wait for this batch to complete
+                    await Promise.all(promises);
+                    
+                    // Add a small delay between batches to be nice to the API
+                    if (batchIndex < batches.length - 1) {
+                        await new Promise(resolve => setTimeout(resolve, 100));
+                    }
+                }
+                
+                console.log(`Batch processing complete: ${successCount} success, ${errorCount} errors`);
+                
+                // Now update all spells ATOMICALLY - all at once
+                spellsNeedingDetails.forEach(spell => {
+                    const data = spellDataMap.get(spell.index);
+                    if (data) {
+                        spell.level = data.level;
+                        spell.school = data.school;
+                        spell.classes = data.classes;
+                    }
+                });
+                
+                console.log('Basic spell details loaded successfully - all spells now have consistent data');
+                
+                // Debug: Count necromancy spells after loading
+                const necromancySpells = allSpells.filter(spell => spell.school && spell.school.toLowerCase() === 'necromancy');
+                console.log(`Total necromancy spells in dataset: ${necromancySpells.length}`);
+            } catch (error) {
+                console.error('Error loading basic spell details:', error);
+            }
+        }
+
+        // Load detailed spell information on-demand
+        async function loadSpellDetails(spell) {
+            try {
+                const response = await fetch(`https://www.dnd5eapi.co${spell.url}`);
+                const details = await response.json();
+                
+                return {
+                    ...spell,
+                    level: details.level,
+                    school: details.school ? details.school.name : 'Unknown',
+                    description: details.desc ? details.desc[0] : 'No description available',
+                    classes: details.classes || [],
+                    components: details.components || [],
+                    range: details.range || 'Unknown',
+                    duration: details.duration || 'Unknown',
+                    casting_time: details.casting_time || 'Unknown'
+                };
+            } catch (error) {
+                console.error(`Error loading spell details for ${spell.name}:`, error);
+                return {
+                    ...spell,
+                    level: 'Unknown',
+                    school: 'Unknown',
+                    description: 'Error loading spell details',
+                    classes: [],
+                    components: [],
+                    range: 'Unknown',
+                    duration: 'Unknown',
+                    casting_time: 'Unknown'
+                };
+            }
+        }
+
+        // Render spell library cards (with basic info, details loaded on-demand)
+        function renderSpellLibrary() {
+            const container = document.getElementById('spellBrowserContent');
+            if (!container) return;
+            
+            container.innerHTML = '';
+            
+            filteredSpells.forEach((spell, index) => {
+                const card = document.createElement('div');
+                card.className = 'spell-library-card';
+                
+                // Use available data or show loading placeholders
+                const levelText = spell.level !== undefined 
+                    ? (spell.level === 0 ? 'Cantrip' : `${spell.level}${getOrdinalSuffix(spell.level)} Level`)
+                    : 'Loading...';
+                
+                // Add image if available
+                const spellImagePath = getSpellImagePath(spell.name);
+                const imageSection = spellImagePath ? `
+                    <div class="spell-library-image-section">
+                        <img src="${spellImagePath}" alt="${spell.name}" class="spell-library-image" 
+                             onerror="this.parentElement.style.display='none'">
+                    </div>
+                ` : '';
+                
+                card.innerHTML = `
+                    ${imageSection}
+                    <div class="spell-library-content">
+                        <div class="spell-library-name">${spell.name}</div>
+                        <div class="spell-library-level">${levelText}</div>
+                        <div class="spell-library-school">${spell.school || 'Loading...'}</div>
+                        <button class="spell-library-add-btn" onclick="addSpellToCharacterByIndex(event, ${index})">+ Add Spell</button>
+                    </div>
+                `;
+                
+                container.appendChild(card);
+            });
+        }
+
+        // Helper function to add spell by index (loads details first)
+        async function addSpellToCharacterByIndex(event, index) {
+            if (event) event.stopPropagation();
+            const spell = filteredSpells[index];
+            if (spell) {
+                // Show loading state on button
+                const button = event.target;
+                const originalText = button.textContent;
+                button.textContent = 'Loading...';
+                button.disabled = true;
+                
+                try {
+                    // Load detailed spell information
+                    const detailedSpell = await loadSpellDetails(spell);
+                    
+                    // Add the spell with details
+                    addSpellToCharacter(event, detailedSpell);
+                    
+                    // Restore button after successful addition
+                    button.textContent = originalText;
+                    button.disabled = false;
+                } catch (error) {
+                    console.error('Error loading spell details:', error);
+                    button.textContent = 'Error!';
+                    setTimeout(() => {
+                        button.textContent = originalText;
+                        button.disabled = false;
+                    }, 2000);
+                }
+            }
+        }
+
+        // Add spell to character's spell list (using same pattern as addNewSpellToDeck)
+        function addSpellToCharacter(event, spell) {
+            if (event) event.stopPropagation(); // Prevent card click if button is clicked
+            if (!currentCharacterForSpells) return;
+            
+            // Create new spell for character (using same structure as addNewSpellToDeck)
+            const newSpell = {
+                id: Date.now().toString(),
+                name: spell.name,
+                level: spell.level,
+                school: spell.school.toLowerCase(),
+                description: spell.description,
+                characterId: currentCharacterForSpells,
+                createdAt: Date.now()
+            };
+            
+            // Initialize spells object if it doesn't exist (same as addNewSpellToDeck)
+            if (!characterSpells) {
+                characterSpells = {};
+            }
+            if (!characterSpells[currentCharacterForSpells]) {
+                characterSpells[currentCharacterForSpells] = {};
+            }
+            
+            characterSpells[currentCharacterForSpells][newSpell.id] = newSpell;
+            
+            // Save to Firebase (same pattern as addNewSpellToDeck)
+            const campaignPath = getCampaignPath();
+            database.ref(`${campaignPath}/characters/${currentCharacterForSpells}/spells/${newSpell.id}`).set(newSpell);
+            
+            // Add to the deck popup (same pattern as addNewSpellToDeck)
+            const spellsScrollElement = document.getElementById('deck-spells-scroll');
+            if (spellsScrollElement) {
+                const spellCard = createSpellCard(newSpell, currentCharacterForSpells);
+                
+                // Add animation class for the new spell card
+                spellCard.classList.add('spell-card-new');
+                
+                // Insert before the "Add Spell" button
+                const addButton = spellsScrollElement.querySelector('.deck-add-spell');
+                if (addButton) {
+                    spellsScrollElement.insertBefore(spellCard, addButton);
+                    
+                    // Remove animation class after animation completes
+                    setTimeout(() => {
+                        spellCard.classList.remove('spell-card-new');
+                    }, 1200);
+                } else {
+                    spellsScrollElement.appendChild(spellCard);
+                    
+                    // Remove animation class after animation completes
+                    setTimeout(() => {
+                        spellCard.classList.remove('spell-card-new');
+                    }, 1200);
+                }
+            }
+            
+
+        }
+
+        // Filter functions
+        function filterSpells(searchTerm) {
+            filteredSpells = [...allSpells];
+            
+            if (searchTerm.trim()) {
+                filteredSpells = allSpells.filter(spell =>
+                    spell.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                    (spell.description && spell.description.toLowerCase().includes(searchTerm.toLowerCase()))
+                );
+            }
+            
+            applyAllSpellFilters();
+            renderSpellLibrary();
+        }
+
+        async function filterSpellsByLevel(level) {
+            // If filtering by level and spells don't have level data, load it
+            if (level !== '' && allSpells.some(spell => spell.level === undefined)) {
+                const container = document.getElementById('spellBrowserContent');
+                container.innerHTML = '<div class="spell-loading"><div class="spell-loading-spinner"></div></div>';
+                
+                await loadBasicSpellDetails();
+                
+                // After loading, apply the filter and render
+                applyAllSpellFilters();
+                renderSpellLibrary();
+                return;
+            }
+            applyAllSpellFilters();
+            renderSpellLibrary();
+        }
+
+        async function filterSpellsBySchool(school) {
+            // If we need school data and it's not loaded yet, load it ONCE
+            if (school !== '' && allSpells.some(spell => !spell.school || spell.school === 'Loading...')) {
+                const container = document.getElementById('spellBrowserContent');
+                container.innerHTML = '<div class="spell-loading"><div class="spell-loading-spinner"></div></div>';
+                
+                // Wait for all data to be loaded before filtering
+                await loadBasicSpellDetails();
+                console.log('School data loaded, now filtering...');
+            }
+            
+            // Now apply the filter to the complete, stable dataset
+            applyAllSpellFilters();
+            renderSpellLibrary();
+        }
+
+
+
+        function applyAllSpellFilters() {
+            let filtered = [...allSpells];
+            console.log(`Starting with ${filtered.length} spells`);
+            
+            // Apply search filter
+            const searchTerm = document.getElementById('spellSearchInput')?.value || '';
+            if (searchTerm.trim()) {
+                filtered = filtered.filter(spell =>
+                    spell.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                    (spell.description && spell.description.toLowerCase().includes(searchTerm.toLowerCase()))
+                );
+                console.log(`After search filter: ${filtered.length} spells`);
+            }
+            
+            // Apply level filter
+            const levelFilter = document.getElementById('spellLevelFilter')?.value || '';
+            if (levelFilter !== '') {
+                filtered = filtered.filter(spell => spell.level === parseInt(levelFilter));
+                console.log(`After level filter: ${filtered.length} spells`);
+            }
+            
+            // Apply school filter
+            const schoolFilter = document.getElementById('spellSchoolFilter')?.value || '';
+            if (schoolFilter !== '') {
+                const beforeSchoolFilter = filtered.length;
+                const spellsWithSchoolData = filtered.filter(spell => spell.school).length;
+                console.log(`Before school filter: ${beforeSchoolFilter} spells, ${spellsWithSchoolData} have school data`);
+                
+                filtered = filtered.filter(spell => {
+                    return spell.school && spell.school.toLowerCase() === schoolFilter.toLowerCase();
+                });
+                console.log(`After school filter (${schoolFilter}): ${filtered.length} spells`);
+                
+                // Debug: List the actual spells found for necromancy
+                if (schoolFilter.toLowerCase() === 'necromancy') {
+                    console.log('Necromancy spells found:');
+                    filtered.forEach(spell => console.log(`- ${spell.name} (school: ${spell.school})`));
+                }
+            }
+            
+            filteredSpells = filtered;
+            console.log(`Final filtered spells: ${filteredSpells.length}`);
+        }
+
+        function getOrdinalSuffix(num) {
+            const j = num % 10;
+            const k = num % 100;
+            if (j == 1 && k != 11) return "st";
+            if (j == 2 && k != 12) return "nd";
+            if (j == 3 && k != 13) return "rd";
+            return "th";
+        }
+
+        // Initialize spell library when deck opens
+        function initializeSpellLibrary(characterId) {
+            currentCharacterForSpells = characterId;
+            if (allSpells.length === 0) {
+                loadAllSpellsFromAPI();
+            } else {
+                applyAllSpellFilters();
+                renderSpellLibrary();
+            }
+        }
     </script>
 
 </body>
