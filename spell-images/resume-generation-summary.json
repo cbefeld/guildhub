@@ -1,0 +1,452 @@
+[
+  {
+    "spell": "Resistance",
+    "status": "completed",
+    "jobId": "job:20250807163728785-user:1936-channel:1402455655884783769-bot:midjourney",
+    "imagePath": "spell-images/resistance.png"
+  },
+  {
+    "spell": "Resurrection",
+    "status": "completed",
+    "jobId": "job:20250807164031704-user:1936-channel:1402455655884783769-bot:midjourney",
+    "imagePath": "spell-images/resurrection.png"
+  },
+  {
+    "spell": "Reverse Gravity",
+    "status": "completed",
+    "jobId": "job:20250807164303307-user:1936-channel:1402455655884783769-bot:midjourney",
+    "imagePath": "spell-images/reverse-gravity.png"
+  },
+  {
+    "spell": "Revivify",
+    "status": "completed",
+    "jobId": "job:20250807164550235-user:1936-channel:1402455655884783769-bot:midjourney",
+    "imagePath": "spell-images/revivify.png"
+  },
+  {
+    "spell": "Rope Trick",
+    "status": "completed",
+    "jobId": "job:20250807164811675-user:1936-channel:1402455655884783769-bot:midjourney",
+    "imagePath": "spell-images/rope-trick.png"
+  },
+  {
+    "spell": "Sacred Flame",
+    "status": "completed",
+    "jobId": "job:20250807165057324-user:1936-channel:1402455655884783769-bot:midjourney",
+    "imagePath": "spell-images/sacred-flame.png"
+  },
+  {
+    "spell": "Sanctuary",
+    "status": "completed",
+    "jobId": "job:20250807165355247-user:1936-channel:1402455655884783769-bot:midjourney",
+    "imagePath": "spell-images/sanctuary.png"
+  },
+  {
+    "spell": "Scorching Ray",
+    "status": "completed",
+    "jobId": "job:20250807165656338-user:1936-channel:1402455655884783769-bot:midjourney",
+    "imagePath": "spell-images/scorching-ray.png"
+  },
+  {
+    "spell": "Scrying",
+    "status": "completed",
+    "jobId": "job:20250807165934238-user:1936-channel:1402455655884783769-bot:midjourney",
+    "imagePath": "spell-images/scrying.png"
+  },
+  {
+    "spell": "Secret Chest",
+    "status": "completed",
+    "jobId": "job:20250807170219775-user:1936-channel:1402455655884783769-bot:midjourney",
+    "imagePath": "spell-images/secret-chest.png"
+  },
+  {
+    "spell": "See Invisibility",
+    "status": "completed",
+    "jobId": "job:20250807170429779-user:1936-channel:1402455655884783769-bot:midjourney",
+    "imagePath": "spell-images/see-invisibility.png"
+  },
+  {
+    "spell": "Seeming",
+    "status": "completed",
+    "jobId": "job:20250807170715633-user:1936-channel:1402455655884783769-bot:midjourney",
+    "imagePath": "spell-images/seeming.png"
+  },
+  {
+    "spell": "Sending",
+    "status": "completed",
+    "jobId": "job:20250807170930923-user:1936-channel:1402455655884783769-bot:midjourney",
+    "imagePath": "spell-images/sending.png"
+  },
+  {
+    "spell": "Sequester",
+    "status": "completed",
+    "jobId": "job:20250807171139420-user:1936-channel:1402455655884783769-bot:midjourney",
+    "imagePath": "spell-images/sequester.png"
+  },
+  {
+    "spell": "Shapechange",
+    "status": "completed",
+    "jobId": "job:20250807171351082-user:1936-channel:1402455655884783769-bot:midjourney",
+    "imagePath": "spell-images/shapechange.png"
+  },
+  {
+    "spell": "Shatter",
+    "status": "completed",
+    "jobId": "job:20250807171651685-user:1936-channel:1402455655884783769-bot:midjourney",
+    "imagePath": "spell-images/shatter.png"
+  },
+  {
+    "spell": "Shield",
+    "status": "completed",
+    "jobId": "job:20250807171949134-user:1936-channel:1402455655884783769-bot:midjourney",
+    "imagePath": "spell-images/shield.png"
+  },
+  {
+    "spell": "Shield of Faith",
+    "status": "completed",
+    "jobId": "job:20250807172323329-user:1936-channel:1402455655884783769-bot:midjourney",
+    "imagePath": "spell-images/shield-of-faith.png"
+  },
+  {
+    "spell": "Shillelagh",
+    "status": "completed",
+    "jobId": "job:20250807172607106-user:1936-channel:1402455655884783769-bot:midjourney",
+    "imagePath": "spell-images/shillelagh.png"
+  },
+  {
+    "spell": "Shocking Grasp",
+    "status": "completed",
+    "jobId": "job:20250807172830394-user:1936-channel:1402455655884783769-bot:midjourney",
+    "imagePath": "spell-images/shocking-grasp.png"
+  },
+  {
+    "spell": "Silence",
+    "status": "completed",
+    "jobId": "job:20250807173058149-user:1936-channel:1402455655884783769-bot:midjourney",
+    "imagePath": "spell-images/silence.png"
+  },
+  {
+    "spell": "Silent Image",
+    "status": "completed",
+    "jobId": "job:20250807173336888-user:1936-channel:1402455655884783769-bot:midjourney",
+    "imagePath": "spell-images/silent-image.png"
+  },
+  {
+    "spell": "Simulacrum",
+    "status": "completed",
+    "jobId": "job:20250807173637173-user:1936-channel:1402455655884783769-bot:midjourney",
+    "imagePath": "spell-images/simulacrum.png"
+  },
+  {
+    "spell": "Sleep",
+    "status": "completed",
+    "jobId": "job:20250807173928304-user:1936-channel:1402455655884783769-bot:midjourney",
+    "imagePath": "spell-images/sleep.png"
+  },
+  {
+    "spell": "Sleet Storm",
+    "status": "completed",
+    "jobId": "job:20250807174205888-user:1936-channel:1402455655884783769-bot:midjourney",
+    "imagePath": "spell-images/sleet-storm.png"
+  },
+  {
+    "spell": "Slow",
+    "status": "completed",
+    "jobId": "job:20250807174514808-user:1936-channel:1402455655884783769-bot:midjourney",
+    "imagePath": "spell-images/slow.png"
+  },
+  {
+    "spell": "Spare the Dying",
+    "status": "completed",
+    "jobId": "job:20250807174810221-user:1936-channel:1402455655884783769-bot:midjourney",
+    "imagePath": "spell-images/spare-the-dying.png"
+  },
+  {
+    "spell": "Speak with Animals",
+    "status": "completed",
+    "jobId": "job:20250807175033031-user:1936-channel:1402455655884783769-bot:midjourney",
+    "imagePath": "spell-images/speak-with-animals.png"
+  },
+  {
+    "spell": "Speak with Dead",
+    "status": "completed",
+    "jobId": "job:20250807175255332-user:1936-channel:1402455655884783769-bot:midjourney",
+    "imagePath": "spell-images/speak-with-dead.png"
+  },
+  {
+    "spell": "Speak with Plants",
+    "status": "completed",
+    "jobId": "job:20250807175632214-user:1936-channel:1402455655884783769-bot:midjourney",
+    "imagePath": "spell-images/speak-with-plants.png"
+  },
+  {
+    "spell": "Spider Climb",
+    "status": "completed",
+    "jobId": "job:20250807175920799-user:1936-channel:1402455655884783769-bot:midjourney",
+    "imagePath": "spell-images/spider-climb.png"
+  },
+  {
+    "spell": "Spike Growth",
+    "status": "completed",
+    "jobId": "job:20250807180221163-user:1936-channel:1402455655884783769-bot:midjourney",
+    "imagePath": "spell-images/spike-growth.png"
+  },
+  {
+    "spell": "Spirit Guardians",
+    "status": "completed",
+    "jobId": "job:20250807180512961-user:1936-channel:1402455655884783769-bot:midjourney",
+    "imagePath": "spell-images/spirit-guardians.png"
+  },
+  {
+    "spell": "Spiritual Weapon",
+    "status": "completed",
+    "jobId": "job:20250807180757469-user:1936-channel:1402455655884783769-bot:midjourney",
+    "imagePath": "spell-images/spiritual-weapon.png"
+  },
+  {
+    "spell": "Stinking Cloud",
+    "status": "completed",
+    "jobId": "job:20250807181121953-user:1936-channel:1402455655884783769-bot:midjourney",
+    "imagePath": "spell-images/stinking-cloud.png"
+  },
+  {
+    "spell": "Stone Shape",
+    "status": "completed",
+    "jobId": "job:20250807181351149-user:1936-channel:1402455655884783769-bot:midjourney",
+    "imagePath": "spell-images/stone-shape.png"
+  },
+  {
+    "spell": "Stoneskin",
+    "status": "completed",
+    "jobId": "job:20250807181633609-user:1936-channel:1402455655884783769-bot:midjourney",
+    "imagePath": "spell-images/stoneskin.png"
+  },
+  {
+    "spell": "Storm of Vengeance",
+    "status": "completed",
+    "jobId": "job:20250807181940325-user:1936-channel:1402455655884783769-bot:midjourney",
+    "imagePath": "spell-images/storm-of-vengeance.png"
+  },
+  {
+    "spell": "Suggestion",
+    "status": "completed",
+    "jobId": "job:20250807182231480-user:1936-channel:1402455655884783769-bot:midjourney",
+    "imagePath": "spell-images/suggestion.png"
+  },
+  {
+    "spell": "Sunbeam",
+    "status": "completed",
+    "jobId": "job:20250807182535618-user:1936-channel:1402455655884783769-bot:midjourney",
+    "imagePath": "spell-images/sunbeam.png"
+  },
+  {
+    "spell": "Sunburst",
+    "status": "completed",
+    "jobId": "job:20250807182828266-user:1936-channel:1402455655884783769-bot:midjourney",
+    "imagePath": "spell-images/sunburst.png"
+  },
+  {
+    "spell": "Symbol",
+    "status": "completed",
+    "jobId": "job:20250807183109516-user:1936-channel:1402455655884783769-bot:midjourney",
+    "imagePath": "spell-images/symbol.png"
+  },
+  {
+    "spell": "Telekinesis",
+    "status": "completed",
+    "jobId": "job:20250807183322900-user:1936-channel:1402455655884783769-bot:midjourney",
+    "imagePath": "spell-images/telekinesis.png"
+  },
+  {
+    "spell": "Telepathic Bond",
+    "status": "completed",
+    "jobId": "job:20250807183547886-user:1936-channel:1402455655884783769-bot:midjourney",
+    "imagePath": "spell-images/telepathic-bond.png"
+  },
+  {
+    "spell": "Teleport",
+    "status": "completed",
+    "jobId": "job:20250807183922990-user:1936-channel:1402455655884783769-bot:midjourney",
+    "imagePath": "spell-images/teleport.png"
+  },
+  {
+    "spell": "Teleportation Circle",
+    "status": "completed",
+    "jobId": "job:20250807184150188-user:1936-channel:1402455655884783769-bot:midjourney",
+    "imagePath": "spell-images/teleportation-circle.png"
+  },
+  {
+    "spell": "Thaumaturgy",
+    "status": "completed",
+    "jobId": "job:20250807184451741-user:1936-channel:1402455655884783769-bot:midjourney",
+    "imagePath": "spell-images/thaumaturgy.png"
+  },
+  {
+    "spell": "Thunderwave",
+    "status": "completed",
+    "jobId": "job:20250807184820419-user:1936-channel:1402455655884783769-bot:midjourney",
+    "imagePath": "spell-images/thunderwave.png"
+  },
+  {
+    "spell": "Time Stop",
+    "status": "completed",
+    "jobId": "job:20250807185105116-user:1936-channel:1402455655884783769-bot:midjourney",
+    "imagePath": "spell-images/time-stop.png"
+  },
+  {
+    "spell": "Tiny Hut",
+    "status": "completed",
+    "jobId": "job:20250807185407071-user:1936-channel:1402455655884783769-bot:midjourney",
+    "imagePath": "spell-images/tiny-hut.png"
+  },
+  {
+    "spell": "Tongues",
+    "status": "completed",
+    "jobId": "job:20250807185648738-user:1936-channel:1402455655884783769-bot:midjourney",
+    "imagePath": "spell-images/tongues.png"
+  },
+  {
+    "spell": "Transport via Plants",
+    "status": "completed",
+    "jobId": "job:20250807185953932-user:1936-channel:1402455655884783769-bot:midjourney",
+    "imagePath": "spell-images/transport-via-plants.png"
+  },
+  {
+    "spell": "Tree Stride",
+    "status": "completed",
+    "jobId": "job:20250807190309705-user:1936-channel:1402455655884783769-bot:midjourney",
+    "imagePath": "spell-images/tree-stride.png"
+  },
+  {
+    "spell": "True Polymorph",
+    "status": "completed",
+    "jobId": "job:20250807190551446-user:1936-channel:1402455655884783769-bot:midjourney",
+    "imagePath": "spell-images/true-polymorph.png"
+  },
+  {
+    "spell": "True Resurrection",
+    "status": "completed",
+    "jobId": "job:20250807190833678-user:1936-channel:1402455655884783769-bot:midjourney",
+    "imagePath": "spell-images/true-resurrection.png"
+  },
+  {
+    "spell": "True Seeing",
+    "status": "completed",
+    "jobId": "job:20250807191058505-user:1936-channel:1402455655884783769-bot:midjourney",
+    "imagePath": "spell-images/true-seeing.png"
+  },
+  {
+    "spell": "True Strike",
+    "status": "completed",
+    "jobId": "job:20250807191401827-user:1936-channel:1402455655884783769-bot:midjourney",
+    "imagePath": "spell-images/true-strike.png"
+  },
+  {
+    "spell": "Unseen Servant",
+    "status": "completed",
+    "jobId": "job:20250807191654602-user:1936-channel:1402455655884783769-bot:midjourney",
+    "imagePath": "spell-images/unseen-servant.png"
+  },
+  {
+    "spell": "Vampiric Touch",
+    "status": "completed",
+    "jobId": "job:20250807192021969-user:1936-channel:1402455655884783769-bot:midjourney",
+    "imagePath": "spell-images/vampiric-touch.png"
+  },
+  {
+    "spell": "Vicious Mockery",
+    "status": "completed",
+    "jobId": "job:20250807192341978-user:1936-channel:1402455655884783769-bot:midjourney",
+    "imagePath": "spell-images/vicious-mockery.png"
+  },
+  {
+    "spell": "Wall of Fire",
+    "status": "completed",
+    "jobId": "job:20250807192606194-user:1936-channel:1402455655884783769-bot:midjourney",
+    "imagePath": "spell-images/wall-of-fire.png"
+  },
+  {
+    "spell": "Wall of Force",
+    "status": "completed",
+    "jobId": "job:20250807192847398-user:1936-channel:1402455655884783769-bot:midjourney",
+    "imagePath": "spell-images/wall-of-force.png"
+  },
+  {
+    "spell": "Wall of Ice",
+    "status": "completed",
+    "jobId": "job:20250807193221436-user:1936-channel:1402455655884783769-bot:midjourney",
+    "imagePath": "spell-images/wall-of-ice.png"
+  },
+  {
+    "spell": "Wall of Stone",
+    "status": "completed",
+    "jobId": "job:20250807193450129-user:1936-channel:1402455655884783769-bot:midjourney",
+    "imagePath": "spell-images/wall-of-stone.png"
+  },
+  {
+    "spell": "Wall of Thorns",
+    "status": "completed",
+    "jobId": "job:20250807193748500-user:1936-channel:1402455655884783769-bot:midjourney",
+    "imagePath": "spell-images/wall-of-thorns.png"
+  },
+  {
+    "spell": "Warding Bond",
+    "status": "completed",
+    "jobId": "job:20250807194052892-user:1936-channel:1402455655884783769-bot:midjourney",
+    "imagePath": "spell-images/warding-bond.png"
+  },
+  {
+    "spell": "Water Breathing",
+    "status": "completed",
+    "jobId": "job:20250807194356406-user:1936-channel:1402455655884783769-bot:midjourney",
+    "imagePath": "spell-images/water-breathing.png"
+  },
+  {
+    "spell": "Water Walk",
+    "status": "completed",
+    "jobId": "job:20250807194639717-user:1936-channel:1402455655884783769-bot:midjourney",
+    "imagePath": "spell-images/water-walk.png"
+  },
+  {
+    "spell": "Web",
+    "status": "completed",
+    "jobId": "job:20250807194936947-user:1936-channel:1402455655884783769-bot:midjourney",
+    "imagePath": "spell-images/web.png"
+  },
+  {
+    "spell": "Weird",
+    "status": "completed",
+    "jobId": "job:20250807195247653-user:1936-channel:1402455655884783769-bot:midjourney",
+    "imagePath": "spell-images/weird.png"
+  },
+  {
+    "spell": "Wind Walk",
+    "status": "completed",
+    "jobId": "job:20250807195535981-user:1936-channel:1402455655884783769-bot:midjourney",
+    "imagePath": "spell-images/wind-walk.png"
+  },
+  {
+    "spell": "Wind Wall",
+    "status": "completed",
+    "jobId": "job:20250807195817100-user:1936-channel:1402455655884783769-bot:midjourney",
+    "imagePath": "spell-images/wind-wall.png"
+  },
+  {
+    "spell": "Wish",
+    "status": "completed",
+    "jobId": "job:20250807200030279-user:1936-channel:1402455655884783769-bot:midjourney",
+    "imagePath": "spell-images/wish.png"
+  },
+  {
+    "spell": "Word of Recall",
+    "status": "completed",
+    "jobId": "job:20250807200327550-user:1936-channel:1402455655884783769-bot:midjourney",
+    "imagePath": "spell-images/word-of-recall.png"
+  },
+  {
+    "spell": "Zone of Truth",
+    "status": "completed",
+    "jobId": "job:20250807200549787-user:1936-channel:1402455655884783769-bot:midjourney",
+    "imagePath": "spell-images/zone-of-truth.png"
+  }
+]
