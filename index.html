@@ -598,6 +598,236 @@
                 0 4px 8px rgba(0, 0, 0, 0.6);
         }
 
+        .export-campaign-btn, .import-campaign-btn {
+            background: linear-gradient(180deg, #4a6b4a 0%, #2a4a2a 100%);
+            color: #ffffff;
+            border: 2px solid #5a7a5a;
+            border-radius: 6px;
+            padding: 8px 12px;
+            font-size: 0.8rem;
+            font-weight: normal;
+            font-family: 'Times New Roman', serif;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 
+                inset 0 1px 0 rgba(255, 255, 255, 0.2),
+                0 2px 4px rgba(0, 0, 0, 0.4);
+            text-transform: none;
+            letter-spacing: 0.5px;
+            white-space: nowrap;
+            margin-left: 8px;
+        }
+
+        .export-campaign-btn:hover, .import-campaign-btn:hover {
+            background: linear-gradient(180deg, #5a7a5a 0%, #4a6b4a 100%);
+            transform: translateY(-1px);
+            box-shadow: 
+                inset 0 1px 0 rgba(255, 255, 255, 0.3),
+                0 4px 8px rgba(0, 0, 0, 0.6);
+        }
+
+        .import-campaign-btn {
+            background: linear-gradient(180deg, #6b4a6b 0%, #4a2a4a 100%);
+            border-color: #7a5a7a;
+        }
+
+        .import-campaign-btn:hover {
+            background: linear-gradient(180deg, #7a5a7a 0%, #6b4a6b 100%);
+        }
+
+        .delete-campaign-btn {
+            background: linear-gradient(180deg, #8b0000 0%, #6b0000 100%);
+            color: #ffffff;
+            border: 2px solid #a0522d;
+            border-radius: 6px;
+            padding: 8px 12px;
+            font-size: 0.8rem;
+            font-weight: normal;
+            font-family: 'Times New Roman', serif;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 
+                inset 0 1px 0 rgba(255, 255, 255, 0.2),
+                0 2px 4px rgba(0, 0, 0, 0.4);
+            text-transform: none;
+            letter-spacing: 0.5px;
+            white-space: nowrap;
+            margin-left: 8px;
+        }
+
+        .delete-campaign-btn:hover {
+            background: linear-gradient(180deg, #a00000 0%, #8b0000 100%);
+            transform: translateY(-1px);
+            box-shadow: 
+                inset 0 1px 0 rgba(255, 255, 255, 0.3),
+                0 4px 8px rgba(0, 0, 0, 0.6);
+        }
+
+        /* Import Modal Specific Styles */
+        .import-preview {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid #8b7355;
+            border-radius: 4px;
+            padding: 12px;
+            margin: 12px 0;
+            font-family: monospace;
+            font-size: 0.85rem;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+
+        .import-warning {
+            background: rgba(255, 165, 0, 0.1);
+            border: 1px solid #ffa500;
+            border-radius: 4px;
+            padding: 12px;
+            margin: 12px 0;
+            color: #ffa500;
+        }
+
+        .import-warning ul {
+            margin: 8px 0;
+            padding-left: 20px;
+        }
+
+        .import-warning li {
+            margin: 4px 0;
+        }
+
+        input[type="file"] {
+            background: linear-gradient(180deg, #4a4a4a 0%, #3a3a3a 100%);
+            border: 1px solid #8b7355;
+            border-radius: 4px;
+            padding: 8px;
+            color: #e0e0e0;
+            font-family: 'Times New Roman', serif;
+            width: 100%;
+            cursor: pointer;
+        }
+
+        input[type="file"]:focus {
+            outline: none;
+            border-color: #a0522d;
+            background: linear-gradient(180deg, #5a5a5a 0%, #4a4a4a 100%);
+            box-shadow: 0 0 0 2px rgba(160, 82, 45, 0.3);
+        }
+
+        /* Delete Modal Specific Styles */
+        .delete-warning {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .delete-warning-icon {
+            font-size: 3rem;
+            margin-bottom: 10px;
+        }
+
+        .delete-campaign-info {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid #8b7355;
+            border-radius: 4px;
+            padding: 12px;
+            margin: 15px 0;
+            text-align: left;
+        }
+
+        .delete-consequences {
+            background: rgba(255, 0, 0, 0.1);
+            border: 1px solid #ff4444;
+            border-radius: 4px;
+            padding: 15px;
+            margin: 15px 0;
+            text-align: left;
+            color: #ffcccc;
+        }
+
+        .delete-consequences ul {
+            margin: 10px 0;
+            padding-left: 20px;
+        }
+
+        .delete-consequences li {
+            margin: 5px 0;
+        }
+
+        .delete-final-warning {
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid #ff4444;
+            text-align: center;
+            color: #ff6666;
+        }
+
+        .delete-confirmation-section {
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .delete-confirmation-section label {
+            display: block;
+            margin-bottom: 10px;
+            color: #ffa500;
+        }
+
+        #deleteConfirmationInput {
+            background: linear-gradient(180deg, #4a4a4a 0%, #3a3a3a 100%);
+            border: 2px solid #ff4444;
+            border-radius: 4px;
+            padding: 10px;
+            color: #ffffff;
+            font-family: 'Times New Roman', serif;
+            font-size: 1rem;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            width: 200px;
+        }
+
+        #deleteConfirmationInput:focus {
+            outline: none;
+            border-color: #ff6666;
+            background: linear-gradient(180deg, #5a5a5a 0%, #4a4a4a 100%);
+            box-shadow: 0 0 0 2px rgba(255, 68, 68, 0.3);
+        }
+
+        #deleteConfirmationInput.valid {
+            border-color: #44ff44;
+            background: linear-gradient(180deg, #2a4a2a 0%, #1a3a1a 100%);
+        }
+
+        .delete-confirm-btn {
+            background: linear-gradient(180deg, #8b0000 0%, #6b0000 100%);
+            color: #ffffff;
+            border: 2px solid #a0522d;
+            border-radius: 6px;
+            padding: 10px 20px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            font-family: 'Times New Roman', serif;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 
+                inset 0 1px 0 rgba(255, 255, 255, 0.2),
+                0 2px 4px rgba(0, 0, 0, 0.4);
+        }
+
+        .delete-confirm-btn:disabled {
+            background: linear-gradient(180deg, #4a4a4a 0%, #3a3a3a 100%);
+            color: #888888;
+            border-color: #666666;
+            cursor: not-allowed;
+            opacity: 0.6;
+        }
+
+        .delete-confirm-btn:enabled:hover {
+            background: linear-gradient(180deg, #a00000 0%, #8b0000 100%);
+            transform: translateY(-1px);
+            box-shadow: 
+                inset 0 1px 0 rgba(255, 255, 255, 0.3),
+                0 4px 8px rgba(0, 0, 0, 0.6);
+        }
+
         /* Campaign Modal */
         .campaign-modal {
             display: none;
@@ -5312,6 +5542,15 @@
                     <button class="new-campaign-btn" onclick="showNewCampaignModal()">
                         + New Campaign
                     </button>
+                    <button class="export-campaign-btn" onclick="exportCampaign()" title="Export Campaign Data">
+                        📤 Export
+                    </button>
+                    <button class="import-campaign-btn" onclick="showImportModal()" title="Import Campaign Data">
+                        📥 Import
+                    </button>
+                    <button class="delete-campaign-btn" onclick="showDeleteCampaignModal()" title="Delete Current Campaign">
+                        🗑️ Delete
+                    </button>
                 </div>
                 <button class="add-character-btn" onclick="addCharacter()">
                     + Add Character
@@ -5463,7 +5702,91 @@
         </div>
     </div>
 
+    <!-- Import Campaign Modal -->
+    <div id="importModal" class="campaign-modal">
+        <div class="campaign-modal-content">
+            <div class="campaign-modal-header">
+                <h3>Import Campaign Data</h3>
+                <button class="close-modal-btn" onclick="closeImportModal()">✕</button>
+            </div>
+            <div class="campaign-modal-body">
+                <div class="form-group">
+                    <label for="importFile">Select Campaign File</label>
+                    <input type="file" id="importFile" accept=".json,.txt" onchange="handleFileSelect(event)">
+                    <small>Accepts JSON files exported from Guild Hub</small>
+                </div>
+                <div id="importPreview" class="import-preview" style="display: none;">
+                    <h4>Campaign Preview:</h4>
+                    <div id="importPreviewContent"></div>
+                </div>
+                <div class="import-warning">
+                    <strong>⚠️ Warning:</strong> This will replace ALL data in the current campaign including:
+                    <ul>
+                        <li>All characters and their spells/items</li>
+                        <li>All enemies</li>
+                        <li>Campaign info and messages</li>
+                        <li>Campaign banner</li>
+                    </ul>
+                    <p>Make sure to export your current campaign first if you want to keep it!</p>
+                </div>
+                <div class="campaign-modal-actions">
+                    <button class="cancel-btn" onclick="closeImportModal()">Cancel</button>
+                    <button id="confirmImportBtn" class="create-campaign-btn" onclick="confirmImport()" disabled>
+                        Import Campaign Data
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
 
+    <!-- Delete Campaign Modal -->
+    <div id="deleteCampaignModal" class="campaign-modal">
+        <div class="campaign-modal-content">
+            <div class="campaign-modal-header">
+                <h3>Delete Campaign</h3>
+                <button class="close-modal-btn" onclick="closeDeleteCampaignModal()">✕</button>
+            </div>
+            <div class="campaign-modal-body">
+                <div class="delete-warning">
+                    <div class="delete-warning-icon">⚠️</div>
+                    <h4>Are you sure you want to delete this campaign?</h4>
+                    <div id="deleteCampaignInfo" class="delete-campaign-info">
+                        <!-- Campaign info will be populated here -->
+                    </div>
+                    <div class="delete-consequences">
+                        <strong>This action will permanently delete:</strong>
+                        <ul>
+                            <li><span id="deleteCharacterCount">0</span> characters and all their spells/items</li>
+                            <li><span id="deleteEnemyCount">0</span> enemies</li>
+                            <li><span id="deleteMessageCount">0</span> session messages</li>
+                            <li>Campaign info, description, and banner</li>
+                        </ul>
+                        <p class="delete-final-warning">
+                            <strong>⚠️ This action CANNOT be undone!</strong><br>
+                            Consider exporting the campaign first if you want to keep a backup.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="delete-confirmation-section">
+                    <label for="deleteConfirmationInput">
+                        Type <strong>"DELETE"</strong> to confirm:
+                    </label>
+                    <input type="text" id="deleteConfirmationInput" 
+                           placeholder="Type DELETE here" 
+                           onkeyup="validateDeleteConfirmation()"
+                           autocomplete="off">
+                </div>
+
+                <div class="campaign-modal-actions">
+                    <button class="cancel-btn" onclick="closeDeleteCampaignModal()">Cancel</button>
+                    <button id="confirmDeleteBtn" class="delete-confirm-btn" onclick="confirmDeleteCampaign()" disabled>
+                        🗑️ Delete Campaign
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Firebase SDK -->
     <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-app-compat.js"></script>
@@ -5575,6 +5898,15 @@
                         currentGuildId = guildId;
                         currentGuildData = guildData;
                         
+                        // Cache the password for this guild (expires in 24 hours)
+                        const cacheKey = `guild_auth_${guildId}`;
+                        const authCache = {
+                            password: password,
+                            timestamp: Date.now(),
+                            expires: Date.now() + (24 * 60 * 60 * 1000) // 24 hours
+                        };
+                        localStorage.setItem(cacheKey, JSON.stringify(authCache));
+                        
                         // Hide login screen and show main app
                         document.getElementById('guildLoginScreen').style.display = 'none';
                         document.getElementById('mainApp').style.display = 'block';
@@ -5587,6 +5919,10 @@
                         messageDiv.innerHTML = '';
                     } else {
                         messageDiv.innerHTML = '<div class="status-message status-error">Invalid password!</div>';
+                        
+                        // Clear any cached auth for this guild since password is wrong
+                        const cacheKey = `guild_auth_${guildId}`;
+                        localStorage.removeItem(cacheKey);
                     }
                 })
                 .catch((error) => {
@@ -5598,6 +5934,70 @@
         function checkGuildAccess() {
             const guildId = getGuildId();
             
+            // Check for cached authentication first
+            const cacheKey = `guild_auth_${guildId}`;
+            const cachedAuth = localStorage.getItem(cacheKey);
+            
+            if (cachedAuth) {
+                try {
+                    const authData = JSON.parse(cachedAuth);
+                    
+                    // Check if cache is still valid (not expired)
+                    if (Date.now() < authData.expires) {
+                        console.log('Using cached authentication for guild:', guildId);
+                        
+                        // Show brief loading message
+                        document.getElementById('guildLoginScreen').style.display = 'flex';
+                        document.getElementById('guildLoginMessage').innerHTML = 
+                            '<div class="status-message">Logging you in...</div>';
+                        
+                        // Verify cached password is still valid
+                        database.ref(`admin/guilds/${guildId}`).once('value')
+                            .then((snapshot) => {
+                                if (snapshot.exists() && snapshot.val().password === authData.password) {
+                                    // Cached auth is valid, auto-login
+                                    isAuthenticated = true;
+                                    currentGuildId = guildId;
+                                    currentGuildData = snapshot.val();
+                                    
+                                    // Show main app directly
+                                    document.getElementById('guildLoginScreen').style.display = 'none';
+                                    document.getElementById('mainApp').style.display = 'block';
+                                    
+                                    // Initialize the app
+                                    updateGuildDisplay();
+                                    loadCampaigns();
+                                    
+                                    return; // Exit early, no need to show login
+                                } else {
+                                    // Cached password is invalid, clear cache and show login
+                                    localStorage.removeItem(cacheKey);
+                                    showLoginScreen(guildId);
+                                }
+                            })
+                            .catch(() => {
+                                // Error checking guild, clear cache and show login
+                                localStorage.removeItem(cacheKey);
+                                showLoginScreen(guildId);
+                            });
+                        
+                        return; // Exit early while checking cached auth
+                    } else {
+                        // Cache expired, remove it
+                        localStorage.removeItem(cacheKey);
+                    }
+                } catch (error) {
+                    // Invalid cache data, remove it
+                    localStorage.removeItem(cacheKey);
+                }
+            }
+            
+            // No valid cached auth, show login screen
+            showLoginScreen(guildId);
+        }
+        
+        // Helper function to show login screen
+        function showLoginScreen(guildId) {
             // Check if guild exists
             database.ref(`admin/guilds/${guildId}`).once('value')
                 .then((snapshot) => {
@@ -5619,6 +6019,25 @@
                     document.getElementById('guildLoginMessage').innerHTML = 
                         '<div class="status-message status-error">Error: ' + error.message + '</div>';
                 });
+        }
+        
+        // Function to clear authentication cache (logout)
+        function clearAuthCache(guildId = null) {
+            if (guildId) {
+                // Clear specific guild
+                const cacheKey = `guild_auth_${guildId}`;
+                localStorage.removeItem(cacheKey);
+                console.log('Cleared auth cache for guild:', guildId);
+            } else {
+                // Clear all guild auth caches
+                const keys = Object.keys(localStorage);
+                keys.forEach(key => {
+                    if (key.startsWith('guild_auth_')) {
+                        localStorage.removeItem(key);
+                    }
+                });
+                console.log('Cleared all guild auth caches');
+            }
         }
 
         // Initialize the app
@@ -5666,12 +6085,26 @@
                 if (campaigns.length === 0) {
                     createDefaultCampaign();
                 } else {
-                    renderCampaignSelector();
-                    // Set current campaign to first one if none selected
+                    // Check URL parameters for campaign selection first
+                    const urlParams = new URLSearchParams(window.location.search);
+                    const urlCampaignId = urlParams.get('campaign');
+                    
+                    // Determine which campaign to use
+                    let targetCampaignId = currentCampaignId;
                     if (!currentCampaignId) {
-                        switchCampaign(campaigns[0].id);
+                        if (urlCampaignId && campaigns.find(c => c.id === urlCampaignId)) {
+                            // URL has valid campaign parameter
+                            targetCampaignId = urlCampaignId;
+                        } else {
+                            // No valid URL parameter, use first campaign
+                            targetCampaignId = campaigns[0].id;
+                        }
+                        
+                        // Switch to the determined campaign (this will set currentCampaignId)
+                        switchCampaign(targetCampaignId);
                     } else {
-                        // Load campaign info and banner for current campaign
+                        // Campaign already set, just render selector and load info
+                        renderCampaignSelector();
                         loadCampaignInfo();
                         loadCampaignBanner();
                     }
@@ -5727,6 +6160,9 @@
             
             // Update current campaign
             currentCampaignId = campaignId;
+            
+            // Update the campaign selector dropdown to reflect the change
+            renderCampaignSelector();
             
             // Reload characters and campaign info for new campaign
             setupRealtimeListener();
@@ -9618,6 +10054,428 @@
             } else {
                 applyAllSpellFilters();
                 renderSpellLibrary();
+            }
+        }
+
+        // ===== CAMPAIGN EXPORT/IMPORT FUNCTIONALITY =====
+        
+        let importedCampaignData = null;
+
+        // Export all campaign data
+        async function exportCampaign() {
+            if (!currentCampaignId) {
+                alert('Please select a campaign to export.');
+                return;
+            }
+
+            try {
+                const campaignPath = getCampaignPath();
+                console.log('Exporting campaign from path:', campaignPath);
+
+                // Show loading indicator
+                const exportBtn = document.querySelector('.export-campaign-btn');
+                const originalText = exportBtn.textContent;
+                exportBtn.textContent = '⏳ Exporting...';
+                exportBtn.disabled = true;
+
+                // Gather all campaign data
+                const campaignData = {
+                    exportInfo: {
+                        exportedAt: new Date().toISOString(),
+                        exportedBy: 'Guild Hub',
+                        version: '1.0',
+                        guildId: getGuildId(),
+                        campaignId: currentCampaignId
+                    },
+                    campaignInfo: null,
+                    characters: {},
+                    enemies: {},
+                    messages: [],
+                    banner: null
+                };
+
+                // Get campaign info
+                const campaignInfoSnapshot = await database.ref(`${campaignPath}/info`).once('value');
+                campaignData.campaignInfo = campaignInfoSnapshot.val();
+
+                // Get campaign banner
+                const bannerSnapshot = await database.ref(`${campaignPath}/banner`).once('value');
+                campaignData.banner = bannerSnapshot.val();
+
+                // Get all characters with their spells and items
+                const charactersSnapshot = await database.ref(`${campaignPath}/characters`).once('value');
+                campaignData.characters = charactersSnapshot.val() || {};
+
+                // Get all enemies
+                const enemiesSnapshot = await database.ref(`${campaignPath}/enemies`).once('value');
+                campaignData.enemies = enemiesSnapshot.val() || {};
+
+                // Get all messages
+                const messagesSnapshot = await database.ref(`${campaignPath}/messages`).once('value');
+                campaignData.messages = messagesSnapshot.val() || [];
+
+                // Create filename with campaign name and date
+                const campaignName = campaignData.campaignInfo?.name || 'campaign';
+                const dateStr = new Date().toISOString().slice(0, 10);
+                const filename = `${campaignName.replace(/[^a-z0-9]/gi, '_')}_${dateStr}.json`;
+
+                // Create and download file
+                const dataStr = JSON.stringify(campaignData, null, 2);
+                const dataBlob = new Blob([dataStr], { type: 'application/json' });
+                
+                const link = document.createElement('a');
+                link.href = URL.createObjectURL(dataBlob);
+                link.download = filename;
+                link.click();
+
+                console.log('Campaign exported successfully:', filename);
+                
+                // Show success message
+                exportBtn.textContent = '✅ Exported!';
+                setTimeout(() => {
+                    exportBtn.textContent = originalText;
+                    exportBtn.disabled = false;
+                }, 2000);
+
+            } catch (error) {
+                console.error('Export failed:', error);
+                alert('Export failed: ' + error.message);
+                
+                // Reset button
+                const exportBtn = document.querySelector('.export-campaign-btn');
+                exportBtn.textContent = '📤 Export';
+                exportBtn.disabled = false;
+            }
+        }
+
+        // Show import modal
+        function showImportModal() {
+            if (!currentCampaignId) {
+                alert('Please select a campaign to import data into.');
+                return;
+            }
+            document.getElementById('importModal').style.display = 'block';
+        }
+
+        // Close import modal
+        function closeImportModal() {
+            document.getElementById('importModal').style.display = 'none';
+            document.getElementById('importFile').value = '';
+            document.getElementById('importPreview').style.display = 'none';
+            document.getElementById('confirmImportBtn').disabled = true;
+            importedCampaignData = null;
+        }
+
+        // Handle file selection
+        function handleFileSelect(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                try {
+                    const data = JSON.parse(e.target.result);
+                    
+                    // Validate the data structure
+                    if (!validateImportData(data)) {
+                        alert('Invalid campaign file format. Please select a valid Guild Hub export file.');
+                        return;
+                    }
+
+                    importedCampaignData = data;
+                    showImportPreview(data);
+                    document.getElementById('confirmImportBtn').disabled = false;
+
+                } catch (error) {
+                    alert('Error reading file: ' + error.message);
+                    console.error('File read error:', error);
+                }
+            };
+            reader.readAsText(file);
+        }
+
+        // Validate import data structure
+        function validateImportData(data) {
+            return data && 
+                   data.exportInfo && 
+                   data.exportInfo.exportedBy === 'Guild Hub' &&
+                   (data.characters !== undefined) &&
+                   (data.enemies !== undefined) &&
+                   (data.messages !== undefined);
+        }
+
+        // Show preview of import data
+        function showImportPreview(data) {
+            const preview = document.getElementById('importPreview');
+            const content = document.getElementById('importPreviewContent');
+            
+            const characterCount = Object.keys(data.characters || {}).length;
+            const enemyCount = Object.keys(data.enemies || {}).length;
+            const messageCount = Array.isArray(data.messages) ? data.messages.length : 0;
+            
+            content.innerHTML = `
+                <strong>Campaign:</strong> ${data.campaignInfo?.name || 'Unknown'}<br>
+                <strong>Description:</strong> ${data.campaignInfo?.description || 'No description'}<br>
+                <strong>Characters:</strong> ${characterCount}<br>
+                <strong>Enemies:</strong> ${enemyCount}<br>
+                <strong>Messages:</strong> ${messageCount}<br>
+                <strong>Exported:</strong> ${new Date(data.exportInfo.exportedAt).toLocaleDateString()}<br>
+                <strong>Has Banner:</strong> ${data.banner ? 'Yes' : 'No'}
+            `;
+            
+            preview.style.display = 'block';
+        }
+
+        // Confirm and execute import
+        async function confirmImport() {
+            if (!importedCampaignData) {
+                alert('No data to import.');
+                return;
+            }
+
+            // Final confirmation
+            const confirmation = confirm(
+                '⚠️ FINAL WARNING ⚠️\n\n' +
+                'This will PERMANENTLY REPLACE all data in the current campaign:\n' +
+                '• All characters will be deleted and replaced\n' +
+                '• All enemies will be deleted and replaced\n' +
+                '• All messages will be deleted and replaced\n' +
+                '• Campaign info and banner will be replaced\n\n' +
+                'This action CANNOT be undone!\n\n' +
+                'Are you absolutely sure you want to continue?'
+            );
+
+            if (!confirmation) return;
+
+            try {
+                const campaignPath = getCampaignPath();
+                console.log('Importing campaign data to path:', campaignPath);
+
+                // Show loading
+                const importBtn = document.getElementById('confirmImportBtn');
+                const originalText = importBtn.textContent;
+                importBtn.textContent = '⏳ Importing...';
+                importBtn.disabled = true;
+
+                // Clear existing data and import new data
+                const updates = {};
+
+                // Replace campaign info
+                if (importedCampaignData.campaignInfo) {
+                    updates[`${campaignPath}/info`] = importedCampaignData.campaignInfo;
+                }
+
+                // Replace banner
+                if (importedCampaignData.banner) {
+                    updates[`${campaignPath}/banner`] = importedCampaignData.banner;
+                } else {
+                    updates[`${campaignPath}/banner`] = null;
+                }
+
+                // Replace characters
+                updates[`${campaignPath}/characters`] = importedCampaignData.characters || {};
+
+                // Replace enemies
+                updates[`${campaignPath}/enemies`] = importedCampaignData.enemies || {};
+
+                // Replace messages
+                updates[`${campaignPath}/messages`] = importedCampaignData.messages || [];
+
+                // Apply all updates atomically
+                await database.ref().update(updates);
+
+                console.log('Campaign import completed successfully');
+                
+                // Show success and close modal
+                importBtn.textContent = '✅ Imported!';
+                setTimeout(() => {
+                    closeImportModal();
+                    alert('Campaign imported successfully! The page will reload to show the new data.');
+                    
+                    // Preserve guild and campaign parameters on reload
+                    const urlParams = new URLSearchParams(window.location.search);
+                    urlParams.set('guild', getGuildId());
+                    urlParams.set('campaign', currentCampaignId);
+                    const newUrl = window.location.pathname + '?' + urlParams.toString();
+                    window.location.href = newUrl;
+                }, 1000);
+
+            } catch (error) {
+                console.error('Import failed:', error);
+                alert('Import failed: ' + error.message);
+                
+                // Reset button
+                const importBtn = document.getElementById('confirmImportBtn');
+                importBtn.textContent = 'Import Campaign Data';
+                importBtn.disabled = false;
+            }
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const importModal = document.getElementById('importModal');
+            const deleteModal = document.getElementById('deleteCampaignModal');
+            if (event.target === importModal) {
+                closeImportModal();
+            }
+            if (event.target === deleteModal) {
+                closeDeleteCampaignModal();
+            }
+        }
+
+        // ===== CAMPAIGN DELETE FUNCTIONALITY =====
+
+        // Show delete campaign modal
+        async function showDeleteCampaignModal() {
+            if (!currentCampaignId) {
+                alert('Please select a campaign to delete.');
+                return;
+            }
+
+            // Prevent deleting if it's the only campaign
+            if (campaigns.length <= 1) {
+                alert('Cannot delete the last remaining campaign. Create another campaign first.');
+                return;
+            }
+
+            try {
+                const campaignPath = getCampaignPath();
+                
+                // Get campaign data to show in confirmation
+                const [campaignInfoSnapshot, charactersSnapshot, enemiesSnapshot, messagesSnapshot] = await Promise.all([
+                    database.ref(`${campaignPath}/info`).once('value'),
+                    database.ref(`${campaignPath}/characters`).once('value'),
+                    database.ref(`${campaignPath}/enemies`).once('value'),
+                    database.ref(`${campaignPath}/messages`).once('value')
+                ]);
+
+                const campaignInfo = campaignInfoSnapshot.val() || {};
+                const characters = charactersSnapshot.val() || {};
+                const enemies = enemiesSnapshot.val() || {};
+                const messages = messagesSnapshot.val() || [];
+
+                // Populate modal with campaign info
+                const campaignInfoDiv = document.getElementById('deleteCampaignInfo');
+                campaignInfoDiv.innerHTML = `
+                    <strong>Campaign Name:</strong> ${campaignInfo.name || 'Unnamed Campaign'}<br>
+                    <strong>Description:</strong> ${campaignInfo.description || 'No description'}<br>
+                    <strong>Created:</strong> ${campaignInfo.createdAt ? new Date(campaignInfo.createdAt).toLocaleDateString() : 'Unknown'}
+                `;
+
+                // Update counts
+                document.getElementById('deleteCharacterCount').textContent = Object.keys(characters).length;
+                document.getElementById('deleteEnemyCount').textContent = Object.keys(enemies).length;
+                document.getElementById('deleteMessageCount').textContent = Array.isArray(messages) ? messages.length : 0;
+
+                // Reset confirmation input
+                document.getElementById('deleteConfirmationInput').value = '';
+                document.getElementById('confirmDeleteBtn').disabled = true;
+
+                // Show modal
+                document.getElementById('deleteCampaignModal').style.display = 'block';
+
+            } catch (error) {
+                console.error('Error loading campaign data for deletion:', error);
+                alert('Error loading campaign data: ' + error.message);
+            }
+        }
+
+        // Close delete campaign modal
+        function closeDeleteCampaignModal() {
+            document.getElementById('deleteCampaignModal').style.display = 'none';
+            document.getElementById('deleteConfirmationInput').value = '';
+            document.getElementById('confirmDeleteBtn').disabled = true;
+        }
+
+        // Validate delete confirmation input
+        function validateDeleteConfirmation() {
+            const input = document.getElementById('deleteConfirmationInput');
+            const confirmBtn = document.getElementById('confirmDeleteBtn');
+            
+            if (input.value.toUpperCase() === 'DELETE') {
+                input.classList.add('valid');
+                confirmBtn.disabled = false;
+            } else {
+                input.classList.remove('valid');
+                confirmBtn.disabled = true;
+            }
+        }
+
+        // Confirm and execute campaign deletion
+        async function confirmDeleteCampaign() {
+            if (!currentCampaignId) {
+                alert('No campaign selected for deletion.');
+                return;
+            }
+
+            // Final confirmation
+            const finalConfirmation = confirm(
+                '🚨 FINAL CONFIRMATION 🚨\n\n' +
+                'You are about to PERMANENTLY DELETE this campaign.\n' +
+                'This action is IRREVERSIBLE!\n\n' +
+                'Click OK to proceed with deletion.'
+            );
+
+            if (!finalConfirmation) return;
+
+            try {
+                const guildPath = getGuildPath();
+                const campaignPath = getCampaignPath();
+                
+                console.log('Deleting campaign:', currentCampaignId, 'at path:', campaignPath);
+
+                // Show loading
+                const deleteBtn = document.getElementById('confirmDeleteBtn');
+                const originalText = deleteBtn.textContent;
+                deleteBtn.textContent = '⏳ Deleting...';
+                deleteBtn.disabled = true;
+
+                // Delete the entire campaign
+                await database.ref(`${guildPath}/campaigns/${currentCampaignId}`).remove();
+                
+                console.log('Campaign deleted successfully');
+
+                // Find another campaign to switch to
+                const remainingCampaigns = campaigns.filter(c => c.id !== currentCampaignId);
+                
+                if (remainingCampaigns.length > 0) {
+                    // Switch to the first remaining campaign
+                    const newCampaignId = remainingCampaigns[0].id;
+                    console.log('Switching to campaign:', newCampaignId);
+                    
+                    // Update current campaign
+                    currentCampaignId = newCampaignId;
+                    
+                    // Close modal and reload with preserved guild context
+                    closeDeleteCampaignModal();
+                    alert('Campaign deleted successfully! Switching to another campaign...');
+                    
+                    // Preserve guild parameter and set new campaign on reload
+                    const urlParams = new URLSearchParams(window.location.search);
+                    urlParams.set('guild', getGuildId());
+                    urlParams.set('campaign', newCampaignId);
+                    const newUrl = window.location.pathname + '?' + urlParams.toString();
+                    window.location.href = newUrl;
+                } else {
+                    // This shouldn't happen due to our check, but just in case
+                    alert('Campaign deleted. Creating a new default campaign...');
+                    closeDeleteCampaignModal();
+                    
+                    // Preserve guild parameter on reload
+                    const urlParams = new URLSearchParams(window.location.search);
+                    urlParams.set('guild', getGuildId());
+                    const newUrl = window.location.pathname + '?' + urlParams.toString();
+                    window.location.href = newUrl;
+                }
+
+            } catch (error) {
+                console.error('Delete failed:', error);
+                alert('Failed to delete campaign: ' + error.message);
+                
+                // Reset button
+                const deleteBtn = document.getElementById('confirmDeleteBtn');
+                deleteBtn.textContent = '🗑️ Delete Campaign';
+                deleteBtn.disabled = false;
             }
         }
     </script>

@@ -53,3 +53,12 @@ node_modules/
 .env.development.local
 .env.test.local
 .env.production.local
+# Generator and test files with API keys
+generate-all-spells.js
+monster-generator.js
+resume-spell-generation.js
+spell-generator.js
+test-magic-missile.js
+test-single-spell.js
+test-spell-api.js
+test-spell-prompt.js
