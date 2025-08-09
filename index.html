@@ -2956,26 +2956,16 @@
             pointer-events: none;
         }
 
+        /* Deck character card positioning and layout constraints */
         .deck-character-display .character-card {
-            position: relative;
-            z-index: 100;
+            z-index: 1000;
             pointer-events: auto;
-            overflow: visible;
-            min-height: 380px; /* Ensure minimum height is maintained */
-            height: auto; /* Allow content to expand */
-            /* Transform will be applied via JavaScript with a slight delay */
+            min-height: 534.5px; /* Match actual main page card height */
+            max-height: 534.5px; /* Prevent growth that causes page shifting */
         }
-
+        
         .deck-character-display .character-card.deck-positioned {
             transform: scale(0.9) translateY(-40px);
-        }
-
-        /* Let the footer use its original absolute positioning */
-        
-        /* Ensure the main content areas expand properly in deck view */
-        .deck-character-display .character-card .tab-content {
-            flex: 1;
-            min-height: 250px; /* Ensure content has minimum height */
         }
 
         .deck-content-rows {
@@ -7192,50 +7182,9 @@
             }
             if (!currentDeckPopup) return;
             
-            // Move the character card back to its original location immediately
-            const deckCharacterCard = currentDeckPopup.querySelector('.deck-character-card');
-            if (deckCharacterCard && deckCharacterCard.originalParent && 
-                document.contains(deckCharacterCard.originalParent)) {
-                // Remove deck-specific styling and restore button
-                deckCharacterCard.classList.remove('deck-character-card');
-                deckCharacterCard.classList.remove('deck-positioned');
-                
-                // Restore the original deck button state
-                const deckButton = deckCharacterCard.querySelector('.open-deck-btn');
-                if (deckButton) {
-                    deckButton.textContent = '⚔ Open Deck';
-                    deckButton.style.background = '';
-                    deckButton.onclick = () => openDeckPopup(deckCharacterCard.dataset.characterId);
-                }
-                
-                // Restore the delete button
-                const deleteButton = deckCharacterCard.querySelector('.remove-card-btn');
-                if (deleteButton) {
-                    deleteButton.style.display = '';
-                }
-                
-                // Move card back to original location with error handling
-                try {
-                    if (deckCharacterCard.originalNextSibling && 
-                        deckCharacterCard.originalParent.contains(deckCharacterCard.originalNextSibling)) {
-                        deckCharacterCard.originalParent.insertBefore(deckCharacterCard, deckCharacterCard.originalNextSibling);
-                    } else {
-                        deckCharacterCard.originalParent.appendChild(deckCharacterCard);
-                    }
-                } catch (error) {
-                    console.warn('Error moving character card back to original location:', error);
-                    // Fallback: just append to the original parent
-                    try {
-                        deckCharacterCard.originalParent.appendChild(deckCharacterCard);
-                    } catch (fallbackError) {
-                        console.error('Failed to restore character card position:', fallbackError);
-                    }
-                }
-                
-                // Clean up the stored references
-                delete deckCharacterCard.originalParent;
-                delete deckCharacterCard.originalNextSibling;
-            }
+            // Since we're using a copy, we just need to clean up the copy
+            // The original character card stays in place and doesn't need to be moved back
+            console.log('DEBUG: Closing deck popup - no character card movement needed (using copy approach)');
             
             // Start the 1-second fade-out animation
             currentDeckPopup.classList.remove('open');
@@ -7263,20 +7212,30 @@
             const originalCard = document.querySelector(`[data-character-id="${characterId}"]`);
             if (!originalCard) return;
             
+            // Check if there are multiple cards with the same ID (this would be a problem)
+            const allCardsWithSameId = document.querySelectorAll(`[data-character-id="${characterId}"]`);
+            console.log('DEBUG: Cards found with same ID:', allCardsWithSameId.length);
+            if (allCardsWithSameId.length > 1) {
+                console.warn('WARNING: Multiple character cards found with same ID!', allCardsWithSameId);
+            }
+            
             // Get character name for title
             const characterNameInput = originalCard.querySelector('.card-name');
             const characterName = characterNameInput ? characterNameInput.value || 'Character' : 'Character';
             titleElement.textContent = `${characterName}'s Deck`;
             
-            // Store the original parent so we can move it back later
-            originalCard.originalParent = originalCard.parentNode;
-            originalCard.originalNextSibling = originalCard.nextSibling;
+            // Create a copy of the character card for the deck display instead of moving the original
+            const deckCardCopy = originalCard.cloneNode(true);
+            deckCardCopy.classList.add('deck-character-card');
             
-            // Move the actual card to the deck window
-            originalCard.classList.add('deck-character-card');
+            // Store reference to original card so we can sync changes
+            deckCardCopy.originalCard = originalCard;
             
-            // Toggle the deck button to "Close Deck" state
-            const deckButton = originalCard.querySelector('.open-deck-btn');
+            // Initialize full functionality for the cloned card
+            initializeDeckCardFunctionality(deckCardCopy, characterId);
+            
+            // Toggle the deck button to "Close Deck" state on the copy
+            const deckButton = deckCardCopy.querySelector('.open-deck-btn');
             if (deckButton) {
                 deckButton.textContent = '✕ Close Deck';
                 deckButton.style.background = '#dc2626';
@@ -7284,16 +7243,16 @@
             }
             
             // Hide the delete button for safety while viewing deck
-            const deleteButton = originalCard.querySelector('.remove-card-btn');
+            const deleteButton = deckCardCopy.querySelector('.remove-card-btn');
             if (deleteButton) {
                 deleteButton.style.display = 'none';
             }
             
-            characterDisplayElement.appendChild(originalCard);
+            characterDisplayElement.appendChild(deckCardCopy);
             
             // Add deck positioning with a slight delay for smooth transition
             setTimeout(() => {
-                originalCard.classList.add('deck-positioned');
+                deckCardCopy.classList.add('deck-positioned');
             }, 100);
             
             // Populate items row
@@ -8026,6 +7985,139 @@
                     content.classList.add('active');
                 }
             });
+        }
+
+        // Initialize full functionality for deck popup character card copy
+        function initializeDeckCardFunctionality(deckCard, characterId) {
+            // Create unique ID namespace for the cloned card
+            const deckPrefix = 'deck-';
+            const deckCharacterId = deckPrefix + characterId;
+            
+            // Update all IDs to avoid conflicts
+            const allElementsWithIds = deckCard.querySelectorAll('[id]');
+            allElementsWithIds.forEach(element => {
+                element.id = deckPrefix + element.id;
+            });
+            
+            // Update data-character-id to the new prefixed version
+            deckCard.setAttribute('data-character-id', deckCharacterId);
+            
+            // Initialize tab functionality with proper scoping
+            const tabButtons = deckCard.querySelectorAll('.tab-btn');
+            tabButtons.forEach(btn => {
+                btn.removeAttribute('onclick'); // Remove old onclick
+                btn.addEventListener('click', function() {
+                    const tabName = btn.getAttribute('data-tab');
+                    
+                    // Update tab buttons within this specific card
+                    tabButtons.forEach(button => {
+                        button.classList.remove('active');
+                    });
+                    btn.classList.add('active');
+                    
+                    // Update tab content within this specific card
+                    const tabContents = deckCard.querySelectorAll('.tab-content');
+                    tabContents.forEach(content => {
+                        content.classList.remove('active');
+                        if (content.id === `${deckPrefix}${tabName}-content-${characterId}`) {
+                            content.classList.add('active');
+                        }
+                    });
+                    
+                    // Update global state for consistency
+                    activeTabs[characterId] = tabName;
+                });
+            });
+            
+            // Initialize input field functionality
+            const inputs = deckCard.querySelectorAll('input, textarea, select');
+            console.log('DEBUG: Found', inputs.length, 'input elements in deck card');
+            
+            inputs.forEach(input => {
+                // Log input properties for debugging
+                console.log('DEBUG: Input - id:', input.id, 'class:', input.className, 'name:', input.name, 'placeholder:', input.placeholder);
+                
+                // Remove any existing event listeners by cloning the element
+                const newInput = input.cloneNode(true);
+                input.parentNode.replaceChild(newInput, input);
+                
+                // Add new event listeners that sync with the original card
+                newInput.addEventListener('input', function() {
+                    syncWithOriginalCard(newInput, characterId);
+                });
+                newInput.addEventListener('change', function() {
+                    syncWithOriginalCard(newInput, characterId);
+                    
+                    // Handle race changes for card styling - check for race input field
+                    if (newInput.classList.contains('race-input-inline') || 
+                        newInput.classList.contains('card-race') || 
+                        newInput.name === 'race' || 
+                        newInput.id.includes('race') ||
+                        newInput.placeholder && newInput.placeholder.toLowerCase().includes('race')) {
+                        console.log('DEBUG: Race changed to:', newInput.value);
+                        updateDeckCardTexture(deckCard, newInput.value);
+                    }
+                });
+            });
+        }
+        
+        // Sync changes from deck card back to original card
+        function syncWithOriginalCard(deckInput, characterId) {
+            const originalCard = document.querySelector(`[data-character-id="${characterId}"]:not([data-character-id*="deck"])`);
+            if (!originalCard) return;
+            
+            // Find corresponding input in original card using safer method
+            const inputId = deckInput.id.replace('deck-', '');
+            if (!inputId) return; // Skip if no valid ID
+            
+            let originalInput;
+            try {
+                // Try using getElementById first (most reliable)
+                originalInput = document.getElementById(inputId);
+                // Make sure it's actually in the original card
+                if (originalInput && !originalCard.contains(originalInput)) {
+                    originalInput = null;
+                }
+            } catch (e) {
+                console.warn('Error finding original input:', e);
+                return;
+            }
+            
+            if (originalInput) {
+                originalInput.value = deckInput.value;
+                // Trigger change event on original to maintain functionality
+                originalInput.dispatchEvent(new Event('input', { bubbles: true }));
+                originalInput.dispatchEvent(new Event('change', { bubbles: true }));
+            }
+        }
+        
+        // Update deck card race styling using existing system
+        function updateDeckCardTexture(deckCard, newRace) {
+            console.log('DEBUG: updateDeckCardTexture called with race:', newRace);
+            if (!newRace) return;
+            
+            const textureElement = deckCard.querySelector('.card-texture');
+            console.log('DEBUG: Found texture element:', !!textureElement);
+            if (!textureElement) return;
+            
+            // Remove all existing race classes from texture
+            textureElement.className = 'card-texture';
+            
+            // Add new race class to texture using existing function
+            textureElement.classList.add(getRaceTextureClass(newRace));
+            
+            // Remove all existing race classes from deck card
+            deckCard.classList.forEach(className => {
+                if (className.startsWith('race-')) {
+                    deckCard.classList.remove(className);
+                }
+            });
+            
+            // Add new race class to deck card for header styling
+            if (newRace) {
+                const raceClass = 'race-' + getRaceTextureClass(newRace);
+                deckCard.classList.add(raceClass);
+            }
         }
 
         // Render all characters
