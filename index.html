@@ -2909,7 +2909,8 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            z-index: 10;
+            z-index: 1000;
+            pointer-events: auto;
             box-shadow: 
                 inset 0 1px 0 rgba(255, 255, 255, 0.2),
                 0 2px 4px rgba(0, 0, 0, 0.4);
@@ -2962,7 +2963,6 @@
             overflow: visible;
             min-height: 380px; /* Ensure minimum height is maintained */
             height: auto; /* Allow content to expand */
-            transition: all 0.4s ease; /* Smooth transition for transform changes */
             /* Transform will be applied via JavaScript with a slight delay */
         }
 
@@ -7100,7 +7100,7 @@
             popup.id = 'deck-popup';
             
             popup.innerHTML = `
-                <button class="deck-popup-close" onclick="closeDeckPopup()">✕</button>
+                <button class="deck-popup-close" onclick="closeDeckPopup(event)">✕</button>
                 <div class="deck-main-container">
                     <div class="deck-title" id="deck-title">Character's Deck</div>
                     <div class="deck-character-display" id="deck-character-display">
@@ -7184,12 +7184,18 @@
             // Don't change button state since deck window covers main page
         }
 
-        function closeDeckPopup() {
+        function closeDeckPopup(event) {
+            if (event) {
+                event.preventDefault();
+                event.stopPropagation();
+                event.stopImmediatePropagation();
+            }
             if (!currentDeckPopup) return;
             
             // Move the character card back to its original location immediately
             const deckCharacterCard = currentDeckPopup.querySelector('.deck-character-card');
-            if (deckCharacterCard && deckCharacterCard.originalParent) {
+            if (deckCharacterCard && deckCharacterCard.originalParent && 
+                document.contains(deckCharacterCard.originalParent)) {
                 // Remove deck-specific styling and restore button
                 deckCharacterCard.classList.remove('deck-character-card');
                 deckCharacterCard.classList.remove('deck-positioned');
@@ -7208,11 +7214,22 @@
                     deleteButton.style.display = '';
                 }
                 
-                // Move card back to original location
-                if (deckCharacterCard.originalNextSibling) {
-                    deckCharacterCard.originalParent.insertBefore(deckCharacterCard, deckCharacterCard.originalNextSibling);
-                } else {
-                    deckCharacterCard.originalParent.appendChild(deckCharacterCard);
+                // Move card back to original location with error handling
+                try {
+                    if (deckCharacterCard.originalNextSibling && 
+                        deckCharacterCard.originalParent.contains(deckCharacterCard.originalNextSibling)) {
+                        deckCharacterCard.originalParent.insertBefore(deckCharacterCard, deckCharacterCard.originalNextSibling);
+                    } else {
+                        deckCharacterCard.originalParent.appendChild(deckCharacterCard);
+                    }
+                } catch (error) {
+                    console.warn('Error moving character card back to original location:', error);
+                    // Fallback: just append to the original parent
+                    try {
+                        deckCharacterCard.originalParent.appendChild(deckCharacterCard);
+                    } catch (fallbackError) {
+                        console.error('Failed to restore character card position:', fallbackError);
+                    }
                 }
                 
                 // Clean up the stored references
