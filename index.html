@@ -150,7 +150,8 @@
         .spell-browser-content {
             display: flex;
             gap: 12px;
-            min-width: min-content;
+            min-width: 800px; /* Prevent width collapse during loading */
+            min-height: 300px; /* Prevent height collapse during loading */
             padding: 0;
         }
 
@@ -266,6 +267,42 @@
             box-shadow: 
                 inset 0 2px 4px rgba(0, 0, 0, 0.4),
                 0 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Spell library loading placeholder */
+        .spell-library-placeholder {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 300px; /* Maintain layout height during loading */
+            width: 100%;
+        }
+
+        .spell-library-loading {
+            text-align: center;
+            color: #8b7355;
+        }
+
+        .spell-loading-icon {
+            width: 32px;
+            height: 32px;
+            border: 3px solid rgba(139, 115, 85, 0.3);
+            border-top: 3px solid #8b7355;
+            border-radius: 50%;
+            margin: 0 auto 10px auto;
+            animation: spell-loading-spin 1s linear infinite;
+        }
+
+        .spell-loading-text {
+            font-size: 1rem;
+            font-family: 'Times New Roman', serif;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        @keyframes spell-loading-spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
 
         /* Animation for newly added spell cards */
@@ -8058,6 +8095,17 @@
                         updateDeckCardTexture(deckCard, newInput.value);
                     }
                 });
+                
+                // Add Enter key functionality to save and exit field
+                newInput.addEventListener('keydown', function(e) {
+                    if (e.key === 'Enter') {
+                        e.preventDefault(); // Prevent form submission or other default behavior
+                        newInput.blur(); // Exit the field (same as clicking outside)
+                        
+                        // Trigger change event to ensure saving
+                        newInput.dispatchEvent(new Event('change', { bubbles: true }));
+                    }
+                });
             });
         }
         
@@ -9312,6 +9360,19 @@
             const container = document.getElementById('spellBrowserContent');
             if (!container) return;
             
+            // Show loading placeholder if no spells to prevent layout jumping
+            if (filteredSpells.length === 0) {
+                container.innerHTML = `
+                    <div class="spell-library-placeholder">
+                        <div class="spell-library-loading">
+                            <div class="spell-loading-icon"></div>
+                            <div class="spell-loading-text">Loading spells...</div>
+                        </div>
+                    </div>
+                `;
+                return;
+            }
+            
             container.innerHTML = '';
             
             filteredSpells.forEach((spell, index) => {
@@ -9471,11 +9532,19 @@
         }
 
         async function filterSpellsBySchool(school) {
+            // Show loading placeholder immediately to prevent layout jumping
+            const container = document.getElementById('spellBrowserContent');
+            container.innerHTML = `
+                <div class="spell-library-placeholder">
+                    <div class="spell-library-loading">
+                        <div class="spell-loading-icon"></div>
+                        <div class="spell-loading-text">Loading spells...</div>
+                    </div>
+                </div>
+            `;
+            
             // If we need school data and it's not loaded yet, load it ONCE
             if (school !== '' && allSpells.some(spell => !spell.school || spell.school === 'Loading...')) {
-                const container = document.getElementById('spellBrowserContent');
-                container.innerHTML = '<div class="spell-loading"><div class="spell-loading-spinner"></div></div>';
-                
                 // Wait for all data to be loaded before filtering
                 await loadBasicSpellDetails();
                 console.log('School data loaded, now filtering...');
